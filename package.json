@@ -1,15 +1,32 @@
 {
-  "name": "@cicadoidea/propagator",
-  "title": "Propagator",
-  "files": [ "lib" ],
+  "name": "@cicada-lang/propagator",
   "version": "0.0.1",
-  "license": "GPL-3.0-or-later",
-  "author": "Xie Yuheng",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cicadoidea/propagator"
+  "repository": "github:cicada-lang/propagator",
+  "type": "module",
+  "main": "./lib/index.js",
+  "files": [
+    "src",
+    "lib"
+  ],
+  "scripts": {
+    "build": "rm -rf lib && tsc",
+    "build:watch": "rm -rf lib && tsc --watch",
+    "test": "node --test",
+    "format": "prettier src docs --write"
   },
   "dependencies": {
-    "@cicadoidea/basic": "0.0.3"
-  }
+    "@cicada-lang/framework": "^0.2.0",
+    "@xieyuheng/command-line": "^0.1.2",
+    "@xieyuheng/ty": "^0.2.1",
+    "dedent": "^1.5.3",
+    "regexp-match-indices": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@xieyuheng/test-runner": "^0.2.10",
+    "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "typescript": "^5.4.5"
+  },
+  "license": "GPL-3.0-or-later"
 }

@@ -1,13 +1,25 @@
-# scala
-target
+# typescript
+lib
 
-# parcel
-.cache
+# vitest
+coverage
 
-# js
+# npm
 node_modules
+
+# 0x
+*.0x/
 
 # emacs
 *~
 *#*
 .#*
+
+# vscode
+.vscode
+
+# idea
+.idea
+
+# macOS
+.DS_Store
