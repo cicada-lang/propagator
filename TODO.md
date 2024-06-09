@@ -1,11 +1,8 @@
-# learn
+learn-javascript/signal
 
-[learn] read 2009 propagation-networks--a-flexible-and-expressive-substrate-for-computation.pdf
-[learn] read 2011 revised-report-on-the-propagator-model.html
-- https://groups.csail.mit.edu/mac/users/gjs/propagators/
-[learn] read 1979 constraints.pdf
-
-# the-art
+如果嵌入在 JS 中，
+那么这种编程方式其实也是前端 JS 程序员很熟悉的。
+因为 solidjs/signal 和 vue/ref 都有很类似的 API（vue/reactive 可能不算）。
 
 > 浅嵌入在 JS 中，并且使用 generic operations（而不用 OOP）。
 
