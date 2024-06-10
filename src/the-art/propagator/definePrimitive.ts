@@ -19,29 +19,29 @@ type PrimitiveDefinition = {
   (...args: Array<Cell<unknown>>): void
 }
 
-type Primitive0Definition = {
-  arity: 0
+type Primitive1Definition = {
+  arity: 1
   (arg1: Cell<unknown>): void
   (): Cell<unknown>
 }
 
-type Primitive1Definition = {
-  arity: 1
+type Primitive2Definition = {
+  arity: 2
   (arg1: Cell<unknown>, arg2: Cell<unknown>): void
   (arg1: Cell<unknown>): Cell<unknown>
   (): [Cell<unknown>, Cell<unknown>]
 }
 
-type Primitive2Definition = {
-  arity: 2
+type Primitive3Definition = {
+  arity: 3
   (arg1: Cell<unknown>, arg2: Cell<unknown>, arg3: Cell<unknown>): void
   (arg1: Cell<unknown>, arg2: Cell<unknown>): Cell<unknown>
   (arg1: Cell<unknown>): [Cell<unknown>, Cell<unknown>]
   (): [Cell<unknown>, Cell<unknown>, Cell<unknown>]
 }
 
-type Primitive3Definition = {
-  arity: 3
+type Primitive4Definition = {
+  arity: 4
   (
     arg1: Cell<unknown>,
     arg2: Cell<unknown>,
@@ -57,17 +57,17 @@ type Primitive3Definition = {
 export function definePrimitive<A extends number>(
   arity: A,
   fn: (...args: Array<any>) => any,
-): A extends 0
-  ? Primitive0Definition
-  : A extends 1
-    ? Primitive1Definition
-    : A extends 2
-      ? Primitive2Definition
-      : A extends 3
-        ? Primitive3Definition
+): A extends 1
+  ? Primitive1Definition
+  : A extends 2
+    ? Primitive2Definition
+    : A extends 3
+      ? Primitive3Definition
+      : A extends 4
+        ? Primitive4Definition
         : PrimitiveDefinition {
   const definition = (...args: Array<Cell<unknown>>) => {
-    if (args.length === arity + 1) {
+    if (args.length === arity) {
       const inputs = args.slice(0, args.length - 1)
       const output = args[args.length - 1]
 
@@ -75,7 +75,7 @@ export function definePrimitive<A extends number>(
       watch(inputs, () => {
         addContent(output, liftedFn(...inputs.map(content)))
       })
-    } else if (args.length === arity) {
+    } else if (args.length === arity - 1) {
       const inputs = args
       const output = createCell()
 
@@ -85,8 +85,12 @@ export function definePrimitive<A extends number>(
       })
 
       return output
-    } else if (args.length < arity) {
-      const paddings = repeatApply(args.length - arity, () => createCell(), [])
+    } else if (args.length < arity - 1) {
+      const paddings = repeatApply(
+        args.length - arity + 1,
+        () => createCell(),
+        [],
+      )
       const inputs = [...args, ...paddings]
       const output = createCell()
 

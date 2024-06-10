@@ -1,7 +1,5 @@
 import { type Cell } from "../cell/index.js"
-import { adder } from "../primitives/adder.js"
-import { constant } from "../primitives/constant.js"
-import { divider } from "../primitives/divider.js"
+import { adder, constant, divider } from "../primitives/index.js"
 
 // h = (g + x/g) / 2
 
