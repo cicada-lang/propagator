@@ -43,7 +43,7 @@ export function definePrimitive<A extends number>(
       return output
     } else if (args.length < arity - 1) {
       const paddings = repeatApply(
-        args.length - arity + 1,
+        arity - args.length - 1,
         () => createCell(),
         [],
       )

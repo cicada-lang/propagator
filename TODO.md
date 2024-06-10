@@ -1,6 +1,5 @@
 # the-art
 
-[the-art] fix `definePrimitive`
 [the-art] `examples/celsius/`
 
 [the-art] 实现能够处理 interval 的 propagator
