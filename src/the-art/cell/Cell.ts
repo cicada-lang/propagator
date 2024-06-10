@@ -24,6 +24,7 @@ export function addContent<T>(cell: Cell<T>, value?: T): void {
   }
 
   if (cell.value === undefined) {
+    console.log({ value })
     cell.value = value
     broadcast(cell.propagators)
   }
@@ -35,6 +36,8 @@ export function addContent<T>(cell: Cell<T>, value?: T): void {
   console.error({
     who: "addContent",
     message: "Ack! Inconsistency!",
+    value,
+    oldValue: cell.value,
   })
 
   throw new Error(`[addContent] Ack! Inconsistency!`)
