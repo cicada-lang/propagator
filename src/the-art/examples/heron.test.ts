@@ -1,5 +1,6 @@
 import { test } from "node:test"
-import { addContent, content, makeCell } from "../cell/Cell.js"
+import { content, makeCell } from "../cell/Cell.js"
+import { addContent } from "../cell/addContent.js"
 import { heronStep } from "./heron.js"
 
 test("heronStep", () => {
