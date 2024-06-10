@@ -1,6 +1,5 @@
 # the-art
 
-[the-art] `heron.test.ts` -- use currying
 [the-art] fix `definePrimitive`
 [the-art] `examples/celsius/`
 
