@@ -1,9 +1,11 @@
 # the-art
 
-[the-art] `apply` -- handle currying
-[the-art] test `apply` by `heronStep`
-[the-art] `createPropagator` -- function with `arity` and apply by `apply`
-[the-art] `heronStep` should be defined by `propagatorBuilder`
+[the-art] `definePrimitive1` -- handles currying
+[the-art] `definePrimitive0` -- handles currying
+[the-art] remove `definePrimitive`
+
+[the-art] `definePropagator` -- handles currying
+[the-art] `heronStep` should be defined by `definePropagator`
 [the-art] `examples/heron/` -- `sqrtNetwork`
 [the-art] `examples/celsius/`
 

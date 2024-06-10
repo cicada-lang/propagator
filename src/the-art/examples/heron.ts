@@ -10,13 +10,9 @@ export function heronStep(
   g: Cell<number>,
   h: Cell<number>,
 ): void {
-  const x_div_g = createCell<number>()
-  const g_add_x_div_g = createCell<number>()
   const two = createCell<number>()
-  divider(x, g, x_div_g)
-  adder(g, x_div_g, g_add_x_div_g)
   constant(2)(two)
-  divider(g_add_x_div_g, two, h)
+  divider(adder(g, divider(x, g)), two, h)
 }
 
 // export function heronStep(

@@ -3,6 +3,7 @@ import {
   addPropagator,
   broadcast,
   content,
+  createCell,
   type Cell,
 } from "../cell/index.js"
 import type { Propagator } from "./Propagator.js"
@@ -13,15 +14,48 @@ import type { Propagator } from "./Propagator.js"
 // 对于函数来说 arity 代表输入参数的个数。
 
 type Primitive2Definition = {
-  (...args: Array<Cell<unknown>>): void
-  arity: number
+  (x0: Cell<unknown>, x1: Cell<unknown>, ret: Cell<unknown>): void
+  (x0: Cell<unknown>, x1: Cell<unknown>): Cell<unknown>
 }
 
 export function definePrimitive2(
-  arity: number,
   fn: (...args: Array<any>) => any,
 ): Primitive2Definition {
-  const definition: Primitive2Definition = (...args) => {
+  const definition = (...args: Array<Cell<unknown>>) => {
+    if (args.length === 3) {
+      const [x0, x1, ret] = args
+      const inputs = [x0, x1]
+      const output = ret
+      const liftedFn = liftToCellContents(fn)
+      watch(inputs, () => {
+        addContent(output, liftedFn(...inputs.map(content)))
+      })
+    }
+
+    if (args.length === 2) {
+      const [x0, x1] = args
+      const inputs = [x0, x1]
+      const output = createCell()
+      const liftedFn = liftToCellContents(fn)
+      watch(inputs, () => {
+        addContent(output, liftedFn(...inputs.map(content)))
+      })
+
+      return output
+    }
+  }
+
+  return definition as Primitive2Definition
+}
+
+type PrimitiveDefinition = {
+  (...args: Array<Cell<unknown>>): void
+}
+
+export function definePrimitive(
+  fn: (...args: Array<any>) => any,
+): PrimitiveDefinition {
+  const definition: PrimitiveDefinition = (...args) => {
     const inputs = args.slice(0, args.length - 1)
     const output = args[args.length - 1]
     const liftedFn = liftToCellContents(fn)
@@ -29,8 +63,6 @@ export function definePrimitive2(
       addContent(output, liftedFn(...inputs.map(content)))
     })
   }
-
-  definition.arity = arity
 
   return definition
 }
