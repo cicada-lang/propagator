@@ -6,7 +6,7 @@ export type Cell<T> = {
   propagators: Array<Propagator>
 }
 
-export function makeCell<T>(value?: T): Cell<T> {
+export function createCell<T>(value?: T): Cell<T> {
   return {
     "@type": "Cell",
     value,
