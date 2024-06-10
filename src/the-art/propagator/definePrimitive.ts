@@ -108,6 +108,7 @@ export function definePrimitive<A extends number>(
   }
 
   definition.arity = arity
+
   return definition as any
 }
 
