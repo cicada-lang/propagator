@@ -1,4 +1,4 @@
-export type Propagator = () => void
+import type { Propagator } from "../propagator/index.js"
 
 export type Cell<T> = {
   "@type": "Cell"
