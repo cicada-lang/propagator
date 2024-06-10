@@ -1,4 +1,10 @@
-import { makeCell, type Cell } from "../cell/index.js"
+import {
+  addPropagator,
+  broadcast,
+  makeCell,
+  type Cell,
+  type Propagator,
+} from "../cell/index.js"
 
 // h = (g + x/g) / 2
 
@@ -18,8 +24,15 @@ export function heronStep(
   })
 }
 
-export function watch(cells: Array<Cell<unknown>>, fn: () => void): void {
-  //
+export function watch(
+  cells: Array<Cell<unknown>>,
+  propagator: Propagator,
+): void {
+  for (const cell of cells) {
+    addPropagator(cell, propagator)
+  }
+
+  broadcast([propagator])
 }
 
 export function divider(
@@ -38,11 +51,11 @@ export function constant<T>(value: T, x: Cell<T>): void {
   //
 }
 
-export type PropagatorConstructor  = (...args: Array<Cell<unknown>>) => void
+export type PropagatorConstructor = (...args: Array<Cell<unknown>>) => void
 
 export function propagatorConstructorFromFunction(
   fn: (...args: Array<unknown>) => unknown,
-  arity: number
+  arity: number,
 ): PropagatorConstructor {
   return (...args) => {
     //

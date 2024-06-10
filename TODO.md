@@ -1,8 +1,6 @@
 # the-art
 
-[the-art] `watch`
 [the-art] `propagatorConstructorFromFunction`
-
 [the-art] `examples/heron/` -- `divider`
 [the-art] `examples/heron/` -- `adder`
 [the-art] `examples/heron/` -- `constant`
