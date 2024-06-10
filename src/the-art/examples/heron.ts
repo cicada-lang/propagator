@@ -18,3 +18,13 @@ export function heronStep(
   constant(2)(two)
   divider(g_add_x_div_g, two, h)
 }
+
+// export function heronStep(
+//   x: Cell<number>,
+//   g: Cell<number>,
+//   h: Cell<number>,
+// ): void {
+//   const two = makeCell<number>()
+//   constant(2)(two)
+//   divider(apply(adder, [g, apply(divider, [x, g])]), two, h)
+// }
