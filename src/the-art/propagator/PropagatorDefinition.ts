@@ -1,8 +1,6 @@
 import { type Cell } from "../cell/index.js"
 
 // 我们重载函数作用，使得可以部分恢复树状的 expression 语法。
-// 注意，这里的 arity 代表 propagator 的参数个数，
-// 而不是函数的输入参数的个数。
 
 export type PropagatorDefinition = {
   arity: number
@@ -44,7 +42,7 @@ type Propagator4Definition = {
   (): [Cell<unknown>, Cell<unknown>, Cell<unknown>, Cell<unknown>]
 }
 
-export type PropagatorDefinitionWithArity<A extends number> = A extends 1
+export type PropagatorDefinitionWithFixedArity<A extends number> = A extends 1
   ? Propagator1Definition
   : A extends 2
     ? Propagator2Definition

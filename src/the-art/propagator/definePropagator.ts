@@ -1,9 +1,5 @@
 import type { Cell } from "../cell/index.js"
-
-type PropagatorDefinition = {
-  arity: number
-  (...args: Array<Cell<unknown>>): void
-}
+import type { PropagatorDefinition } from "./PropagatorDefinition.js"
 
 export function definePropagator(
   arity: number,

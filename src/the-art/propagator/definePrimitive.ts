@@ -8,16 +8,18 @@ import {
   type Cell,
 } from "../cell/index.js"
 import type { Propagator } from "./Propagator.js"
-import { type PropagatorDefinitionWithArity } from "./PropagatorDefinition.js"
+import { type PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.js"
 
 // 我们知道所有的 primitive 都是函数，
 // 因此如此构建的 propagator，
 // 多个输入和一个输出。
+// 注意，这里的 arity 代表 propagator 的参数个数，
+// 而不是函数的输入参数的个数。
 
 export function definePrimitive<A extends number>(
   arity: A,
   fn: (...args: Array<any>) => any,
-): PropagatorDefinitionWithArity<A> {
+): PropagatorDefinitionWithFixedArity<A> {
   const definition = (...args: Array<Cell<unknown>>) => {
     if (args.length === arity) {
       const inputs = args.slice(0, args.length - 1)
@@ -61,7 +63,7 @@ export function definePrimitive<A extends number>(
 
   definition.arity = arity
 
-  return definition as any
+  return definition as PropagatorDefinitionWithFixedArity<A>
 }
 
 function watch(cells: Array<Cell<unknown>>, propagator: Propagator): void {
