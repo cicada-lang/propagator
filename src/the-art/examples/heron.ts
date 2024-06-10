@@ -58,7 +58,12 @@ export function propagatorConstructorFromFunction(
   arity: number,
 ): PropagatorConstructor {
   return (...args) => {
-    //
+    const inputs = args.slice(0, args.length - 1)
+    const output = args[args.length - 1]
+    const liftedFn = liftToCellContents(fn)
+    watch(inputs, () => {
+      addContent(output, liftedFn(...inputs.map(content)))
+    })
   }
 }
 
