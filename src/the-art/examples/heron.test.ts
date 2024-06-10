@@ -1,3 +1,4 @@
+import assert from "node:assert"
 import { test } from "node:test"
 import { content, makeCell } from "../cell/Cell.js"
 import { addContent } from "../cell/addContent.js"
@@ -11,5 +12,5 @@ test("heronStep", () => {
   heronStep(x, guess, betterGuess)
   addContent(x, 2)
   addContent(guess, 1.4)
-  console.log(content(betterGuess))
+  assert.deepStrictEqual(content(betterGuess), 1.4142857142857141)
 })
