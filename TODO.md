@@ -1,6 +1,7 @@
 # the-art
 
-[the-art] 实现带有平凡 lattice 的 propagator
+[the-art] `watch`
+[the-art] `propagatorFromFunction`
 
 [the-art] `examples/heron/` -- `divider`
 [the-art] `examples/heron/` -- `adder`
