@@ -14,7 +14,7 @@ npm run test    # Run test
 
 **Papers**:
 
-- [title: The Art of the Propagator, Alexey Andreyevich Radul and Gerald Jay Sussman, 2009](./docs/references/papers/2009-the-art-of-the-propagator.pdf).
+- [The Art of the Propagator, Alexey Andreyevich Radul and Gerald Jay Sussman, 2009](./docs/references/papers/2009-the-art-of-the-propagator.pdf).
 - [Propagation Networks -- A Flexible and Expressive Substrate for Computation, Alexey Andreyevich Radul, 2009](./docs/references/papers/2009-propagation-networks--a-flexible-and-expressive-substrate-for-computation.pdf).
 
 ## Contributions
