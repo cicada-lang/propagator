@@ -1,8 +1,7 @@
 # the-art
 
-[the-art] `definePropagator` -- handles currying
 [the-art] `heron.test.ts` -- use currying
-
+[the-art] fix `definePrimitive`
 [the-art] `examples/celsius/`
 
 [the-art] 实现能够处理 interval 的 propagator

@@ -1,20 +1,22 @@
 import { repeatApply } from "../../utils/repeatApply.js"
-import {
-  addContent,
-  addPropagator,
-  broadcast,
-  content,
-  createCell,
-  type Cell,
-} from "../cell/index.js"
-import type { Propagator } from "./Propagator.js"
+import { addContent, content, createCell, type Cell } from "../cell/index.js"
 import { type PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.js"
+import { watch } from "./watch.js"
 
 // 我们知道所有的 primitive 都是函数，
-// 因此如此构建的 propagator，
-// 多个输入和一个输出。
+// 因此所构建的 propagator 有多个输入和一个输出。
 // 注意，这里的 arity 代表 propagator 的参数个数，
 // 而不是函数的输入参数的个数。
+
+// 作为浅嵌入，这里 `definePrimitive` 其实做的是：
+//   "create propagator constructor from native function"
+// 因为真正的 propagator 类似 subscriber，
+// 是可以不带参数就调用的 closure。
+// 但是这个名字太长了，并且为了与深嵌入的 API 一致，
+// 我们用了 define 这个前缀，因为深嵌入的 API 可能是：
+//   definePrimitive(mod, name, arity, fn)
+// 另外 propagator definition 其实是 propagator constructor，
+// 但是叫 definition 也没问题，并且能和深嵌入一致。
 
 export function definePrimitive<A extends number>(
   arity: A,
@@ -64,14 +66,6 @@ export function definePrimitive<A extends number>(
   definition.arity = arity
 
   return definition as unknown as PropagatorDefinitionWithFixedArity<A>
-}
-
-function watch(cells: Array<Cell<unknown>>, propagator: Propagator): void {
-  for (const cell of cells) {
-    addPropagator(cell, propagator)
-  }
-
-  broadcast([propagator])
 }
 
 function liftToCellContents(
