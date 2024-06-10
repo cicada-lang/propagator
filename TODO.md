@@ -5,7 +5,10 @@
 [the-art] `examples/heron/` -- `divider`
 [the-art] `examples/heron/` -- `adder`
 [the-art] `examples/heron/` -- `constant`
+[the-art] `examples/heron/` -- `sqrtNetwork`
+
 [the-art] `apply` -- handle currying
+
 [the-art] `examples/celsius/`
 
 [the-art] 实现能够处理 interval 的 propagator

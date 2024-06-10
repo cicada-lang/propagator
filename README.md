@@ -10,6 +10,13 @@ npm run build   # Compile `src/` to `lib/`
 npm run test    # Run test
 ```
 
+## References
+
+**Papers**:
+
+- [title: The Art of the Propagator, Alexey Andreyevich Radul and Gerald Jay Sussman, 2009](./docs/references/papers/2009-the-art-of-the-propagator.pdf).
+- [Propagation Networks -- A Flexible and Expressive Substrate for Computation, Alexey Andreyevich Radul, 2009](./docs/references/papers/2009-propagation-networks--a-flexible-and-expressive-substrate-for-computation.pdf).
+
 ## Contributions
 
 To make a contribution, fork this project and create a pull request.
