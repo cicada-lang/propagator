@@ -28,3 +28,11 @@ export function heronStep(
 //   constant(2)(two)
 //   divider(apply(adder, [g, apply(divider, [x, g])]), two, h)
 // }
+
+// export const heronStep = createPropagator((x, g, h) => {
+//   divider(apply(adder, [g, apply(divider, [x, g])]), apply(constant(2)), h)
+// })
+
+// export const heronStep = createPropagator((x, g, h) => {
+//   divider(adder(g, divider(x, g)), constant(2), h)
+// })

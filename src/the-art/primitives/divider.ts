@@ -1,3 +1,3 @@
-import { propagatorConstructorFromFunction } from "../propagator/propagatorConstructorFromFunction.js"
+import { definePrimitivePropagator } from "../propagator/definePrimitivePropagator.js"
 
-export const divider = propagatorConstructorFromFunction(2, (x, y) => x / y)
+export const divider = definePrimitivePropagator(2, (x, y) => x / y)

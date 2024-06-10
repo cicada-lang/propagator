@@ -1,8 +1,9 @@
 # the-art
 
+ambr PropagatorConstructor PropagatorDefinition
 [the-art] `apply` -- handle currying
 [the-art] test `apply` by `heronStep`
-[the-art] `propagatorBuilder` -- function with `arity` and apply by `apply`
+[the-art] `createPropagator` -- function with `arity` and apply by `apply`
 [the-art] `heronStep` should be defined by `propagatorBuilder`
 [the-art] `examples/heron/` -- `sqrtNetwork`
 [the-art] `examples/celsius/`

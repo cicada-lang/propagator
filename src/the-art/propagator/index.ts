@@ -1,2 +1,2 @@
 export * from "./Propagator.js"
-export * from "./propagatorConstructorFromFunction.js"
+export * from "./definePrimitivePropagator.js"

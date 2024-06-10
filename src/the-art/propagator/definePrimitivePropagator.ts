@@ -12,7 +12,7 @@ export type PropagatorConstructor = {
   arity: number
 }
 
-export function propagatorConstructorFromFunction(
+export function definePrimitivePropagator(
   arity: number,
   fn: (...args: Array<any>) => any,
 ): PropagatorConstructor {
