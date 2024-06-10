@@ -1,8 +1,8 @@
-import assert from "node:assert"
-import { test } from "node:test"
 import { content, createCell } from "../cell/Cell.js"
 import { addContent } from "../cell/addContent.js"
 import { adder } from "./index.js"
+import assert from "node:assert"
+import { test } from "node:test"
 
 test("adder", () => {
   const [x, y, z] = adder()

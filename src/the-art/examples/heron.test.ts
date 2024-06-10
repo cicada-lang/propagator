@@ -1,8 +1,8 @@
-import assert from "node:assert"
-import { test } from "node:test"
 import { content, createCell } from "../cell/Cell.js"
 import { addContent } from "../cell/addContent.js"
 import { heronStep } from "./heron.js"
+import assert from "node:assert"
+import { test } from "node:test"
 
 test("heronStep", () => {
   const [x, guess, betterGuess] = heronStep()

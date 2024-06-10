@@ -1,5 +1,5 @@
-import { broadcast } from "./broadcast.js"
 import { type Cell } from "./Cell.js"
+import { broadcast } from "./broadcast.js"
 
 export function addContent<T>(cell: Cell<T>, value?: T): void {
   if (value === undefined) {
