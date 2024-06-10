@@ -7,7 +7,6 @@ export function addContent<T>(cell: Cell<T>, value?: T): void {
   }
 
   if (cell.value === undefined) {
-    console.log({ value })
     cell.value = value
     broadcast(cell.propagators)
   }
