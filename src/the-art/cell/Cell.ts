@@ -1,4 +1,5 @@
 import type { Propagator } from "../propagator/index.js"
+import { broadcast } from "./broadcast.js"
 
 export type Cell<T> = {
   "@type": "Cell"
@@ -50,10 +51,4 @@ export function addPropagator<T>(cell: Cell<T>, propagator: Propagator): void {
 
   cell.propagators.push(propagator)
   broadcast([propagator])
-}
-
-export function broadcast(propagators: Array<Propagator>): void {
-  for (const propagator of propagators) {
-    propagator()
-  }
 }

@@ -1,6 +1,8 @@
 # the-art
 
-[the-art] extract functions from `Cell.ts`
+[the-art] extract `addPropagator` from `Cell.ts`
+[the-art] extract `addContent` from `Cell.ts`
+
 [the-art] `examples/heron/` -- `sqrtNetwork`
 [the-art] `apply` -- handle currying
 [the-art] `examples/celsius/`
