@@ -1,12 +1,7 @@
 import { makeCell, type Cell } from "../cell/index.js"
-import { propagatorConstructorFromFunction } from "../propagator/propagatorConstructorFromFunction.js"
-
-export const divider = propagatorConstructorFromFunction((x, y) => x / y)
-export const adder = propagatorConstructorFromFunction((x, y) => x + y)
-
-export function constant<T>(value: T): (x: Cell<T>) => void {
-  return propagatorConstructorFromFunction(() => value)
-}
+import { adder } from "../primitives/adder.js"
+import { constant } from "../primitives/constant.js"
+import { divider } from "../primitives/divider.js"
 
 // h = (g + x/g) / 2
 
