@@ -19,6 +19,19 @@ type PrimitiveDefinition = {
   (...args: Array<Cell<unknown>>): void
 }
 
+type Primitive0Definition = {
+  arity: 0
+  (arg1: Cell<unknown>): void
+  (): [Cell<unknown>]
+}
+
+type Primitive1Definition = {
+  arity: 1
+  (arg1: Cell<unknown>, arg2: Cell<unknown>): void
+  (arg1: Cell<unknown>): Cell<unknown>
+  (): [Cell<unknown>, Cell<unknown>]
+}
+
 type Primitive2Definition = {
   arity: 2
   (arg1: Cell<unknown>, arg2: Cell<unknown>, arg3: Cell<unknown>): void
@@ -27,10 +40,32 @@ type Primitive2Definition = {
   (): [Cell<unknown>, Cell<unknown>, Cell<unknown>]
 }
 
+type Primitive3Definition = {
+  arity: 3
+  (
+    arg1: Cell<unknown>,
+    arg2: Cell<unknown>,
+    arg3: Cell<unknown>,
+    arg4: Cell<unknown>,
+  ): void
+  (arg1: Cell<unknown>, arg2: Cell<unknown>, arg3: Cell<unknown>): Cell<unknown>
+  (arg1: Cell<unknown>, arg2: Cell<unknown>): [Cell<unknown>, Cell<unknown>]
+  (arg1: Cell<unknown>): [Cell<unknown>, Cell<unknown>, Cell<unknown>]
+  (): [Cell<unknown>, Cell<unknown>, Cell<unknown>, Cell<unknown>]
+}
+
 export function definePrimitive<A extends number>(
   arity: A,
   fn: (...args: Array<any>) => any,
-): A extends 2 ? Primitive2Definition : PrimitiveDefinition {
+): A extends 0
+  ? Primitive0Definition
+  : A extends 1
+    ? Primitive1Definition
+    : A extends 2
+      ? Primitive2Definition
+      : A extends 3
+        ? Primitive3Definition
+        : PrimitiveDefinition {
   const definition = (...args: Array<Cell<unknown>>) => {
     if (args.length === arity + 1) {
       const inputs = args.slice(0, args.length - 1)

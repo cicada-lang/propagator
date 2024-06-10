@@ -1,8 +1,5 @@
 # the-art
 
-[the-art] `definePrimitive` -- handles currying for all arities
-[the-art] remove `PrimitiveDefinition`
-
 [the-art] `definePropagator` -- handles currying
 [the-art] `heronStep` should be defined by `definePropagator`
 [the-art] `examples/heron/` -- `sqrtNetwork`
