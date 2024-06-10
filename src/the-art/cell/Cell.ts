@@ -1,16 +1,16 @@
-export type Subscriber = () => void
+export type Propagator = () => void
 
 export type Cell<T> = {
   "@type": "Cell"
   value?: T
-  subscribers: Array<Subscriber>
+  propagators: Array<Propagator>
 }
 
 export function makeCell<T>(value?: T): Cell<T> {
   return {
     "@type": "Cell",
     value,
-    subscribers: [],
+    propagators: [],
   }
 }
 
@@ -22,15 +22,15 @@ export function addContent<T>(cell: Cell<T>, value: T): void {
   cell.value = value
 }
 
-export function addSubscriber<T>(cell: Cell<T>, subscriber: Subscriber): void {
-  if (cell.subscribers.includes(subscriber)) {return}
+export function addPropagator<T>(cell: Cell<T>, propagator: Propagator): void {
+  if (cell.propagators.includes(propagator)) {return}
 
-  cell.subscribers.push(subscriber)
-  broadcast([subscriber])
+  cell.propagators.push(propagator)
+  broadcast([propagator])
 }
 
-export function broadcast(subscribers: Array<Subscriber>): void {
-  for (const subscriber of subscribers) {
-    subscriber()
+export function broadcast(propagators: Array<Propagator>): void {
+  for (const propagator of propagators) {
+    propagator()
   }
 }

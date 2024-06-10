@@ -38,12 +38,12 @@ export function constant<T>(value: T, x: Cell<T>): void {
   //
 }
 
-export type Propagator = (...args: Array<Cell<unknown>>) => void
+export type PropagatorConstructor  = (...args: Array<Cell<unknown>>) => void
 
-export function propagatorFromFunction(
+export function propagatorConstructorFromFunction(
   fn: (...args: Array<unknown>) => unknown,
   arity: number
-): Propagator {
+): PropagatorConstructor {
   return (...args) => {
     //
   }
