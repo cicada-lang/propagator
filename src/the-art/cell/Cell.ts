@@ -18,12 +18,32 @@ export function content<T>(cell: Cell<T>): T | undefined {
   return cell.value
 }
 
-export function addContent<T>(cell: Cell<T>, value: T): void {
-  cell.value = value
+export function addContent<T>(cell: Cell<T>, value?: T): void {
+  if (value === undefined) {
+    return
+  }
+
+  if (cell.value === undefined) {
+    cell.value = value
+    broadcast(cell.propagators)
+  }
+
+  if (value === cell.value) {
+    return
+  }
+
+  console.error({
+    who: "addContent",
+    message: "Ack! Inconsistency!",
+  })
+
+  throw new Error(`[addContent] Ack! Inconsistency!`)
 }
 
 export function addPropagator<T>(cell: Cell<T>, propagator: Propagator): void {
-  if (cell.propagators.includes(propagator)) {return}
+  if (cell.propagators.includes(propagator)) {
+    return
+  }
 
   cell.propagators.push(propagator)
   broadcast([propagator])
