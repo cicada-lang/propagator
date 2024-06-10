@@ -1,8 +1,9 @@
 # the-art
 
+[the-art] extract `PropagatorDefinition`
 [the-art] `definePropagator` -- handles currying
-[the-art] `heronStep` should be defined by `definePropagator`
-[the-art] `examples/heron/` -- `sqrtNetwork`
+[the-art] `heron.test.ts` -- use currying
+
 [the-art] `examples/celsius/`
 
 [the-art] 实现能够处理 interval 的 propagator
