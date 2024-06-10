@@ -1,5 +1,5 @@
 export class Cell<T> {
-  constructor(public value: T) {}
+  constructor(public value?: T) {}
 
   get() {
     return this.value
