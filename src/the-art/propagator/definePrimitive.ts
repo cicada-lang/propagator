@@ -63,7 +63,7 @@ export function definePrimitive<A extends number>(
 
   definition.arity = arity
 
-  return definition as PropagatorDefinitionWithFixedArity<A>
+  return definition as unknown as PropagatorDefinitionWithFixedArity<A>
 }
 
 function watch(cells: Array<Cell<unknown>>, propagator: Propagator): void {
