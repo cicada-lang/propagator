@@ -7,16 +7,21 @@ import {
 } from "../cell/index.js"
 import type { Propagator } from "./Propagator.js"
 
-export type PropagatorDefinition = {
+// 我们知道所有的 primitive 都是函数，
+// 因此如此构建的 propagator，
+// 多个输入和一个输出，
+// 对于函数来说 arity 代表输入参数的个数。
+
+type Primitive2Definition = {
   (...args: Array<Cell<unknown>>): void
   arity: number
 }
 
-export function definePrimitivePropagator(
+export function definePrimitive2(
   arity: number,
   fn: (...args: Array<any>) => any,
-): PropagatorDefinition {
-  const propagatorDefinition: PropagatorDefinition = (...args) => {
+): Primitive2Definition {
+  const definition: Primitive2Definition = (...args) => {
     const inputs = args.slice(0, args.length - 1)
     const output = args[args.length - 1]
     const liftedFn = liftToCellContents(fn)
@@ -25,9 +30,9 @@ export function definePrimitivePropagator(
     })
   }
 
-  propagatorDefinition.arity = arity
+  definition.arity = arity
 
-  return propagatorDefinition
+  return definition
 }
 
 export function watch(

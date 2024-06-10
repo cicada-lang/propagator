@@ -1,2 +1,2 @@
 export * from "./Propagator.js"
-export * from "./definePrimitivePropagator.js"
+export * from "./definePrimitive2.js"
