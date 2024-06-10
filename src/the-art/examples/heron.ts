@@ -23,12 +23,3 @@ export function adder(x: Cell<number>, y: Cell<number>, z: Cell<number>) {
 export function constant<T>(value: T, x: Cell<T>) {
   //
 }
-
-const x = makeCell<number>()
-const guess = makeCell<number>()
-const betterGuess = makeCell<number>()
-
-heronStep(x, guess, betterGuess)
-addContent(x, 2)
-addContent(guess, 1.4)
-content(betterGuess)
