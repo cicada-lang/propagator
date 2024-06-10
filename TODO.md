@@ -1,8 +1,7 @@
 # the-art
 
-[the-art] `definePrimitive1` -- handles currying
-[the-art] `definePrimitive0` -- handles currying
-[the-art] remove `definePrimitive`
+[the-art] `definePrimitive` -- handles currying for all arities
+[the-art] remove `PrimitiveDefinition`
 
 [the-art] `definePropagator` -- handles currying
 [the-art] `heronStep` should be defined by `definePropagator`

@@ -1,3 +1,3 @@
-import { definePrimitive2 } from "../propagator/definePrimitive.js"
+import { definePrimitive } from "../propagator/definePrimitive.js"
 
-export const adder = definePrimitive2((x, y) => x + y)
+export const adder = definePrimitive(2, (x, y) => x + y)

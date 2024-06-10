@@ -1,3 +1,4 @@
+import { repeatApply } from "../../utils/repeatApply.js"
 import {
   addContent,
   addPropagator,
@@ -13,64 +14,65 @@ import type { Propagator } from "./Propagator.js"
 // 多个输入和一个输出，
 // 对于函数来说 arity 代表输入参数的个数。
 
-type Primitive2Definition = {
-  (x0: Cell<unknown>, x1: Cell<unknown>, ret: Cell<unknown>): void
-  (x0: Cell<unknown>, x1: Cell<unknown>): Cell<unknown>
+type PrimitiveDefinition = {
+  arity: number
+  (...args: Array<Cell<unknown>>): void
 }
 
-export function definePrimitive2(
+type Primitive2Definition = {
+  arity: 2
+  (arg1: Cell<unknown>, arg2: Cell<unknown>, arg3: Cell<unknown>): void
+  (arg1: Cell<unknown>, arg2: Cell<unknown>): Cell<unknown>
+  (arg1: Cell<unknown>): [Cell<unknown>, Cell<unknown>]
+  (): [Cell<unknown>, Cell<unknown>, Cell<unknown>]
+}
+
+export function definePrimitive<A extends number>(
+  arity: A,
   fn: (...args: Array<any>) => any,
-): Primitive2Definition {
+): A extends 2 ? Primitive2Definition : PrimitiveDefinition {
   const definition = (...args: Array<Cell<unknown>>) => {
-    if (args.length === 3) {
-      const [x0, x1, ret] = args
-      const inputs = [x0, x1]
-      const output = ret
+    if (args.length === arity + 1) {
+      const inputs = args.slice(0, args.length - 1)
+      const output = args[args.length - 1]
+
       const liftedFn = liftToCellContents(fn)
       watch(inputs, () => {
         addContent(output, liftedFn(...inputs.map(content)))
       })
-    }
-
-    if (args.length === 2) {
-      const [x0, x1] = args
-      const inputs = [x0, x1]
+    } else if (args.length === arity) {
+      const inputs = args
       const output = createCell()
+
       const liftedFn = liftToCellContents(fn)
       watch(inputs, () => {
         addContent(output, liftedFn(...inputs.map(content)))
       })
 
       return output
+    } else if (args.length < arity) {
+      const paddings = repeatApply(args.length - arity, () => createCell(), [])
+      const inputs = [...args, ...paddings]
+      const output = createCell()
+
+      const liftedFn = liftToCellContents(fn)
+      watch(inputs, () => {
+        addContent(output, liftedFn(...inputs.map(content)))
+      })
+
+      return [...paddings, output]
+    } else {
+      throw new Error(
+        `[definePrimitive] number of arguments ${args.length} exceed arity plus one: ${arity + 1}`,
+      )
     }
   }
 
-  return definition as Primitive2Definition
+  definition.arity = arity
+  return definition as any
 }
 
-type PrimitiveDefinition = {
-  (...args: Array<Cell<unknown>>): void
-}
-
-export function definePrimitive(
-  fn: (...args: Array<any>) => any,
-): PrimitiveDefinition {
-  const definition: PrimitiveDefinition = (...args) => {
-    const inputs = args.slice(0, args.length - 1)
-    const output = args[args.length - 1]
-    const liftedFn = liftToCellContents(fn)
-    watch(inputs, () => {
-      addContent(output, liftedFn(...inputs.map(content)))
-    })
-  }
-
-  return definition
-}
-
-export function watch(
-  cells: Array<Cell<unknown>>,
-  propagator: Propagator,
-): void {
+function watch(cells: Array<Cell<unknown>>, propagator: Propagator): void {
   for (const cell of cells) {
     addPropagator(cell, propagator)
   }
