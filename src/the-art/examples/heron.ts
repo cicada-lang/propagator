@@ -1,4 +1,4 @@
-import { Cell, makeCell } from "../cell/index.js"
+import { makeCell, type Cell } from "../cell/index.js"
 
 // h = (g + x/g) / 2
 
