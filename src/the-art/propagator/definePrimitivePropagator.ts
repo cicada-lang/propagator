@@ -7,7 +7,7 @@ import {
 } from "../cell/index.js"
 import type { Propagator } from "./Propagator.js"
 
-export type PropagatorConstructor = {
+export type PropagatorDefinition = {
   (...args: Array<Cell<unknown>>): void
   arity: number
 }
@@ -15,8 +15,8 @@ export type PropagatorConstructor = {
 export function definePrimitivePropagator(
   arity: number,
   fn: (...args: Array<any>) => any,
-): PropagatorConstructor {
-  const propagatorConstructor: PropagatorConstructor = (...args) => {
+): PropagatorDefinition {
+  const propagatorDefinition: PropagatorDefinition = (...args) => {
     const inputs = args.slice(0, args.length - 1)
     const output = args[args.length - 1]
     const liftedFn = liftToCellContents(fn)
@@ -25,9 +25,9 @@ export function definePrimitivePropagator(
     })
   }
 
-  propagatorConstructor.arity = arity
+  propagatorDefinition.arity = arity
 
-  return propagatorConstructor
+  return propagatorDefinition
 }
 
 export function watch(

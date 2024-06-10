@@ -1,6 +1,5 @@
 # the-art
 
-ambr PropagatorConstructor PropagatorDefinition
 [the-art] `apply` -- handle currying
 [the-art] test `apply` by `heronStep`
 [the-art] `createPropagator` -- function with `arity` and apply by `apply`
