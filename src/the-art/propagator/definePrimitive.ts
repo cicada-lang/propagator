@@ -22,7 +22,7 @@ type PrimitiveDefinition = {
 type Primitive0Definition = {
   arity: 0
   (arg1: Cell<unknown>): void
-  (): [Cell<unknown>]
+  (): Cell<unknown>
 }
 
 type Primitive1Definition = {

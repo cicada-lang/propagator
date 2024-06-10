@@ -1,4 +1,4 @@
-import { createCell, type Cell } from "../cell/index.js"
+import { type Cell } from "../cell/index.js"
 import { adder } from "../primitives/adder.js"
 import { constant } from "../primitives/constant.js"
 import { divider } from "../primitives/divider.js"
@@ -10,9 +10,7 @@ export const heronStep = (
   g: Cell<number>,
   h: Cell<number>,
 ) => {
-  const two = createCell<number>()
-  constant(2)(two)
-  divider(adder(g, divider(x, g)), two, h)
+  divider(adder(g, divider(x, g)), constant(2)(), h)
 }
 
 // export const heronStep = createPropagator((x, g, h) => {
