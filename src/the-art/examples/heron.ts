@@ -61,3 +61,15 @@ export function propagatorConstructorFromFunction(
     //
   }
 }
+
+function liftToCellContents(
+  fn: (...args: Array<unknown>) => unknown,
+): (...args: Array<unknown>) => unknown {
+  return (...args) => {
+    if (args.includes(undefined)) {
+      return undefined
+    } else {
+      return fn(args)
+    }
+  }
+}
