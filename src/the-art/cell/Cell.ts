@@ -9,3 +9,7 @@ export class Cell<T> {
     this.value = value
   }
 }
+
+export function makeCell<T>(value?: T): Cell<T> {
+  return new Cell(value)
+}

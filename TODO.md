@@ -1,5 +1,6 @@
 > 浅嵌入在 JS 中，并且使用 generic operations（而不用 OOP）。
 
+[the-art] makeCell -- hide the fact that cell is a class
 [the-art] 实现带有平凡 lattice 的 propagator
 
 [the-art] `examples/heron/` -- `divider`
