@@ -1,6 +1,5 @@
 # the-art
 
-[the-art] extract `PropagatorDefinition`
 [the-art] `definePropagator` -- handles currying
 [the-art] `heron.test.ts` -- use currying
 

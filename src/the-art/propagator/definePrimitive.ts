@@ -8,66 +8,16 @@ import {
   type Cell,
 } from "../cell/index.js"
 import type { Propagator } from "./Propagator.js"
+import { type PropagatorDefinitionWithArity } from "./PropagatorDefinition.js"
 
 // 我们知道所有的 primitive 都是函数，
 // 因此如此构建的 propagator，
 // 多个输入和一个输出。
-// 我们重载函数作用，使得可以部分恢复树状的 expression 语法。
-// 注意，这里的 arity 代表 propagator 的参数个数，
-// 而不是函数的输入参数的个数。
-
-type PropagatorDefinition = {
-  arity: number
-  (...args: Array<Cell<unknown>>): void
-}
-
-type Propagator1Definition = {
-  arity: 1
-  (arg1: Cell<unknown>): void
-  (): Cell<unknown>
-}
-
-type Propagator2Definition = {
-  arity: 2
-  (arg1: Cell<unknown>, arg2: Cell<unknown>): void
-  (arg1: Cell<unknown>): Cell<unknown>
-  (): [Cell<unknown>, Cell<unknown>]
-}
-
-type Propagator3Definition = {
-  arity: 3
-  (arg1: Cell<unknown>, arg2: Cell<unknown>, arg3: Cell<unknown>): void
-  (arg1: Cell<unknown>, arg2: Cell<unknown>): Cell<unknown>
-  (arg1: Cell<unknown>): [Cell<unknown>, Cell<unknown>]
-  (): [Cell<unknown>, Cell<unknown>, Cell<unknown>]
-}
-
-type Propagator4Definition = {
-  arity: 4
-  (
-    arg1: Cell<unknown>,
-    arg2: Cell<unknown>,
-    arg3: Cell<unknown>,
-    arg4: Cell<unknown>,
-  ): void
-  (arg1: Cell<unknown>, arg2: Cell<unknown>, arg3: Cell<unknown>): Cell<unknown>
-  (arg1: Cell<unknown>, arg2: Cell<unknown>): [Cell<unknown>, Cell<unknown>]
-  (arg1: Cell<unknown>): [Cell<unknown>, Cell<unknown>, Cell<unknown>]
-  (): [Cell<unknown>, Cell<unknown>, Cell<unknown>, Cell<unknown>]
-}
 
 export function definePrimitive<A extends number>(
   arity: A,
   fn: (...args: Array<any>) => any,
-): A extends 1
-  ? Propagator1Definition
-  : A extends 2
-    ? Propagator2Definition
-    : A extends 3
-      ? Propagator3Definition
-      : A extends 4
-        ? Propagator4Definition
-        : PropagatorDefinition {
+): PropagatorDefinitionWithArity<A> {
   const definition = (...args: Array<Cell<unknown>>) => {
     if (args.length === arity) {
       const inputs = args.slice(0, args.length - 1)
