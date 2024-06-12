@@ -1,5 +1,5 @@
 import { repeatApply } from "../../utils/repeatApply.js"
-import { addContent, content, createCell, type Cell } from "../cell/index.js"
+import { type Cell, addContent, content, createCell } from "../cell/index.js"
 import { type PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.js"
 import { watch } from "./watch.js"
 

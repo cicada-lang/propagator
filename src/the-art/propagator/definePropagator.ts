@@ -1,5 +1,5 @@
 import { repeatApply } from "../../utils/repeatApply.js"
-import { createCell, type Cell } from "../cell/index.js"
+import { type Cell, createCell } from "../cell/index.js"
 import type { PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.js"
 
 export function definePropagator<A extends number>(
