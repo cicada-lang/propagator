@@ -14,17 +14,10 @@
     "test": "node --test",
     "format": "prettier src docs --write"
   },
-  "dependencies": {
-    "@cicada-lang/framework": "^0.2.0",
-    "@xieyuheng/command-line": "^0.1.2",
-    "@xieyuheng/ty": "^0.2.1",
-    "dedent": "^1.5.3",
-    "regexp-match-indices": "^1.0.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/node": "^20.14.2",
-    "@xieyuheng/test-runner": "^0.2.10",
     "prettier": "^3.3.2",
     "typescript": "^5.4.5"
   },

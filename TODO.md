@@ -1,6 +1,5 @@
 # the-art
 
-[the-art] `examples/celsius/` -- `fahrenheitToCelsius`
 [the-art] 实现能够处理 interval 的 propagator
 [the-art] `merge` as generic lattice operations
 [the-art] `examples/heron/` -- 设计 lattice 来逼近结果
