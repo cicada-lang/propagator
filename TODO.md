@@ -1,7 +1,5 @@
 > multidirectional computation
 
-[the-art] `toys/` -- `product`
-[the-art] test `toys/product`
 [the-art] `examples/celsius/fahrenheitAndCelsius`
 [the-art] test `fahrenheitAndCelsius`
 

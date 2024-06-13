@@ -10,3 +10,9 @@ export const sum = definePropagator(3, (x, y, z) => {
   subtractor(z, x, y)
   subtractor(z, y, x)
 })
+
+export const product = definePropagator(3, (x, y, z) => {
+  multiplier(x, y, z)
+  divider(z, x, y)
+  divider(z, y, x)
+})
