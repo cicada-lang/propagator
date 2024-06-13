@@ -9,6 +9,4 @@
 [the-art] dependencies for alternate worldviews
 [the-art] dependencies for implicit search
 
-# thesis
-
 # revised

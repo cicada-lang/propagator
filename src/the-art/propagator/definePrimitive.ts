@@ -1,7 +1,14 @@
 import { repeatApply } from "../../utils/repeatApply.js"
-import { addContent, content, createCell, type Cell } from "../cell/index.js"
+import {
+  addContent,
+  addPropagator,
+  broadcast,
+  content,
+  createCell,
+  type Cell,
+} from "../cell/index.js"
+import type { Propagator } from "./Propagator.js"
 import { type PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.js"
-import { watch } from "./watch.js"
 
 // # 关于 arity 的含义
 // 我们知道所有的 primitive 都是函数，
@@ -90,4 +97,12 @@ function skipIncompleteInputs(
       return fn(...args)
     }
   }
+}
+
+function watch(cells: Array<Cell<unknown>>, propagator: Propagator): void {
+  for (const cell of cells) {
+    addPropagator(cell, propagator)
+  }
+
+  broadcast([propagator])
 }
