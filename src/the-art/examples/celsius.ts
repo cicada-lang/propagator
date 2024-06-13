@@ -26,3 +26,7 @@ export const fahrenheitAndCelsius = definePropagator(2, (f, c) => {
   product(b, constant(9)(), constant(5)())
   product(a, b, c)
 })
+
+export const celsiusAndKelvin = definePropagator(2, (c, k) => {
+  sum(c, constant(273.15)(), k)
+})
