@@ -1,10 +1,5 @@
-import {
-  constant,
-  divider,
-  multiplier,
-  subtractor,
-} from "../primitives/index.js"
 import { definePropagator } from "../propagator/index.js"
+import { constant, divider, multiplier, subtractor } from "../toys/index.js"
 
 // c = (f - 32) * 5/9
 

@@ -1,5 +1,5 @@
-import { adder, constant, divider } from "../primitives/index.js"
 import { definePropagator } from "../propagator/index.js"
+import { adder, constant, divider } from "../toys/index.js"
 
 // h = (g + x/g) / 2
 
