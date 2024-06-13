@@ -2,7 +2,7 @@ import assert from "node:assert"
 import { test } from "node:test"
 import { content } from "../cell/Cell.js"
 import { addContent } from "../cell/addContent.js"
-import { fahrenheitAndCelsius, fahrenheitToCelsius } from "./celsius.js"
+import { fahrenheitCelsius, fahrenheitToCelsius } from "./celsius.js"
 
 test("fahrenheitToCelsius", () => {
   const [f, c] = fahrenheitToCelsius()
@@ -12,9 +12,9 @@ test("fahrenheitToCelsius", () => {
   assert.deepStrictEqual(content(c), 25)
 })
 
-test("fahrenheitAndCelsius", () => {
+test("fahrenheitCelsius", () => {
   {
-    const [f, c] = fahrenheitAndCelsius()
+    const [f, c] = fahrenheitCelsius()
 
     addContent(f, 77)
 
@@ -22,7 +22,7 @@ test("fahrenheitAndCelsius", () => {
   }
 
   {
-    const [f, c] = fahrenheitAndCelsius()
+    const [f, c] = fahrenheitCelsius()
 
     addContent(c, 25)
 

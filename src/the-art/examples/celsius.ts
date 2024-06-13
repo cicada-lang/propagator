@@ -19,7 +19,7 @@ export const fahrenheitToCelsius = definePropagator(2, (f, c) => {
   )
 })
 
-export const fahrenheitAndCelsius = definePropagator(2, (f, c) => {
+export const fahrenheitCelsius = definePropagator(2, (f, c) => {
   const a = createCell<number>()
   sum(a, constant(32)(), f)
   const b = createCell<number>()

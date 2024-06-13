@@ -1,5 +1,3 @@
-ambr fahrenheitAndCelsius fahrenheitCelsius
-
 [the-art] quadratic, squarer and sqrter
 
 [the-art] 实现能够处理 interval 的 propagator
