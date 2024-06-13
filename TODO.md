@@ -1,5 +1,10 @@
-[the-art] `toys/sum`
-[the-art] multidirectional computation
+> multidirectional computation
+
+[the-art] `toys/` -- `product`
+[the-art] test `toys/product`
+[the-art] `examples/celsius/fahrenheitAndCelsius`
+[the-art] test `fahrenheitAndCelsius`
+
 [the-art] 实现能够处理 interval 的 propagator
 [the-art] use a scheduler
 [the-art] `merge` as generic lattice operations
