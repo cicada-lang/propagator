@@ -3,11 +3,13 @@ import { addContent, content, createCell, type Cell } from "../cell/index.js"
 import { type PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.js"
 import { watch } from "./watch.js"
 
+// # 关于 arity 的含义
 // 我们知道所有的 primitive 都是函数，
 // 因此所构建的 propagator 有多个输入和一个输出。
 // 注意，这里的 arity 代表 propagator 的参数个数，
 // 而不是函数的输入参数的个数。
 
+// # 关于 API 的命名
 // 作为浅嵌入，这里 `definePrimitive` 其实做的是：
 //   "create propagator constructor from native function"
 // 因为真正的 propagator 类似 subscriber，
@@ -23,21 +25,21 @@ export function definePrimitive<A extends number>(
   fn: (...args: Array<any>) => any,
 ): PropagatorDefinitionWithFixedArity<A> {
   const definition = (...args: Array<Cell<unknown>>) => {
+    // 注意，在下面的实现中，只需要 watch 函数的 inputs，
+    // output cell 的变化并不应该导致代表函数的 propagator 重新运行。
     if (args.length === arity) {
       const inputs = args.slice(0, args.length - 1)
       const output = args[args.length - 1]
 
-      const liftedFn = liftToCellContents(fn)
       watch(inputs, () => {
-        addContent(output, liftedFn(...inputs.map(content)))
+        addContent(output, skipIncompleteInputs(fn)(...inputs.map(content)))
       })
     } else if (args.length === arity - 1) {
       const inputs = args
       const output = createCell()
 
-      const liftedFn = liftToCellContents(fn)
       watch(inputs, () => {
-        addContent(output, liftedFn(...inputs.map(content)))
+        addContent(output, skipIncompleteInputs(fn)(...inputs.map(content)))
       })
 
       return output
@@ -50,9 +52,8 @@ export function definePrimitive<A extends number>(
       const inputs = [...args, ...paddings]
       const output = createCell()
 
-      const liftedFn = liftToCellContents(fn)
       watch(inputs, () => {
-        addContent(output, liftedFn(...inputs.map(content)))
+        addContent(output, skipIncompleteInputs(fn)(...inputs.map(content)))
       })
 
       return [...paddings, output]
@@ -68,7 +69,18 @@ export function definePrimitive<A extends number>(
   return definition as unknown as PropagatorDefinitionWithFixedArity<A>
 }
 
-function liftToCellContents(
+// # 参数不全时的处理
+// 函数只能在参数齐全的情况下才能作用，
+// 因此代表函数的 propagator，
+// 也只能在作为输入的 cells 中的值齐全时才能作用。
+// - 在 "The Art" 中这个函数叫 `lift-to-cell-contents`，
+//   在博士论文中，这个函数叫 `handling-nothings`
+//   也许这个函数的命名应该来自 "skip when inputs are incomplete" 这一短语。
+// - 也许我们不应该用 undefined 来代表 cell 中没有值，
+//   因为这样的话，JS 中带有 optional arguments 的函数，
+//   就没法被转化为 propagator 了。
+
+function skipIncompleteInputs(
   fn: (...args: Array<any>) => any,
 ): (...args: Array<any>) => any {
   return (...args) => {
