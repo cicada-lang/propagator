@@ -40,5 +40,6 @@ test("celsiusKelvin", () => {
 
   addContent(f, 77)
 
+  assert.deepStrictEqual(content(c), 25)
   assert.deepStrictEqual(content(k), 298.15)
 })
