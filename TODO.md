@@ -1,4 +1,9 @@
-[the-art] 实现能够处理 interval 的 propagator
+[the-art] `interval/` -- arithmetic
+
+- https://en.wikipedia.org/wiki/Interval_arithmetic
+
+[the-art] `merge` 支持 interval
+[the-art] 测试带有 interval 的 propagator
 
 [the-art] use a scheduler -- 早点实现，因为这个会影响 API，免得未来要改
 
