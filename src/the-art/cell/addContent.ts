@@ -1,25 +1,25 @@
 import { type Cell } from "./Cell.js"
 import { broadcast } from "./broadcast.js"
 
-export function addContent<T>(cell: Cell<T>, content?: T): void {
-  if (content === undefined) {
+export function addContent<T>(cell: Cell<T>, increment?: T): void {
+  if (increment === undefined) {
     return
   }
 
   if (cell.content === undefined) {
-    cell.content = content
+    cell.content = increment
     broadcast(cell.propagators)
   }
 
-  if (content === cell.content) {
+  if (increment === cell.content) {
     return
   }
 
   console.error({
     who: "addContent",
     message: "Ack! Inconsistency!",
-    content,
-    oldValue: cell.content,
+    increment,
+    oldContent: cell.content,
   })
 
   throw new Error(`[addContent] Ack! Inconsistency!`)
