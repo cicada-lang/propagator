@@ -1,5 +1,3 @@
-[the-art] `generic/` -- `defineHandler`
-
 [the-art] extract `merge`
 [the-art] `merge` by `defineGeneric`
 

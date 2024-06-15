@@ -1,6 +1,6 @@
 export type Predicate = (x: any) => boolean
 
-export type Handler = {
+export type GenericHandler = {
   predicates: Array<Predicate>
   (...args: Array<unknown>): unknown
 }
@@ -8,7 +8,7 @@ export type Handler = {
 export type GenericDefinition = {
   (...args: Array<unknown>): unknown
   default?: (...args: Array<unknown>) => unknown
-  handlers: Array<Handler>
+  handlers: Array<GenericHandler>
 }
 
 export function matchPredicates(
