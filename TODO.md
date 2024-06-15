@@ -1,6 +1,3 @@
-[the-art] `isNothing` and `isAnything`
-[the-art] `merge` by handle `isNothing` and `isAnything`
-
 [the-art] 实现能够处理 interval 的 propagator
 
 [the-art] use a scheduler -- 早点实现，因为这个会影响 API，免得未来要改
