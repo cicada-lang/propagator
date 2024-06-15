@@ -2,18 +2,18 @@ export type Predicate = (x: any) => boolean
 
 export type GenericHandler = {
   predicates: Array<Predicate>
-  (...args: Array<unknown>): unknown
+  (...args: Array<any>): any
 }
 
 export type GenericDefinition = {
-  (...args: Array<unknown>): unknown
-  default?: (...args: Array<unknown>) => unknown
+  (...args: Array<any>): any
+  default?: (...args: Array<any>) => any
   handlers: Array<GenericHandler>
 }
 
 export function matchPredicates(
   predicates: Array<Predicate>,
-  args: Array<unknown>,
+  args: Array<any>,
 ): boolean {
   if (predicates.length !== args.length) {
     return false

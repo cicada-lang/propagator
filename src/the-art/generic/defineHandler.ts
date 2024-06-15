@@ -7,7 +7,7 @@ import type {
 export function defineHandler(
   definition: GenericDefinition,
   predicates: Array<Predicate>,
-  fn: (...args: Array<unknown>) => unknown,
+  fn: (...args: Array<any>) => any,
 ): void {
   const handler: GenericHandler = (...args) => {
     return fn(...args)
