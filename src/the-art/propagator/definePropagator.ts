@@ -4,9 +4,9 @@ import type { PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.
 
 export function definePropagator<A extends number>(
   arity: A,
-  fn: (...args: Array<Cell<unknown>>) => void,
+  fn: (...args: Array<Cell<any>>) => void,
 ): PropagatorDefinitionWithFixedArity<A> {
-  const definition = (...args: Array<Cell<unknown>>) => {
+  const definition = (...args: Array<Cell<any>>) => {
     if (args.length === arity) {
       fn(...args)
     } else if (args.length === arity - 1) {
@@ -32,5 +32,5 @@ export function definePropagator<A extends number>(
 
   definition.arity = arity
 
-  return definition as unknown as PropagatorDefinitionWithFixedArity<A>
+  return definition as any as PropagatorDefinitionWithFixedArity<A>
 }

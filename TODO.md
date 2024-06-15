@@ -1,4 +1,3 @@
-[the-art] `createCell` take `merge` as interface functions
 [the-art] `merge` by `defineGeneric`
 
 [the-art] 实现能够处理 interval 的 propagator

@@ -1,9 +1,9 @@
-import { isContradiction, merge } from "../merge/merge.js"
+import { isContradiction } from "../merge/merge.js"
 import { type Cell } from "./Cell.js"
 import { broadcast } from "./broadcast.js"
 2
 export function addContent<T>(cell: Cell<T>, increment?: T): void {
-  const newContent = merge(cell.content, increment)
+  const newContent = cell.merge(cell.content, increment)
   if (newContent === cell.content) {
     return
   }

@@ -1,4 +1,8 @@
-const theContradiction = {
+export type Contradiction = {
+  "@type": "Contradiction"
+}
+
+const theContradiction: Contradiction = {
   "@type": "Contradiction",
 }
 
@@ -6,7 +10,7 @@ export function isContradiction(x: any): boolean {
   return x === theContradiction
 }
 
-export function merge(content: any, increment: any): any {
+export function merge<T>(content: any, increment: any): T | Contradiction {
   if (increment === undefined) {
     return content
   }

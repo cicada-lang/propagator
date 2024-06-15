@@ -6,7 +6,7 @@ import {
 
 export function defineGeneric(
   options: {
-    default?: (...args: Array<unknown>) => unknown
+    default?: (...args: Array<any>) => any
   } = {
     default: undefined,
   },

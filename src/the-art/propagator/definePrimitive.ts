@@ -31,7 +31,7 @@ export function definePrimitive<A extends number>(
   arity: A,
   fn: (...args: Array<any>) => any,
 ): PropagatorDefinitionWithFixedArity<A> {
-  const definition = (...args: Array<Cell<unknown>>) => {
+  const definition = (...args: Array<Cell<any>>) => {
     // 注意，在下面的实现中，只需要 watch 函数的 inputs，
     // output cell 的变化并不应该导致代表函数的 propagator 重新运行。
     if (args.length === arity) {
@@ -79,7 +79,7 @@ export function definePrimitive<A extends number>(
 
   definition.arity = arity
 
-  return definition as unknown as PropagatorDefinitionWithFixedArity<A>
+  return definition as any as PropagatorDefinitionWithFixedArity<A>
 }
 
 // # 参数不全时的处理
@@ -105,7 +105,7 @@ function skipIncompleteInputs(
   }
 }
 
-function watch(cells: Array<Cell<unknown>>, propagator: Propagator): void {
+function watch(cells: Array<Cell<any>>, propagator: Propagator): void {
   for (const cell of cells) {
     addPropagator(cell, propagator)
   }
