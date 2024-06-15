@@ -1,5 +1,3 @@
-[the-art] `definePropagator` -- fix who in error report
-
 [the-art] `generic/` -- `defineHandler`
 
 [the-art] extract `merge`

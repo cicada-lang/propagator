@@ -18,8 +18,9 @@ export function definePropagator<A extends number>(
       fn(...args, ...outputs)
       return outputs
     } else {
+      console.error({ who: "PropagatorDefinition", definition, args })
       throw new Error(
-        `[definePropagator] number of arguments ${args.length} exceed arity plus one: ${arity + 1}`,
+        `[PropagatorDefinition] number of arguments ${args.length} exceed arity plus one: ${arity + 1}`,
       )
     }
   }
