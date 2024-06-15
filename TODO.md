@@ -1,4 +1,3 @@
-[the-art] `definePrimitive` -- fix who in error report
 [the-art] `definePropagator` -- fix who in error report
 
 [the-art] `generic/` -- `defineHandler`

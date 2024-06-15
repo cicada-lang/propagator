@@ -65,8 +65,9 @@ export function definePrimitive<A extends number>(
 
       return [...paddings, output]
     } else {
+      console.error({ who: "PropagatorDefinition", definition, args })
       throw new Error(
-        `[definePrimitive] number of arguments ${args.length} exceed arity plus one: ${arity + 1}`,
+        `[PropagatorDefinition] The number of arguments ${args.length} exceed arity plus one: ${arity + 1}`,
       )
     }
   }
