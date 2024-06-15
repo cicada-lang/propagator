@@ -1,3 +1,5 @@
+import { defineGeneric } from "../generic/defineGeneric.js"
+
 export type Contradiction = {
   "@type": "Contradiction"
 }
@@ -10,18 +12,20 @@ export function isContradiction(x: any): boolean {
   return x === theContradiction
 }
 
-export function merge<T>(content: any, increment: any): T | Contradiction {
-  if (increment === undefined) {
-    return content
-  }
+export const merge = defineGeneric({
+  default: (content, increment) => {
+    if (increment === undefined) {
+      return content
+    }
 
-  if (content === undefined) {
-    return increment
-  }
+    if (content === undefined) {
+      return increment
+    }
 
-  if (increment === content) {
-    return content
-  } else {
-    return theContradiction
-  }
-}
+    if (increment === content) {
+      return content
+    } else {
+      return theContradiction
+    }
+  },
+})
