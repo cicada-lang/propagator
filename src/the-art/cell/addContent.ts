@@ -1,4 +1,4 @@
-import { merge } from "../merge/merge.js"
+import { isContradiction, merge } from "../merge/merge.js"
 import { type Cell } from "./Cell.js"
 import { broadcast } from "./broadcast.js"
 2
@@ -7,7 +7,7 @@ export function addContent<T>(cell: Cell<T>, increment?: T): void {
   if (newContent === cell.content) {
     return
   }
-  if (newContent === undefined) {
+  if (isContradiction(newContent)) {
     console.error({
       who: "addContent",
       message: "Ack! Inconsistency!",
