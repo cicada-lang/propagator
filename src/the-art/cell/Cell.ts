@@ -1,14 +1,15 @@
 import { merge, type Contradiction } from "../merge/merge.js"
 import type { Propagator } from "../propagator/index.js"
+import { nothing, type Nothing } from "./Nothing.js"
 
 export type Merge<T> = (
-  content: T | undefined,
+  content: T | Nothing,
   increment: any,
-) => T | Contradiction
+) => T | Nothing | Contradiction
 
 export type Cell<T> = {
   "@type": "Cell"
-  content?: T
+  content: T | Nothing
   propagators: Array<Propagator>
   merge: Merge<T>
 }
@@ -23,12 +24,12 @@ export function createCell<T>(
 ): Cell<T> {
   return {
     "@type": "Cell",
-    content,
+    content: content || nothing,
     propagators: [],
     merge: options.merge,
   }
 }
 
-export function content<T>(cell: Cell<T>): T | undefined {
+export function content<T>(cell: Cell<T>): T | Nothing {
   return cell.content
 }

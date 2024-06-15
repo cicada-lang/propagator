@@ -1,4 +1,3 @@
-[the-art] `skipIncompleteInputs` use `Nothing` -- instead of `undefined`
 [the-art] `isNothing` and `isAnything`
 [the-art] `merge` by handle `isNothing` and `isAnything`
 

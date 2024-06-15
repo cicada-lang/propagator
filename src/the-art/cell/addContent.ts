@@ -18,6 +18,6 @@ export function addContent<T>(cell: Cell<T>, increment?: T): void {
     throw new Error(`[addContent] Ack! Inconsistency!`)
   }
 
-  cell.content = increment
+  cell.content = newContent
   broadcast(cell.propagators)
 }

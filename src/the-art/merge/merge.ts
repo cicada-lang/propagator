@@ -1,3 +1,4 @@
+import { isNothing } from "../cell/Nothing.js"
 import { defineGeneric } from "../generic/defineGeneric.js"
 
 export type Contradiction = {
@@ -8,17 +9,17 @@ const theContradiction: Contradiction = {
   "@type": "Contradiction",
 }
 
-export function isContradiction(x: any): boolean {
+export function isContradiction(x: any): x is Contradiction {
   return x === theContradiction
 }
 
 export const merge = defineGeneric({
   default: (content, increment) => {
-    if (increment === undefined) {
+    if (isNothing(increment)) {
       return content
     }
 
-    if (content === undefined) {
+    if (isNothing(content)) {
       return increment
     }
 

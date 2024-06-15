@@ -5,6 +5,8 @@ import {
   broadcast,
   content,
   createCell,
+  isNothing,
+  nothing,
   type Cell,
 } from "../cell/index.js"
 import type { Propagator } from "./Propagator.js"
@@ -97,8 +99,8 @@ function skipIncompleteInputs(
   fn: (...args: Array<any>) => any,
 ): (...args: Array<any>) => any {
   return (...args) => {
-    if (args.includes(undefined)) {
-      return undefined
+    if (args.find(isNothing)) {
+      return nothing
     } else {
       return fn(...args)
     }
