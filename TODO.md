@@ -1,4 +1,6 @@
-[the-art] `generic/` -- `defineGeneric`
+[the-art] `definePrimitive` -- fix who in error report
+[the-art] `definePropagator` -- fix who in error report
+
 [the-art] `generic/` -- `defineHandler`
 
 [the-art] extract `merge`
