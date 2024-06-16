@@ -6,5 +6,6 @@ export const globalScheduler: Scheduler = {
 }
 
 export function initializeScheduler(): Scheduler {
+  globalScheduler.jobs = []
   return globalScheduler
 }
