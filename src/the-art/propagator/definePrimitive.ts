@@ -2,13 +2,13 @@ import { repeatApply } from "../../utils/repeatApply.js"
 import {
   addContent,
   addPropagator,
-  broadcast,
   content,
   createCell,
   isNothing,
   nothing,
   type Cell,
 } from "../cell/index.js"
+import { schedule } from "../scheduler/index.js"
 import type { Propagator } from "./Propagator.js"
 import { type PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.js"
 
@@ -112,5 +112,5 @@ function watch(cells: Array<Cell<any>>, propagator: Propagator): void {
     addPropagator(cell, propagator)
   }
 
-  broadcast([propagator])
+  schedule([propagator])
 }

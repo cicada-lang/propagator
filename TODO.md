@@ -1,4 +1,4 @@
-[the-art] `Scheduler`
+[the-art] `Scheduler` has `jobs` -- `Job` as `propagator`
 [the-art] `initializeScheduler`
 [the-art] `run`
 
