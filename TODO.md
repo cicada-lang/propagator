@@ -1,14 +1,24 @@
+> 实现带有 interval 的 propagator
+>
+> - https://github.com/cicada-lang/propagator/issues/1
+
 [the-art] `interval/` -- arithmetic -- 先实现只支持正数的版本（跑过测试）
 
 [the-art] `merge` 支持 interval
 
-[the-art] 测试带有 interval 的 propagator
+> interval 支持完整的 arithmetic，包括正数与负数
 
 [the-art] `interval/` -- arithmetic
 
 - https://en.wikipedia.org/wiki/Interval_arithmetic
 
-[the-art] dependencies for provenance
-[the-art] dependencies for alternate worldviews
-[the-art] dependencies for implicit search
-[the-art] `examples/heron/` -- 设计 lattice 来逼近结果
+> propagator 支持 dependencies for provenance
+
+> propagator 支持 dependencies for alternate worldviews
+
+> propagator 支持 dependencies for implicit search
+
+> 完成 "The Art" 中的 Heron 例子
+>
+> - 需要设计 lattice 来逼近结果
+>   - 一个叫 近似值 的数据类型，并且为 generic 函数实现相关的 handles
