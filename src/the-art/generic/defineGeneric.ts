@@ -13,7 +13,8 @@ export function defineGeneric(
 ): GenericDefinition {
   const handlers: Array<GenericHandler> = []
   const definition: GenericDefinition = (...args) => {
-    for (const handler of handlers) {
+    // 当两各 handler 都适用时，后加入的优先。
+    for (const handler of handlers.slice().reverse()) {
       if (matchPredicates(handler.predicates, args)) {
         return handler(...args)
       }

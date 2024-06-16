@@ -4,9 +4,8 @@ import { defineHandler } from "../generic/defineHandler.js"
 import { theContradiction } from "./Contradiction.js"
 
 export const merge = defineGeneric({
-  default: (content, increment) => {
-    return increment === content ? content : theContradiction
-  },
+  default: (content, increment) =>
+    increment === content ? content : theContradiction,
 })
 
 function isAnything(x: any): true {
