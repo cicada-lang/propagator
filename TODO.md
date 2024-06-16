@@ -1,5 +1,4 @@
-[the-art] `initializeScheduler`
-[the-art] `run`
+[the-art] `initializeScheduler` -- clear the jobs
 
 [the-art] `interval/` -- arithmetic -- 先实现只支持正数的版本（跑过测试）
 

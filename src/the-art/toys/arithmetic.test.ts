@@ -2,38 +2,47 @@ import assert from "node:assert"
 import { test } from "node:test"
 import { content, createCell } from "../cell/Cell.js"
 import { addContent } from "../cell/addContent.js"
+import { run } from "../scheduler/index.js"
 import { adder, multiplier, product, sum } from "./index.js"
 
-test("adder", () => {
+test("adder", async () => {
   const [x, y, z] = adder()
 
   addContent(x, 1)
   addContent(y, 2)
 
+  await run()
+
   assert.deepStrictEqual(content(z), 3)
 })
 
-test("adder -- expression-like", () => {
+test("adder -- expression-like", async () => {
   const z = adder(createCell(1), createCell(2))
 
+  await run()
+
   assert.deepStrictEqual(content(z), 3)
 })
 
-test("multiplier", () => {
+test("multiplier", async () => {
   const [x, y, z] = multiplier()
 
   addContent(x, 2)
   addContent(y, 3)
 
+  await run()
+
   assert.deepStrictEqual(content(z), 6)
 })
 
-test("sum", () => {
+test("sum", async () => {
   {
     const [x, y, z] = sum()
 
     addContent(x, 1)
     addContent(y, 2)
+
+    await run()
 
     assert.deepStrictEqual(content(z), 3)
   }
@@ -44,6 +53,8 @@ test("sum", () => {
     addContent(x, 1)
     addContent(z, 3)
 
+    await run()
+
     assert.deepStrictEqual(content(y), 2)
   }
 
@@ -53,16 +64,20 @@ test("sum", () => {
     addContent(y, 2)
     addContent(z, 3)
 
+    await run()
+
     assert.deepStrictEqual(content(x), 1)
   }
 })
 
-test("product", () => {
+test("product", async () => {
   {
     const [x, y, z] = product()
 
     addContent(x, 2)
     addContent(y, 3)
+
+    await run()
 
     assert.deepStrictEqual(content(z), 6)
   }
@@ -73,6 +88,8 @@ test("product", () => {
     addContent(x, 2)
     addContent(z, 6)
 
+    await run()
+
     assert.deepStrictEqual(content(y), 3)
   }
 
@@ -81,6 +98,8 @@ test("product", () => {
 
     addContent(y, 3)
     addContent(z, 6)
+
+    await run()
 
     assert.deepStrictEqual(content(x), 2)
   }

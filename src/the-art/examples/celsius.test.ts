@@ -2,25 +2,30 @@ import assert from "node:assert"
 import { test } from "node:test"
 import { content } from "../cell/Cell.js"
 import { addContent } from "../cell/addContent.js"
+import { run } from "../scheduler/index.js"
 import {
   celsiusKelvin,
   fahrenheitCelsius,
   fahrenheitToCelsius,
 } from "./celsius.js"
 
-test("fahrenheitToCelsius", () => {
+test("fahrenheitToCelsius", async () => {
   const [f, c] = fahrenheitToCelsius()
 
   addContent(f, 77)
 
+  await run()
+
   assert.deepStrictEqual(content(c), 25)
 })
 
-test("fahrenheitCelsius", () => {
+test("fahrenheitCelsius", async () => {
   {
     const [f, c] = fahrenheitCelsius()
 
     addContent(f, 77)
+
+    await run()
 
     assert.deepStrictEqual(content(c), 25)
   }
@@ -30,15 +35,19 @@ test("fahrenheitCelsius", () => {
 
     addContent(c, 25)
 
+    await run()
+
     assert.deepStrictEqual(content(f), 77)
   }
 })
 
-test("celsiusKelvin", () => {
+test("celsiusKelvin", async () => {
   const [f, c] = fahrenheitCelsius()
   const k = celsiusKelvin(c)
 
   addContent(f, 77)
+
+  await run()
 
   assert.deepStrictEqual(content(c), 25)
   assert.deepStrictEqual(content(k), 298.15)
