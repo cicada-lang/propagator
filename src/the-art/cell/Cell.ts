@@ -1,4 +1,4 @@
-import { merge, type Contradiction } from "../merge/merge.js"
+import { merge, type Contradiction } from "../merge/index.js"
 import type { Propagator } from "../propagator/index.js"
 import { nothing, type Nothing } from "./Nothing.js"
 

@@ -1,4 +1,4 @@
-import { isContradiction } from "../merge/merge.js"
+import { isContradiction } from "../merge/index.js"
 import { type Cell } from "./Cell.js"
 import { broadcast } from "./broadcast.js"
 2

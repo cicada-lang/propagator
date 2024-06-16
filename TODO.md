@@ -1,11 +1,14 @@
 [the-art] `scheduler/` -- 早点实现，因为这个会影响 API，免得未来要改
 
+[the-art] `interval/` -- arithmetic -- 先实现只支持正数的版本（跑过测试）
+
+[the-art] `merge` 支持 interval
+
+[the-art] 测试带有 interval 的 propagator
+
 [the-art] `interval/` -- arithmetic
 
 - https://en.wikipedia.org/wiki/Interval_arithmetic
-
-[the-art] `merge` 支持 interval
-[the-art] 测试带有 interval 的 propagator
 
 [the-art] dependencies for provenance
 [the-art] dependencies for alternate worldviews
