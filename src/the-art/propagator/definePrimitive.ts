@@ -1,3 +1,4 @@
+import type { MaybePromise } from "../../utils/MaybePromise.js"
 import { repeatApply } from "../../utils/repeatApply.js"
 import {
   addContent,
@@ -31,7 +32,7 @@ import { type PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.
 
 export function definePrimitive<A extends number>(
   arity: A,
-  fn: (...args: Array<any>) => any,
+  fn: (...args: Array<any>) => MaybePromise<any>,
 ): PropagatorDefinitionWithFixedArity<A> {
   const definition = (...args: Array<Cell<any>>) => {
     // 注意，在下面的实现中，只需要 watch 函数的 inputs，
@@ -40,15 +41,19 @@ export function definePrimitive<A extends number>(
       const inputs = args.slice(0, args.length - 1)
       const output = args[args.length - 1]
 
-      watch(inputs, () => {
-        addContent(output, skipIncompleteInputs(fn)(...inputs.map(content)))
+      watch(inputs, async () => {
+        const liftedFn = skipIncompleteInputs(fn)
+        const result = await liftedFn(...inputs.map(content))
+        addContent(output, result)
       })
     } else if (args.length === arity - 1) {
       const inputs = args
       const output = createCell()
 
-      watch(inputs, () => {
-        addContent(output, skipIncompleteInputs(fn)(...inputs.map(content)))
+      watch(inputs, async () => {
+        const liftedFn = skipIncompleteInputs(fn)
+        const result = await liftedFn(...inputs.map(content))
+        addContent(output, result)
       })
 
       return output
@@ -61,8 +66,10 @@ export function definePrimitive<A extends number>(
       const inputs = [...args, ...paddings]
       const output = createCell()
 
-      watch(inputs, () => {
-        addContent(output, skipIncompleteInputs(fn)(...inputs.map(content)))
+      watch(inputs, async () => {
+        const liftedFn = skipIncompleteInputs(fn)
+        const result = await liftedFn(...inputs.map(content))
+        addContent(output, result)
       })
 
       return [...paddings, output]
@@ -96,13 +103,13 @@ export function definePrimitive<A extends number>(
 //   就没法被转化为 propagator 了。
 
 function skipIncompleteInputs(
-  fn: (...args: Array<any>) => any,
-): (...args: Array<any>) => any {
-  return (...args) => {
+  fn: (...args: Array<any>) => MaybePromise<any>,
+): (...args: Array<any>) => MaybePromise<any> {
+  return async (...args) => {
     if (args.find(isNothing)) {
       return nothing
     } else {
-      return fn(...args)
+      return await fn(...args)
     }
   }
 }
