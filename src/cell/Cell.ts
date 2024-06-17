@@ -14,7 +14,7 @@ export type Cell<T> = {
   merge: Merge<T>
 }
 
-export function cell<T>(
+export function Cell<T>(
   content?: T,
   options: {
     merge: Merge<T>

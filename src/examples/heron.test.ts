@@ -1,6 +1,6 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { cell } from "../cell/Cell.js"
+import { Cell } from "../cell/Cell.js"
 import { addContent } from "../cell/addContent.js"
 import { run } from "../scheduler/index.js"
 import { heronStep } from "./heron.js"
@@ -17,7 +17,7 @@ test("heronStep", async () => {
 })
 
 test("heronStep -- expression-like", async () => {
-  const betterGuess = heronStep(cell(2), cell(1.4))
+  const betterGuess = heronStep(Cell(2), Cell(1.4))
 
   await run()
 

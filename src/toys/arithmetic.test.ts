@@ -1,6 +1,6 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { cell } from "../cell/Cell.js"
+import { Cell } from "../cell/Cell.js"
 import { addContent } from "../cell/addContent.js"
 import { run } from "../scheduler/index.js"
 import { adder, multiplier, product, sum } from "./index.js"
@@ -17,7 +17,7 @@ test("adder", async () => {
 })
 
 test("adder -- expression-like", async () => {
-  const z = adder(cell(1), cell(2))
+  const z = adder(Cell(1), Cell(2))
 
   await run()
 

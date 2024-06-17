@@ -1,10 +1,9 @@
 import {
   addContent,
   addPropagator,
-  cell,
+  Cell,
   isNothing,
   nothing,
-  type Cell,
 } from "../cell/index.js"
 import { schedule } from "../scheduler/index.js"
 import type { MaybePromise } from "../utils/MaybePromise.js"
@@ -47,7 +46,7 @@ export function definePrimitive<A extends number>(
       })
     } else if (args.length === arity - 1) {
       const inputs = args
-      const output = cell()
+      const output = Cell()
 
       watch(inputs, async () => {
         const liftedFn = skipIncompleteInputs(fn)
@@ -57,9 +56,9 @@ export function definePrimitive<A extends number>(
 
       return output
     } else if (args.length < arity - 1) {
-      const paddings = repeatApply(arity - args.length - 1, () => cell(), [])
+      const paddings = repeatApply(arity - args.length - 1, () => Cell(), [])
       const inputs = [...args, ...paddings]
-      const output = cell()
+      const output = Cell()
 
       watch(inputs, async () => {
         const liftedFn = skipIncompleteInputs(fn)
