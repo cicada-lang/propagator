@@ -5,8 +5,8 @@ import { isNumber } from "../utils/isNumber.js"
 
 export const square = defineGeneric()
 defineHandler(square, [isNumber], (x) => x * x)
-defineHandler(square, [isInterval], (x) => intervalSquare)
+defineHandler(square, [isInterval], intervalSquare)
 
 export const sqrt = defineGeneric()
-defineHandler(sqrt, [isNumber], (x) => Math.sqrt(x))
-defineHandler(square, [isInterval], (x) => intervalSqrt)
+defineHandler(sqrt, [isNumber], Math.sqrt)
+defineHandler(sqrt, [isInterval], intervalSqrt)

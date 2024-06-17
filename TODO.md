@@ -2,7 +2,7 @@
 >
 > - https://github.com/cicada-lang/propagator/issues/1
 
-`generics/arithmetic` -- 支持 `Interval`
+`generics/arithmetic` -- 支持 `Interval` 和 `Number` 之间的运算
 
 move `generic/generic.test.ts` to `generics/arithmetic.test.ts`
 
