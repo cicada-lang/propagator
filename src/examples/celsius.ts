@@ -7,7 +7,7 @@ import {
   product,
   subtractor,
   sum,
-} from "../toys/index.js"
+} from "../propagators/index.js"
 
 // c = (f - 32) * 5/9
 
