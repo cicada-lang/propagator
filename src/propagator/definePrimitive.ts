@@ -1,5 +1,3 @@
-import type { MaybePromise } from "../../utils/MaybePromise.js"
-import { repeatApply } from "../../utils/repeatApply.js"
 import {
   addContent,
   addPropagator,
@@ -9,6 +7,8 @@ import {
   type Cell,
 } from "../cell/index.js"
 import { schedule } from "../scheduler/index.js"
+import type { MaybePromise } from "../utils/MaybePromise.js"
+import { repeatApply } from "../utils/repeatApply.js"
 import type { Propagator } from "./Propagator.js"
 import { type PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.js"
 
