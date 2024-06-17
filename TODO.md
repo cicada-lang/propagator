@@ -2,7 +2,7 @@
 >
 > - https://github.com/cicada-lang/propagator/issues/1
 
-`merge` 支持 interval
+测试带有 interval 的 propagator
 
 > interval 支持完整的 arithmetic，包括正数与负数
 
