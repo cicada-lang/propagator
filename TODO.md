@@ -2,7 +2,6 @@
 >
 > - https://github.com/cicada-lang/propagator/issues/1
 
-`generics/quadratic` -- 支持 `Interval`
 `generics/arithmetic` -- 支持 `Interval`
 
 move `generic/generic.test.ts` to `generics/arithmetic.test.ts`
