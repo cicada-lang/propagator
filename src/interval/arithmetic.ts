@@ -1,40 +1,25 @@
 // https://en.wikipedia.org/wiki/Interval_arithmetic
 
-import type { Interval } from "./Interval.js"
+import { Interval } from "./Interval.js"
 
 export function intervalAdd(x: Interval, y: Interval): Interval {
-  return {
-    low: x.low + y.low,
-    high: x.high + y.high,
-  }
+  return Interval(x.low + y.low, x.high + y.high)
 }
 
 export function intervalMul(x: Interval, y: Interval): Interval {
-  return {
-    low: x.low * y.low,
-    high: x.high * y.high,
-  }
+  return Interval(x.low * y.low, x.high * y.high)
 }
 
 export function intervalDiv(x: Interval, y: Interval): Interval {
-  return intervalMul(x, {
-    low: 1 / y.high,
-    high: 1 / y.low,
-  })
+  return intervalMul(x, Interval(1 / y.high, 1 / y.low))
 }
 
 export function intervalSquare(x: Interval): Interval {
-  return {
-    low: x.low * x.low,
-    high: x.high * x.high,
-  }
+  return Interval(x.low * x.low, x.high * x.high)
 }
 
 export function intervalSqrt(x: Interval): Interval {
-  return {
-    low: Math.sqrt(x.low),
-    high: Math.sqrt(x.high),
-  }
+  return Interval(Math.sqrt(x.low), Math.sqrt(x.high))
 }
 
 export function intervalIsEmpty(x: Interval): boolean {
@@ -42,8 +27,5 @@ export function intervalIsEmpty(x: Interval): boolean {
 }
 
 export function intervalIntersect(x: Interval, y: Interval): Interval {
-  return {
-    low: Math.max(x.low, y.low),
-    high: Math.max(x.high, y.high),
-  }
+  return Interval(Math.max(x.low, y.low), Math.max(x.high, y.high))
 }

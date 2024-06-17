@@ -1,3 +1,5 @@
+rename constructor `cell` to `Cell`
+
 > 实现带有 interval 的 propagator
 >
 > - https://github.com/cicada-lang/propagator/issues/1
