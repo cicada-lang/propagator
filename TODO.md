@@ -2,8 +2,12 @@
 >
 > - https://github.com/cicada-lang/propagator/issues/1
 
-`propagators/arithmetic` -- use generics
-`generics/arithmetic|quadratic` -- 支持 `Interval`
+`generics/quadratic` -- 支持 `Interval`
+`generics/arithmetic` -- 支持 `Interval`
+
+move `generic/generic.test.ts` to `generics/arithmetic.test.ts`
+
+add `generics/quadratic.test.ts`
 
 barometer -- 测试带有 interval 的 propagator
 

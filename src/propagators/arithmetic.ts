@@ -1,9 +1,10 @@
+import { add, div, mul, sub } from "../generics/index.js"
 import { definePrimitive, definePropagator } from "../propagator/index.js"
 
-export const adder = definePrimitive(3, (x, y) => x + y)
-export const subtractor = definePrimitive(3, (x, y) => x - y)
-export const multiplier = definePrimitive(3, (x, y) => x * y)
-export const divider = definePrimitive(3, (x, y) => x / y)
+export const adder = definePrimitive(3, add)
+export const subtractor = definePrimitive(3, sub)
+export const multiplier = definePrimitive(3, mul)
+export const divider = definePrimitive(3, div)
 
 export const sum = definePropagator(3, (x, y, z) => {
   adder(x, y, z)
