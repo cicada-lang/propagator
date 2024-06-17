@@ -1,12 +1,9 @@
-add `generics/arithmetic/`
-
 > 实现带有 interval 的 propagator
 >
 > - https://github.com/cicada-lang/propagator/issues/1
 
-`arithmetic/` -- arithmetic primitives as generic
-
-`toys/arithmetic` -- 支持 `Interval`
+`propagators/arithmetic|quadratic` -- use generic arithmetic primitives
+`generics/arithmetic|quadratic` -- 支持 `Interval`
 
 barometer -- 测试带有 interval 的 propagator
 
