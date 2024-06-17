@@ -2,8 +2,6 @@
 >
 > - https://github.com/cicada-lang/propagator/issues/1
 
-[the-art] `interval/` -- arithmetic -- 先实现只支持正数的版本（跑过测试）
-
 [the-art] `merge` 支持 interval
 
 > interval 支持完整的 arithmetic，包括正数与负数
