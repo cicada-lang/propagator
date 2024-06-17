@@ -1,4 +1,4 @@
-import { createCell } from "../cell/index.js"
+import { cell } from "../cell/index.js"
 import { definePropagator } from "../propagator/index.js"
 import {
   constant,
@@ -20,9 +20,9 @@ export const fahrenheitToCelsius = definePropagator(2, (f, c) => {
 })
 
 export const fahrenheitCelsius = definePropagator(2, (f, c) => {
-  const a = createCell<number>()
+  const a = cell<number>()
   sum(a, constant(32)(), f)
-  const b = createCell<number>()
+  const b = cell<number>()
   product(b, constant(9)(), constant(5)())
   product(a, b, c)
 })

@@ -1,5 +1,5 @@
 import { repeatApply } from "../../utils/repeatApply.js"
-import { createCell, type Cell } from "../cell/index.js"
+import { cell, type Cell } from "../cell/index.js"
 import type { PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.js"
 
 export function definePropagator<A extends number>(
@@ -10,11 +10,11 @@ export function definePropagator<A extends number>(
     if (args.length === arity) {
       fn(...args)
     } else if (args.length === arity - 1) {
-      const output = createCell()
+      const output = cell()
       fn(...args, output)
       return output
     } else if (args.length < arity - 1) {
-      const outputs = repeatApply(arity - args.length, () => createCell(), [])
+      const outputs = repeatApply(arity - args.length, () => cell(), [])
       fn(...args, ...outputs)
       return outputs
     } else {

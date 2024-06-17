@@ -3,8 +3,8 @@ import { repeatApply } from "../../utils/repeatApply.js"
 import {
   addContent,
   addPropagator,
+  cell,
   content,
-  createCell,
   isNothing,
   nothing,
   type Cell,
@@ -48,7 +48,7 @@ export function definePrimitive<A extends number>(
       })
     } else if (args.length === arity - 1) {
       const inputs = args
-      const output = createCell()
+      const output = cell()
 
       watch(inputs, async () => {
         const liftedFn = skipIncompleteInputs(fn)
@@ -58,13 +58,9 @@ export function definePrimitive<A extends number>(
 
       return output
     } else if (args.length < arity - 1) {
-      const paddings = repeatApply(
-        arity - args.length - 1,
-        () => createCell(),
-        [],
-      )
+      const paddings = repeatApply(arity - args.length - 1, () => cell(), [])
       const inputs = [...args, ...paddings]
-      const output = createCell()
+      const output = cell()
 
       watch(inputs, async () => {
         const liftedFn = skipIncompleteInputs(fn)

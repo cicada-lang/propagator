@@ -40,3 +40,10 @@ export function intervalSqrt(x: Interval): Interval {
 export function intervalIsEmpty(x: Interval): boolean {
   return x.low > x.high
 }
+
+export function intervalIntersect(x: Interval, y: Interval): Interval {
+  return {
+    low: Math.max(x.low, y.low),
+    high: Math.max(x.high, y.high),
+  }
+}
