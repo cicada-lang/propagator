@@ -29,7 +29,3 @@ export function cell<T>(
     merge: options.merge,
   }
 }
-
-export function content<T>(cell: Cell<T>): T | Nothing {
-  return cell.content
-}

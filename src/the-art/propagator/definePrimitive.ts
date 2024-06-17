@@ -4,7 +4,6 @@ import {
   addContent,
   addPropagator,
   cell,
-  content,
   isNothing,
   nothing,
   type Cell,
@@ -43,7 +42,7 @@ export function definePrimitive<A extends number>(
 
       watch(inputs, async () => {
         const liftedFn = skipIncompleteInputs(fn)
-        const result = await liftedFn(...inputs.map(content))
+        const result = await liftedFn(...inputs.map((input) => input.content))
         addContent(output, result)
       })
     } else if (args.length === arity - 1) {
@@ -52,7 +51,7 @@ export function definePrimitive<A extends number>(
 
       watch(inputs, async () => {
         const liftedFn = skipIncompleteInputs(fn)
-        const result = await liftedFn(...inputs.map(content))
+        const result = await liftedFn(...inputs.map((input) => input.content))
         addContent(output, result)
       })
 
@@ -64,7 +63,7 @@ export function definePrimitive<A extends number>(
 
       watch(inputs, async () => {
         const liftedFn = skipIncompleteInputs(fn)
-        const result = await liftedFn(...inputs.map(content))
+        const result = await liftedFn(...inputs.map((input) => input.content))
         addContent(output, result)
       })
 

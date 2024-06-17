@@ -1,6 +1,6 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { cell, content } from "../cell/Cell.js"
+import { cell } from "../cell/Cell.js"
 import { addContent } from "../cell/addContent.js"
 import { run } from "../scheduler/index.js"
 import { heronStep } from "./heron.js"
@@ -13,7 +13,7 @@ test("heronStep", async () => {
 
   await run()
 
-  assert.deepStrictEqual(content(betterGuess), 1.4142857142857141)
+  assert.deepStrictEqual(betterGuess.content, 1.4142857142857141)
 })
 
 test("heronStep -- expression-like", async () => {
@@ -21,5 +21,5 @@ test("heronStep -- expression-like", async () => {
 
   await run()
 
-  assert.deepStrictEqual(content(betterGuess), 1.4142857142857141)
+  assert.deepStrictEqual(betterGuess.content, 1.4142857142857141)
 })

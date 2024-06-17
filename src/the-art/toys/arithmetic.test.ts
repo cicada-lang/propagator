@@ -1,6 +1,6 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { cell, content } from "../cell/Cell.js"
+import { cell } from "../cell/Cell.js"
 import { addContent } from "../cell/addContent.js"
 import { run } from "../scheduler/index.js"
 import { adder, multiplier, product, sum } from "./index.js"
@@ -13,7 +13,7 @@ test("adder", async () => {
 
   await run()
 
-  assert.deepStrictEqual(content(z), 3)
+  assert.deepStrictEqual(z.content, 3)
 })
 
 test("adder -- expression-like", async () => {
@@ -21,7 +21,7 @@ test("adder -- expression-like", async () => {
 
   await run()
 
-  assert.deepStrictEqual(content(z), 3)
+  assert.deepStrictEqual(z.content, 3)
 })
 
 test("multiplier", async () => {
@@ -32,7 +32,7 @@ test("multiplier", async () => {
 
   await run()
 
-  assert.deepStrictEqual(content(z), 6)
+  assert.deepStrictEqual(z.content, 6)
 })
 
 test("sum", async () => {
@@ -44,7 +44,7 @@ test("sum", async () => {
 
     await run()
 
-    assert.deepStrictEqual(content(z), 3)
+    assert.deepStrictEqual(z.content, 3)
   }
 
   {
@@ -55,7 +55,7 @@ test("sum", async () => {
 
     await run()
 
-    assert.deepStrictEqual(content(y), 2)
+    assert.deepStrictEqual(y.content, 2)
   }
 
   {
@@ -66,7 +66,7 @@ test("sum", async () => {
 
     await run()
 
-    assert.deepStrictEqual(content(x), 1)
+    assert.deepStrictEqual(x.content, 1)
   }
 })
 
@@ -79,7 +79,7 @@ test("product", async () => {
 
     await run()
 
-    assert.deepStrictEqual(content(z), 6)
+    assert.deepStrictEqual(z.content, 6)
   }
 
   {
@@ -90,7 +90,7 @@ test("product", async () => {
 
     await run()
 
-    assert.deepStrictEqual(content(y), 3)
+    assert.deepStrictEqual(y.content, 3)
   }
 
   {
@@ -101,6 +101,6 @@ test("product", async () => {
 
     await run()
 
-    assert.deepStrictEqual(content(x), 2)
+    assert.deepStrictEqual(x.content, 2)
   }
 })

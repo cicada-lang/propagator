@@ -1,6 +1,5 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { content } from "../cell/Cell.js"
 import { addContent } from "../cell/addContent.js"
 import { run } from "../scheduler/index.js"
 import {
@@ -16,7 +15,7 @@ test("fahrenheitToCelsius", async () => {
 
   await run()
 
-  assert.deepStrictEqual(content(c), 25)
+  assert.deepStrictEqual(c.content, 25)
 })
 
 test("fahrenheitCelsius", async () => {
@@ -27,7 +26,7 @@ test("fahrenheitCelsius", async () => {
 
     await run()
 
-    assert.deepStrictEqual(content(c), 25)
+    assert.deepStrictEqual(c.content, 25)
   }
 
   {
@@ -37,7 +36,7 @@ test("fahrenheitCelsius", async () => {
 
     await run()
 
-    assert.deepStrictEqual(content(f), 77)
+    assert.deepStrictEqual(f.content, 77)
   }
 })
 
@@ -49,6 +48,6 @@ test("celsiusKelvin", async () => {
 
   await run()
 
-  assert.deepStrictEqual(content(c), 25)
-  assert.deepStrictEqual(content(k), 298.15)
+  assert.deepStrictEqual(c.content, 25)
+  assert.deepStrictEqual(k.content, 298.15)
 })

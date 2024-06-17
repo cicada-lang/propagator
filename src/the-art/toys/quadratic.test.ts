@@ -1,7 +1,6 @@
 import assert from "node:assert"
 import test from "node:test"
 import { addContent } from "../cell/addContent.js"
-import { content } from "../cell/index.js"
 import { run } from "../scheduler/index.js"
 import { quadratic } from "./quadratic.js"
 
@@ -12,7 +11,7 @@ test("quadratic", async () => {
 
     await run()
 
-    assert.deepStrictEqual(content(s), 4)
+    assert.deepStrictEqual(s.content, 4)
   }
 
   {
@@ -21,6 +20,6 @@ test("quadratic", async () => {
 
     await run()
 
-    assert.deepStrictEqual(content(r), 2)
+    assert.deepStrictEqual(r.content, 2)
   }
 })
