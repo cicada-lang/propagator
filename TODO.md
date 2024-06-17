@@ -2,7 +2,7 @@
 >
 > - https://github.com/cicada-lang/propagator/issues/1
 
-`propagators/arithmetic|quadratic` -- use generic arithmetic primitives
+`propagators/arithmetic` -- use generics
 `generics/arithmetic|quadratic` -- 支持 `Interval`
 
 barometer -- 测试带有 interval 的 propagator
