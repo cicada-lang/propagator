@@ -1,3 +1,5 @@
+barometer -- 更多利用 barometer 测量高度的函数
+
 > interval 支持完整的 arithmetic，包括正数与负数
 
 `interval/` -- arithmetic 支持负数
