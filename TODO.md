@@ -2,7 +2,6 @@
 >
 > - https://github.com/cicada-lang/propagator/issues/1
 
-move `generic/generic.test.ts` to `generics/arithmetic.test.ts`
 add `generics/quadratic.test.ts`
 barometer -- 测试带有 interval 的 propagator
 
