@@ -5,7 +5,7 @@ import { Interval, intervalAlmostEqual } from "../interval/index.js"
 import { run } from "../scheduler/index.js"
 import { fallDuration } from "./barometer.js"
 
-test("examples -- barometer -- fallDuration", async () => {
+test("examples / barometer / fallDuration", async () => {
   const [fallTime, buildingHeight] = fallDuration()
 
   addContent(fallTime, Interval(2.9, 3.1))

@@ -4,7 +4,7 @@ import { addContent } from "../cell/addContent.js"
 import { run } from "../scheduler/index.js"
 import { quadratic } from "./quadratic.js"
 
-test("propagators -- quadratic", async () => {
+test("propagators / quadratic", async () => {
   {
     const [r, s] = quadratic()
     addContent(r, 2)

@@ -5,7 +5,7 @@ import { addContent } from "../cell/addContent.js"
 import { run } from "../scheduler/index.js"
 import { adder, multiplier, product, sum } from "./index.js"
 
-test("propagators -- arithmetic -- adder", async () => {
+test("propagators / arithmetic / adder", async () => {
   const [x, y, z] = adder()
 
   addContent(x, 1)
@@ -16,7 +16,7 @@ test("propagators -- arithmetic -- adder", async () => {
   assert.deepStrictEqual(z.content, 3)
 })
 
-test("propagators -- arithmetic -- adder -- expression-like", async () => {
+test("propagators / arithmetic / adder / expression-like", async () => {
   const z = adder(Cell(1), Cell(2))
 
   await run()
@@ -24,7 +24,7 @@ test("propagators -- arithmetic -- adder -- expression-like", async () => {
   assert.deepStrictEqual(z.content, 3)
 })
 
-test("propagators -- arithmetic -- multiplier", async () => {
+test("propagators / arithmetic / multiplier", async () => {
   const [x, y, z] = multiplier()
 
   addContent(x, 2)
@@ -35,7 +35,7 @@ test("propagators -- arithmetic -- multiplier", async () => {
   assert.deepStrictEqual(z.content, 6)
 })
 
-test("propagators -- arithmetic -- sum", async () => {
+test("propagators / arithmetic / sum", async () => {
   {
     const [x, y, z] = sum()
 
@@ -70,7 +70,7 @@ test("propagators -- arithmetic -- sum", async () => {
   }
 })
 
-test("propagators -- arithmetic -- product", async () => {
+test("propagators / arithmetic / product", async () => {
   {
     const [x, y, z] = product()
 
