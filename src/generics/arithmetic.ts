@@ -14,7 +14,7 @@ defineHandler(add, [isInterval, isInterval], intervalAdd)
 
 export const sub = defineGeneric()
 defineHandler(sub, [isNumber, isNumber], (x, y) => x - y)
-defineHandler(add, [isInterval, isInterval], intervalMul)
+defineHandler(sub, [isInterval, isInterval], intervalMul)
 
 export const mul = defineGeneric()
 defineHandler(mul, [isNumber, isNumber], (x, y) => x * y)
