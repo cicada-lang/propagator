@@ -5,7 +5,7 @@ import { addContent } from "../cell/addContent.js"
 import { run } from "../scheduler/index.js"
 import { heronStep } from "./heron.js"
 
-test("heronStep", async () => {
+test("examples -- heron -- heronStep", async () => {
   const [x, guess, betterGuess] = heronStep()
 
   addContent(x, 2)
@@ -16,7 +16,7 @@ test("heronStep", async () => {
   assert.deepStrictEqual(betterGuess.content, 1.4142857142857141)
 })
 
-test("heronStep -- expression-like", async () => {
+test("examples -- heron -- heronStep -- expression-like", async () => {
   const betterGuess = heronStep(Cell(2), Cell(1.4))
 
   await run()

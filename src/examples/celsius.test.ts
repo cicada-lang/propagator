@@ -8,7 +8,7 @@ import {
   fahrenheitToCelsius,
 } from "./celsius.js"
 
-test("fahrenheitToCelsius", async () => {
+test("examples -- celsius -- fahrenheitToCelsius", async () => {
   const [f, c] = fahrenheitToCelsius()
 
   addContent(f, 77)
@@ -18,7 +18,7 @@ test("fahrenheitToCelsius", async () => {
   assert.deepStrictEqual(c.content, 25)
 })
 
-test("fahrenheitCelsius", async () => {
+test("examples -- celsius -- fahrenheitCelsius", async () => {
   {
     const [f, c] = fahrenheitCelsius()
 
@@ -40,7 +40,7 @@ test("fahrenheitCelsius", async () => {
   }
 })
 
-test("celsiusKelvin", async () => {
+test("examples -- celsius -- celsiusKelvin", async () => {
   const [f, c] = fahrenheitCelsius()
   const k = celsiusKelvin(c)
 
