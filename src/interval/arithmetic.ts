@@ -6,6 +6,10 @@ export function intervalAdd(x: Interval, y: Interval): Interval {
   return Interval(x.low + y.low, x.high + y.high)
 }
 
+export function intervalSub(x: Interval, y: Interval): Interval {
+  return Interval(x.low - y.low, x.high - y.high)
+}
+
 export function intervalMul(x: Interval, y: Interval): Interval {
   return Interval(x.low * y.low, x.high * y.high)
 }
