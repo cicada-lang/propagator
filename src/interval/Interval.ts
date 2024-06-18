@@ -14,6 +14,10 @@ export function Interval(low: number, high: number): Interval {
   }
 }
 
+export function exactInterval(x: number): Interval {
+  return Interval(x, x)
+}
+
 export function isInterval(x: any): x is Interval {
   return isNonNullObject(x) && x["@type"] === "Interval"
 }
