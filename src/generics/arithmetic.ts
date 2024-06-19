@@ -1,5 +1,4 @@
-import { defineGeneric } from "../generic/defineGeneric.js"
-import { defineHandler } from "../generic/defineHandler.js"
+import { defineGeneric, defineHandler } from "../generic/index.js"
 import {
   exactInterval,
   intervalAdd,

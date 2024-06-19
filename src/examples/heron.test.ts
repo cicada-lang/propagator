@@ -7,7 +7,6 @@ import { heronStep } from "./heron.js"
 
 test("examples / heron / heronStep", async () => {
   const [x, guess, betterGuess] = heronStep()
-
   addContent(x, 2)
   addContent(guess, 1.4)
 

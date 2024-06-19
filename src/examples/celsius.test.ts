@@ -10,7 +10,6 @@ import {
 
 test("examples / celsius / fahrenheitToCelsius", async () => {
   const [f, c] = fahrenheitToCelsius()
-
   addContent(f, 77)
 
   await run()
@@ -21,7 +20,6 @@ test("examples / celsius / fahrenheitToCelsius", async () => {
 test("examples / celsius / fahrenheitCelsius", async () => {
   {
     const [f, c] = fahrenheitCelsius()
-
     addContent(f, 77)
 
     await run()
@@ -31,7 +29,6 @@ test("examples / celsius / fahrenheitCelsius", async () => {
 
   {
     const [f, c] = fahrenheitCelsius()
-
     addContent(c, 25)
 
     await run()
@@ -43,7 +40,6 @@ test("examples / celsius / fahrenheitCelsius", async () => {
 test("examples / celsius / celsiusKelvin", async () => {
   const [f, c] = fahrenheitCelsius()
   const k = celsiusKelvin(c)
-
   addContent(f, 77)
 
   await run()

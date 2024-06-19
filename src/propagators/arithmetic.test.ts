@@ -7,7 +7,6 @@ import { adder, multiplier, product, sum } from "./index.js"
 
 test("propagators / arithmetic / adder", async () => {
   const [x, y, z] = adder()
-
   addContent(x, 1)
   addContent(y, 2)
 
@@ -26,7 +25,6 @@ test("propagators / arithmetic / adder / expression-like", async () => {
 
 test("propagators / arithmetic / multiplier", async () => {
   const [x, y, z] = multiplier()
-
   addContent(x, 2)
   addContent(y, 3)
 
@@ -38,7 +36,6 @@ test("propagators / arithmetic / multiplier", async () => {
 test("propagators / arithmetic / sum", async () => {
   {
     const [x, y, z] = sum()
-
     addContent(x, 1)
     addContent(y, 2)
 
@@ -49,7 +46,6 @@ test("propagators / arithmetic / sum", async () => {
 
   {
     const [x, y, z] = sum()
-
     addContent(x, 1)
     addContent(z, 3)
 
@@ -60,7 +56,6 @@ test("propagators / arithmetic / sum", async () => {
 
   {
     const [x, y, z] = sum()
-
     addContent(y, 2)
     addContent(z, 3)
 
@@ -73,7 +68,6 @@ test("propagators / arithmetic / sum", async () => {
 test("propagators / arithmetic / product", async () => {
   {
     const [x, y, z] = product()
-
     addContent(x, 2)
     addContent(y, 3)
 
@@ -84,7 +78,6 @@ test("propagators / arithmetic / product", async () => {
 
   {
     const [x, y, z] = product()
-
     addContent(x, 2)
     addContent(z, 6)
 
@@ -95,7 +88,6 @@ test("propagators / arithmetic / product", async () => {
 
   {
     const [x, y, z] = product()
-
     addContent(y, 3)
     addContent(z, 6)
 

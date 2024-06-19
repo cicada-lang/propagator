@@ -1,13 +1,12 @@
-import { isNothing } from "../cell/Nothing.js"
-import { defineGeneric } from "../generic/defineGeneric.js"
-import { defineHandler } from "../generic/defineHandler.js"
+import { isNothing } from "../cell/index.js"
+import { defineGeneric, defineHandler } from "../generic/index.js"
 import {
   intervalContainsNumber,
   intervalEqual,
   intervalIntersect,
   intervalIsEmpty,
-} from "../interval/arithmetic.js"
-import { isInterval } from "../interval/index.js"
+  isInterval,
+} from "../interval/index.js"
 import { isNumber } from "../utils/isNumber.js"
 import { theContradiction } from "./Contradiction.js"
 
