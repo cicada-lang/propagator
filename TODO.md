@@ -1,5 +1,3 @@
-`merge` on `(Interval, Number)` and `(Number, Interval)`
-
 > propagator 支持 dependencies for provenance
 
 > propagator 支持 dependencies for alternate worldviews

@@ -2,11 +2,13 @@ import { isNothing } from "../cell/Nothing.js"
 import { defineGeneric } from "../generic/defineGeneric.js"
 import { defineHandler } from "../generic/defineHandler.js"
 import {
+  intervalContainsNumber,
   intervalEqual,
   intervalIntersect,
   intervalIsEmpty,
 } from "../interval/arithmetic.js"
 import { isInterval } from "../interval/index.js"
+import { isNumber } from "../utils/isNumber.js"
 import { theContradiction } from "./Contradiction.js"
 
 export const merge = defineGeneric({
@@ -28,3 +30,11 @@ defineHandler(merge, [isInterval, isInterval], (content, increment) => {
   if (intervalIsEmpty(newInterval)) return theContradiction
   return newInterval
 })
+
+defineHandler(merge, [isInterval, isNumber], (content, increment) =>
+  intervalContainsNumber(content, increment) ? increment : theContradiction,
+)
+
+defineHandler(merge, [isNumber, isInterval], (content, increment) =>
+  intervalContainsNumber(increment, content) ? content : theContradiction,
+)

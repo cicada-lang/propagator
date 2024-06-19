@@ -47,3 +47,7 @@ export function intervalAlmostEqual(
     Math.abs(x.low - y.low) <= epsilon && Math.abs(x.high - y.high) <= epsilon
   )
 }
+
+export function intervalContainsNumber(x: Interval, n: number): boolean {
+  return x.low <= n && n <= x.high
+}

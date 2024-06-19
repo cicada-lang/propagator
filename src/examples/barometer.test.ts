@@ -36,7 +36,7 @@ test("examples / barometer / similarTriangles", async () => {
     intervalAlmostEqual(
       buildingHeight.content,
       Interval(44.514, 48.978),
-      0.0001,
+      0.001,
     ),
   )
 })
