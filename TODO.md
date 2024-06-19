@@ -1,3 +1,5 @@
+lift 应该把一般函数变为 cell 的函数
+
 > propagator 支持 dependencies for provenance
 
 > propagator 支持 dependencies for alternate worldviews

@@ -32,6 +32,8 @@ export function definePrimitive<A extends number>(
   arity: A,
   fn: (...args: Array<any>) => MaybePromise<any>,
 ): PropagatorDefinitionWithFixedArity<A> {
+  const liftedFn = skipIncompleteInputs(fn)
+
   const definition = (...args: Array<Cell<any>>) => {
     // 注意，在下面的实现中，只需要 watch 函数的 inputs，
     // output cell 的变化并不应该导致代表函数的 propagator 重新运行。
@@ -40,18 +42,20 @@ export function definePrimitive<A extends number>(
       const output = args[args.length - 1]
 
       watch(inputs, async () => {
-        const liftedFn = skipIncompleteInputs(fn)
-        const result = await liftedFn(...inputs.map((input) => input.content))
-        addContent(output, result)
+        addContent(
+          output,
+          await liftedFn(...inputs.map((input) => input.content)),
+        )
       })
     } else if (args.length === arity - 1) {
       const inputs = args
       const output = Cell()
 
       watch(inputs, async () => {
-        const liftedFn = skipIncompleteInputs(fn)
-        const result = await liftedFn(...inputs.map((input) => input.content))
-        addContent(output, result)
+        addContent(
+          output,
+          await liftedFn(...inputs.map((input) => input.content)),
+        )
       })
 
       return output
@@ -61,9 +65,10 @@ export function definePrimitive<A extends number>(
       const output = Cell()
 
       watch(inputs, async () => {
-        const liftedFn = skipIncompleteInputs(fn)
-        const result = await liftedFn(...inputs.map((input) => input.content))
-        addContent(output, result)
+        addContent(
+          output,
+          await liftedFn(...inputs.map((input) => input.content)),
+        )
       })
 
       return [...paddings, output]
