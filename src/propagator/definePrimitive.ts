@@ -32,7 +32,7 @@ export function definePrimitive<A extends number>(
   arity: A,
   fn: (...args: Array<any>) => MaybePromise<any>,
 ): PropagatorDefinitionWithFixedArity<A> {
-  const liftedFn = skipIncompleteInputs(fn)
+  const liftedFn = lift(fn)
 
   const definition = (...args: Array<Cell<any>>) => {
     // 注意，在下面的实现中，只需要 watch 函数的 inputs，
@@ -42,20 +42,14 @@ export function definePrimitive<A extends number>(
       const output = args[args.length - 1]
 
       watch(inputs, async () => {
-        addContent(
-          output,
-          await liftedFn(...inputs.map((input) => input.content)),
-        )
+        addContent(output, await liftedFn(...inputs))
       })
     } else if (args.length === arity - 1) {
       const inputs = args
       const output = Cell()
 
       watch(inputs, async () => {
-        addContent(
-          output,
-          await liftedFn(...inputs.map((input) => input.content)),
-        )
+        addContent(output, await liftedFn(...inputs))
       })
 
       return output
@@ -65,10 +59,7 @@ export function definePrimitive<A extends number>(
       const output = Cell()
 
       watch(inputs, async () => {
-        addContent(
-          output,
-          await liftedFn(...inputs.map((input) => input.content)),
-        )
+        addContent(output, await liftedFn(...inputs))
       })
 
       return [...paddings, output]
@@ -88,6 +79,29 @@ export function definePrimitive<A extends number>(
   definition.arity = arity
 
   return definition as any as PropagatorDefinitionWithFixedArity<A>
+}
+
+function watch(cells: Array<Cell<any>>, propagator: Propagator): void {
+  for (const cell of cells) {
+    addPropagator(cell, propagator)
+  }
+
+  schedule([propagator])
+}
+
+function lift(
+  fn: (...args: Array<any>) => MaybePromise<any>,
+): (...args: Array<Cell<any>>) => MaybePromise<any> {
+  fn = skipIncompleteInputs(fn)
+
+  return async (...inputs) => {
+    const args = inputs.map((input) => input.content)
+    if (args.find(isNothing)) {
+      return nothing
+    } else {
+      return await fn(...args)
+    }
+  }
 }
 
 // # 参数不全时的处理
@@ -111,12 +125,4 @@ function skipIncompleteInputs(
       return await fn(...args)
     }
   }
-}
-
-function watch(cells: Array<Cell<any>>, propagator: Propagator): void {
-  for (const cell of cells) {
-    addPropagator(cell, propagator)
-  }
-
-  schedule([propagator])
 }
