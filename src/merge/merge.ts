@@ -32,10 +32,7 @@ import { theContradiction } from "./Contradiction.js"
 // treatment of their existing content versus incoming content. Having
 // merge return the wrong one could lead to spurious infinite loops.
 
-export const merge = defineGeneric({
-  default: (content, increment) =>
-    increment === content ? content : theContradiction,
-})
+export const merge = defineGeneric() // no default, be explicit.
 
 function isAnything(x: any): true {
   return true
@@ -43,6 +40,10 @@ function isAnything(x: any): true {
 
 defineHandler(merge, [isAnything, isNothing], (content, increment) => content)
 defineHandler(merge, [isNothing, isAnything], (content, increment) => increment)
+
+defineHandler(merge, [isNumber, isNumber], (content, increment) =>
+  increment === content ? content : theContradiction,
+)
 
 defineHandler(merge, [isInterval, isInterval], (content, increment) => {
   const newInterval = intervalIntersect(content, increment)
