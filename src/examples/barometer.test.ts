@@ -32,13 +32,11 @@ test("examples / barometer / similarTriangles", async () => {
 
   await run()
 
-  console.log(buildingHeight.content)
-
-  // assert(
-  //   intervalAlmostEqual(
-  //     buildingHeight.content,
-  //     Interval(41.163, 47.243),
-  //     0.001,
-  //   ),
-  // )
+  assert(
+    intervalAlmostEqual(
+      buildingHeight.content,
+      Interval(44.514, 48.978),
+      0.0001,
+    ),
+  )
 })

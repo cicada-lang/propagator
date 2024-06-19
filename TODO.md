@@ -1,5 +1,3 @@
-fix `similarTriangles` -- `high` 为何为 `Infinity`？
-
 `merge` on `(Interval, Number)` and `(Number, Interval)`
 
 > propagator 支持 dependencies for provenance

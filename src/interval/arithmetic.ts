@@ -31,7 +31,7 @@ export function intervalIsEmpty(x: Interval): boolean {
 }
 
 export function intervalIntersect(x: Interval, y: Interval): Interval {
-  return Interval(Math.max(x.low, y.low), Math.max(x.high, y.high))
+  return Interval(Math.max(x.low, y.low), Math.min(x.high, y.high))
 }
 
 export function intervalEqual(x: Interval, y: Interval): boolean {
