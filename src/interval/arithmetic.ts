@@ -34,6 +34,10 @@ export function intervalIntersect(x: Interval, y: Interval): Interval {
   return Interval(Math.max(x.low, y.low), Math.max(x.high, y.high))
 }
 
+export function intervalEqual(x: Interval, y: Interval): boolean {
+  return x.low === y.low && x.high === y.high
+}
+
 export function intervalAlmostEqual(
   x: Interval,
   y: Interval,
