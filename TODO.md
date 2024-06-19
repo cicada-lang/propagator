@@ -1,5 +1,3 @@
-lift 不应该把 sync 函数变为 async 函数
-
 > propagator 支持 dependencies for provenance
 
 > propagator 支持 dependencies for alternate worldviews

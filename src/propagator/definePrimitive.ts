@@ -94,12 +94,12 @@ function lift(
 ): (...args: Array<Cell<any>>) => MaybePromise<any> {
   fn = skipIncompleteInputs(fn)
 
-  return async (...inputs) => {
+  return (...inputs) => {
     const args = inputs.map((input) => input.content)
     if (args.find(isNothing)) {
       return nothing
     } else {
-      return await fn(...args)
+      return fn(...args)
     }
   }
 }
@@ -118,11 +118,11 @@ function lift(
 function skipIncompleteInputs(
   fn: (...args: Array<any>) => MaybePromise<any>,
 ): (...args: Array<any>) => MaybePromise<any> {
-  return async (...args) => {
+  return (...args) => {
     if (args.find(isNothing)) {
       return nothing
     } else {
-      return await fn(...args)
+      return fn(...args)
     }
   }
 }
