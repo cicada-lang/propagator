@@ -1,13 +1,13 @@
 import assert from "node:assert"
 import test from "node:test"
-import { addContent } from "../cell/addContent.js"
+import { put } from "../cell/put.js"
 import { run } from "../scheduler/index.js"
 import { quadratic } from "./quadratic.js"
 
 test("propagators / quadratic", async () => {
   {
     const [r, s] = quadratic()
-    addContent(r, 2)
+    put(r, 2)
 
     await run()
 
@@ -16,7 +16,7 @@ test("propagators / quadratic", async () => {
 
   {
     const [r, s] = quadratic()
-    addContent(s, 4)
+    put(s, 4)
 
     await run()
 

@@ -1,13 +1,13 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { Cell, addContent } from "../cell/index.js"
+import { Cell, put } from "../cell/index.js"
 import { Interval, intervalAlmostEqual } from "../interval/index.js"
 import { run } from "../scheduler/index.js"
 import { fallDuration, similarTriangles } from "./barometer.js"
 
 test("examples / barometer / fallDuration", async () => {
   const [fallTime, buildingHeight] = fallDuration()
-  addContent(fallTime, Interval(2.9, 3.1))
+  put(fallTime, Interval(2.9, 3.1))
 
   await run()
 
@@ -22,11 +22,11 @@ test("examples / barometer / fallDuration", async () => {
 
 test("examples / barometer / fallDuration / Interval + Number", async () => {
   const [fallTime, buildingHeight] = fallDuration()
-  addContent(fallTime, Interval(2.9, 3.1))
+  put(fallTime, Interval(2.9, 3.1))
 
   await run()
 
-  addContent(buildingHeight, Interval(45, 45))
+  put(buildingHeight, Interval(45, 45))
 
   await run()
 
@@ -36,9 +36,9 @@ test("examples / barometer / fallDuration / Interval + Number", async () => {
 test("examples / barometer / similarTriangles & fallDuration", async () => {
   const [barometerShadow, barometerHeight, buildingShadow, buildingHeight] =
     similarTriangles()
-  addContent(buildingShadow, Interval(54.9, 55.1))
-  addContent(barometerHeight, Interval(0.3, 0.32))
-  addContent(barometerShadow, Interval(0.36, 0.37))
+  put(buildingShadow, Interval(54.9, 55.1))
+  put(barometerHeight, Interval(0.3, 0.32))
+  put(barometerShadow, Interval(0.36, 0.37))
 
   await run()
 
@@ -52,7 +52,7 @@ test("examples / barometer / similarTriangles & fallDuration", async () => {
 
   const fallTime = Cell()
   fallDuration(fallTime, buildingHeight)
-  addContent(fallTime, Interval(2.9, 3.1))
+  put(fallTime, Interval(2.9, 3.1))
 
   await run()
 
