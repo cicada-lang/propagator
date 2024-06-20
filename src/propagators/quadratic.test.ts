@@ -1,6 +1,6 @@
 import assert from "node:assert"
 import test from "node:test"
-import { put } from "../cell/put.js"
+import { put } from "../cell/index.js"
 import { run } from "../scheduler/index.js"
 import { quadratic } from "./quadratic.js"
 
