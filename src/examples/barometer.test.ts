@@ -26,6 +26,14 @@ test("examples / barometer / fallDuration / Interval + Number", async () => {
 
   await run()
 
+  assert(
+    intervalAlmostEqual(
+      buildingHeight.content,
+      Interval(41.163, 47.243),
+      0.001,
+    ),
+  )
+
   put(buildingHeight, 45)
 
   await run()
