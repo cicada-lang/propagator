@@ -20,6 +20,19 @@ test("examples / barometer / fallDuration", async () => {
   )
 })
 
+test("examples / barometer / fallDuration / Interval + Number", async () => {
+  const [fallTime, buildingHeight] = fallDuration()
+  addContent(fallTime, Interval(2.9, 3.1))
+
+  await run()
+
+  addContent(buildingHeight, Interval(45, 45))
+
+  await run()
+
+  assert(intervalAlmostEqual(fallTime.content, Interval(3.0255, 3.0322), 0.001))
+})
+
 test("examples / barometer / similarTriangles & fallDuration", async () => {
   const [barometerShadow, barometerHeight, buildingShadow, buildingHeight] =
     similarTriangles()
