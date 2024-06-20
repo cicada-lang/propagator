@@ -26,7 +26,7 @@ test("examples / barometer / fallDuration / Interval + Number", async () => {
 
   await run()
 
-  put(buildingHeight, Interval(45, 45))
+  put(buildingHeight, 45)
 
   await run()
 
