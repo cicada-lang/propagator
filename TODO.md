@@ -1,4 +1,6 @@
 > propagator 支持 dependencies for provenance
+>
+> - https://github.com/cicada-lang/propagator/issues/2
 
 > propagator 支持 dependencies for alternate worldviews
 
