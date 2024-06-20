@@ -2,6 +2,8 @@
 >
 > - https://github.com/cicada-lang/propagator/issues/2
 
+`dependency/` -- `Supported` -- has `promises: Set<string>`
+
 > propagator 支持 dependencies for alternate worldviews
 
 > propagator 支持 dependencies for implicit search
