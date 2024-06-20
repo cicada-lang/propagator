@@ -20,9 +20,9 @@ export const fahrenheitToCelsius = definePropagator(2, (f, c) => {
 })
 
 export const fahrenheitCelsius = definePropagator(2, (f, c) => {
-  const a = Cell<number>()
+  const a = Cell()
   sum(a, constant(32)(), f)
-  const b = Cell<number>()
+  const b = Cell()
   product(b, constant(9)(), constant(5)())
   product(a, b, c)
 })
