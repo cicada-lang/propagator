@@ -20,7 +20,7 @@ export function setIsSupersetOf<T>(x: Set<T>, y: Set<T>): boolean {
   return setIsSubsetOf(y, x)
 }
 
-export function setIsDisjointFrom(x: Set<T>, y: Set<T>): boolean {
+export function setIsDisjointFrom<T>(x: Set<T>, y: Set<T>): boolean {
   for (const e of x) {
     if (y.has(e)) {
       return false

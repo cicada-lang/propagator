@@ -1,4 +1,5 @@
 import { isNothing } from "../cell/index.js"
+import { isSupported, supportedMerge } from "../dependency/index.js"
 import { defineGeneric, defineHandler } from "../generic/index.js"
 import {
   intervalContainsNumber,
@@ -65,3 +66,5 @@ defineHandler(merge, [isInterval, isNumber], (content, increment) =>
 defineHandler(merge, [isNumber, isInterval], (content, increment) =>
   intervalContainsNumber(increment, content) ? content : theContradiction,
 )
+
+defineHandler(merge, [isSupported, isSupported], supportedMerge)
