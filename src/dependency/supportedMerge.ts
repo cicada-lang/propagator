@@ -1,4 +1,5 @@
 import { implies, merge, type Contradiction } from "../merge/index.js"
+import { setUnion } from "../utils/Set.js"
 import { Supported } from "./Supported.js"
 
 export function supportedMerge<A, B>(
@@ -23,6 +24,6 @@ export function supportedMerge<A, B>(
     return increment
   }
 
-  const mergedSupports = content.supports.union(increment.supports)
+  const mergedSupports = setUnion(content.supports, increment.supports)
   return Supported(mergedContent, mergedSupports)
 }

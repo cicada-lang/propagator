@@ -2,11 +2,12 @@
 >
 > - https://github.com/cicada-lang/propagator/issues/2
 
-`utils/Set`
 `barometer` -- 的测试带上 `promises` -- 用论文中讲故事的方式来写测试
 test about "a justified-intervals anomaly"
 
 - 即 supports 的集合可能与 supported value put 进来的顺序有关
+
+`utils/Set` -- `setIntersection` & `setDifference` -- 为了完备
 
 > propagator 支持 dependencies for alternate worldviews
 >
