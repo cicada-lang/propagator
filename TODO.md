@@ -2,11 +2,19 @@
 >
 > - https://github.com/cicada-lang/propagator/issues/2
 
-`dependency/` -- `Supported` -- has `promises: Set<string>`
+`supportedMerge`
+`barometer` -- 的测试带上 `promises` -- 用论文中讲故事的方式来写测试
+test about "a justified-intervals anomaly"
+
+- 即 supports 的集合可能与 supported value put 进来的顺序有关
 
 > propagator 支持 dependencies for alternate worldviews
+>
+> - https://github.com/cicada-lang/propagator/issues/3
 
 > propagator 支持 dependencies for implicit search
+>
+> - https://github.com/cicada-lang/propagator/issues/4
 
 > 完成 "The Art" 中的 Heron 例子
 >
@@ -18,4 +26,5 @@
 `interval/` -- arithmetic 支持负数
 
 - 可能需要 multi interval 而不是简单的 interval 了
-- https://en.wikipedia.org/wiki/Interval_arithmetic
+  - https://en.wikipedia.org/wiki/Interval_arithmetic
+- 可能 propagator 本身的分支机制就能处理 multi interval
