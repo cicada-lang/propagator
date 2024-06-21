@@ -33,7 +33,18 @@ import { theContradiction } from "./Contradiction.js"
 // treatment of their existing content versus incoming content. Having
 // merge return the wrong one could lead to spurious infinite loops.
 
-export const merge = defineGeneric() // no default, be explicit.
+export const merge = defineGeneric({
+  default(...args) {
+    // no default, be explicit.
+    console.error({
+      who: "merge",
+      message: "Unhandled args.",
+      args,
+    })
+
+    throw new Error(`[merge] Unhandled args.`)
+  },
+})
 
 // Second argument is redundant for `merge`.
 export function implies<A, B>(x: A, y: B): boolean {

@@ -1,6 +1,7 @@
 import assert from "node:assert"
 import { test } from "node:test"
 import { Cell, put } from "../cell/index.js"
+import { Supported } from "../dependency/index.js"
 import { Interval, intervalAlmostEqual } from "../interval/index.js"
 import { run } from "../scheduler/index.js"
 import { fallDuration, similarTriangles } from "./barometer.js"
@@ -71,4 +72,16 @@ test("examples / barometer / similarTriangles & fallDuration", async () => {
       0.001,
     ),
   )
+})
+
+test("examples / barometer / with supported value", async () => {
+  const [barometerShadow, barometerHeight, buildingShadow, buildingHeight] =
+    similarTriangles()
+  put(buildingShadow, Supported(Interval(54.9, 55.1), new Set(["shadows"])))
+  put(barometerHeight, Supported(Interval(0.3, 0.32), new Set(["shadows"])))
+  put(barometerShadow, Supported(Interval(0.36, 0.37), new Set(["shadows"])))
+
+  // await run()
+
+  // console.log(buildingHeight)
 })

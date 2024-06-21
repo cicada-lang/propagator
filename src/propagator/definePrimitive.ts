@@ -1,4 +1,5 @@
 import { Cell, addPropagator, isNothing, nothing, put } from "../cell/index.js"
+import { isSupported } from "../dependency/index.js"
 import { schedule } from "../scheduler/index.js"
 import type { MaybePromise } from "../utils/MaybePromise.js"
 import { repeatApply } from "../utils/repeatApply.js"
@@ -86,6 +87,7 @@ function watch(cells: Array<Cell<any>>, propagator: Propagator): void {
 function lift(
   fn: (...args: Array<any>) => MaybePromise<any>,
 ): (...args: Array<Cell<any>>) => MaybePromise<any> {
+  fn = maybeUnwrapSupported(fn)
   fn = skipIncompleteInputs(fn)
 
   return (...inputs) => {
@@ -95,6 +97,15 @@ function lift(
     } else {
       return fn(...args)
     }
+  }
+}
+
+function maybeUnwrapSupported(
+  fn: (...args: Array<any>) => MaybePromise<any>,
+): (...args: Array<any>) => MaybePromise<any> {
+  return (...args) => {
+    args = args.map((arg) => (isSupported(arg) ? arg.content : arg))
+    return fn(...args)
   }
 }
 

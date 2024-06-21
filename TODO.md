@@ -2,7 +2,14 @@
 >
 > - https://github.com/cicada-lang/propagator/issues/2
 
+fix `maybeUnwrapSupported` -- learn from `nary-unpacking`
+
 `barometer` -- 的测试带上 `promises` -- 用论文中讲故事的方式来写测试
+
+fix `isContradiction` for `Supported`
+
+- `isContradiction` should be a generic
+
 test about "a justified-intervals anomaly"
 
 - 即 supports 的集合可能与 supported value put 进来的顺序有关

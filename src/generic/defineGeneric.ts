@@ -23,12 +23,15 @@ export function defineGeneric(
     if (options.default) {
       return options.default(...args)
     } else {
-      console.error({
-        who: "GenericDefinition",
-        constroctor: "defineGeneric",
-        definition,
-        args,
-      })
+      console.dir(
+        {
+          who: "GenericDefinition",
+          constroctor: "defineGeneric",
+          definition,
+          args,
+        },
+        { depth: null },
+      )
       throw new Error(`[GenericDefinition] Unhandled args and not default.`)
     }
   }
