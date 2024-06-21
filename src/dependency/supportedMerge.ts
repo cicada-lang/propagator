@@ -1,5 +1,5 @@
 import { implies, merge, type Contradiction } from "../merge/index.js"
-import { setUnion } from "../utils/Set.js"
+import { setIsSubsetOf, setUnion } from "../utils/Set.js"
 import { Supported } from "./Supported.js"
 
 export function supportedMerge<A, B>(
@@ -10,7 +10,7 @@ export function supportedMerge<A, B>(
 
   if (mergedContent === content.content) {
     if (implies(increment, content)) {
-      if (content.supports.isSubsetOf(increment.supports)) {
+      if (setIsSubsetOf(content.supports, increment.supports)) {
         return content
       } else {
         return increment
