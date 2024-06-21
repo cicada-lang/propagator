@@ -34,6 +34,11 @@ import { theContradiction } from "./Contradiction.js"
 
 export const merge = defineGeneric() // no default, be explicit.
 
+// Second argument is redundant for `merge`.
+export function implies<A, B>(x: A, y: B): boolean {
+  return merge(x, y) === x
+}
+
 function isAnything(x: any): true {
   return true
 }
