@@ -1,5 +1,7 @@
 import { Cell, addPropagator, isNothing, nothing, put } from "../cell/index.js"
 import { isSupported } from "../dependency/index.js"
+import { naryFmap } from "../monad/index.js"
+import "../monads/nothing-monad.js"
 import { schedule } from "../scheduler/index.js"
 import type { MaybePromise } from "../utils/MaybePromise.js"
 import { repeatApply } from "../utils/repeatApply.js"
@@ -87,8 +89,7 @@ function watch(cells: Array<Cell<any>>, propagator: Propagator): void {
 function lift(
   fn: (...args: Array<any>) => MaybePromise<any>,
 ): (...args: Array<Cell<any>>) => MaybePromise<any> {
-  fn = maybeUnwrapSupported(fn)
-  fn = skipIncompleteInputs(fn)
+  fn = naryFmap(fn)
 
   return (...inputs) => fn(...inputs.map((input) => input.content))
 }
