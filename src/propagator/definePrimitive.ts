@@ -90,14 +90,7 @@ function lift(
   fn = maybeUnwrapSupported(fn)
   fn = skipIncompleteInputs(fn)
 
-  return (...inputs) => {
-    const args = inputs.map((input) => input.content)
-    if (args.find(isNothing)) {
-      return nothing
-    } else {
-      return fn(...args)
-    }
-  }
+  return (...inputs) => fn(...inputs.map((input) => input.content))
 }
 
 function maybeUnwrapSupported(
