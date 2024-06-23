@@ -1,4 +1,4 @@
-import { Cell, addPropagator, isNothing, nothing, put } from "../cell/index.js"
+import { Cell, addPropagator, put } from "../cell/index.js"
 import { isSupported } from "../dependency/index.js"
 import { naryFmap } from "../monad/index.js"
 import "../monads/nothing-monad.js"
@@ -100,28 +100,5 @@ function maybeUnwrapSupported(
   return (...args) => {
     args = args.map((arg) => (isSupported(arg) ? arg.content : arg))
     return fn(...args)
-  }
-}
-
-// # 参数不全时的处理
-// 函数只能在参数齐全的情况下才能作用，
-// 因此代表函数的 propagator，
-// 也只能在作为输入的 cells 中的值齐全时才能作用。
-// - 在 "The Art" 中这个函数叫 `lift-to-cell-contents`，
-//   在博士论文中，这个函数叫 `handling-nothings`
-//   也许这个函数的命名应该来自 "skip when inputs are incomplete" 这一短语。
-// - 也许我们不应该用 undefined 来代表 cell 中没有值，
-//   因为这样的话，JS 中带有 optional arguments 的函数，
-//   就没法被转化为 propagator 了。
-
-function skipIncompleteInputs(
-  fn: (...args: Array<any>) => MaybePromise<any>,
-): (...args: Array<any>) => MaybePromise<any> {
-  return (...args) => {
-    if (args.find(isNothing)) {
-      return nothing
-    } else {
-      return fn(...args)
-    }
   }
 }

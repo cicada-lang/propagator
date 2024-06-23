@@ -1,4 +1,3 @@
-删除 `skipIncompleteInputs`
 monads/supported-monad -- 删除 `maybeUnwrapSupported`
 
 > propagator 支持 dependencies for provenance
