@@ -18,6 +18,5 @@ defineHandler(
 defineHandler(
   join,
   [(mma) => isSupported(mma) && isSupported(mma.value)],
-  (mma) =>
-    join(mma.content.content, setUnion(mma.supports, mma.content.supports)),
+  (mma) => join(mma.value.value, setUnion(mma.supports, mma.value.supports)),
 )
