@@ -1,5 +1,3 @@
-rename `supported.content` to `supported.value`
-
 > propagator 支持 dependencies for provenance
 >
 > - https://github.com/cicada-lang/propagator/issues/2
