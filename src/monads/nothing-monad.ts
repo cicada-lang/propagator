@@ -4,4 +4,5 @@ import { fmap, join } from "../monad/index.js"
 import { isFunction } from "../utils/isFunction.js"
 
 defineHandler(fmap, [isFunction, isNothing], (f, ma) => nothing)
+
 defineHandler(join, [isNothing], (mma) => nothing)

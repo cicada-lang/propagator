@@ -1,4 +1,4 @@
-monads/supported-monad -- 删除 `maybeUnwrapSupported`
+rename `supported.content` to `supported.value`
 
 > propagator 支持 dependencies for provenance
 >

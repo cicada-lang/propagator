@@ -1,7 +1,7 @@
 import { Cell, addPropagator, put } from "../cell/index.js"
-import { isSupported } from "../dependency/index.js"
 import { naryFmap } from "../monad/index.js"
 import "../monads/nothing-monad.js"
+import "../monads/supported-monad.js"
 import { schedule } from "../scheduler/index.js"
 import type { MaybePromise } from "../utils/MaybePromise.js"
 import { repeatApply } from "../utils/repeatApply.js"
@@ -92,13 +92,4 @@ function lift(
   fn = naryFmap(fn)
 
   return (...inputs) => fn(...inputs.map((input) => input.content))
-}
-
-function maybeUnwrapSupported(
-  fn: (...args: Array<any>) => MaybePromise<any>,
-): (...args: Array<any>) => MaybePromise<any> {
-  return (...args) => {
-    args = args.map((arg) => (isSupported(arg) ? arg.content : arg))
-    return fn(...args)
-  }
 }
