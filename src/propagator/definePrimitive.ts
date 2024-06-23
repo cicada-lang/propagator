@@ -78,18 +78,18 @@ export function definePrimitive<A extends number>(
   return definition as any as PropagatorDefinitionWithFixedArity<A>
 }
 
-function watch(cells: Array<Cell<any>>, propagator: Propagator): void {
-  for (const cell of cells) {
-    addPropagator(cell, propagator)
-  }
-
-  schedule([propagator])
-}
-
 function lift(
   fn: (...args: Array<any>) => MaybePromise<any>,
 ): (...args: Array<Cell<any>>) => MaybePromise<any> {
   fn = naryFmap(fn)
 
   return (...inputs) => fn(...inputs.map((input) => input.content))
+}
+
+function watch(cells: Array<Cell<any>>, propagator: Propagator): void {
+  for (const cell of cells) {
+    addPropagator(cell, propagator)
+  }
+
+  schedule([propagator])
 }

@@ -14,14 +14,14 @@ export function naryFmap(
   f: (...args: Array<any>) => any,
 ): (...margs: Array<any>) => any {
   return (...margs) => {
-    function loop(margs: Array<any>, f: (...args: Array<any>) => any): any {
+    function recur(margs: Array<any>, f: (...args: Array<any>) => any): any {
       if (margs.length === 0) return f()
 
       return bind(margs[0], (arg) =>
-        loop(margs.slice(1), (...restArgs) => f(arg, ...restArgs)),
+        recur(margs.slice(1), (...restArgs) => f(arg, ...restArgs)),
       )
     }
 
-    return loop(margs, f)
+    return recur(margs, f)
   }
 }

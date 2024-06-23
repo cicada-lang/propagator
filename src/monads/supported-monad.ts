@@ -9,14 +9,17 @@ defineHandler(fmap, [isFunction, isSupported], (f, ma: Supported<any>) =>
   Supported(bind(ma.value, f), ma.supports),
 )
 
-defineHandler(join, [isSupported], (ma) => ma)
+defineHandler(join, [isSupported], (mma) => mma)
 defineHandler(
   join,
-  [(ma) => isSupported(ma) && isNothing(ma.value)],
-  (ma) => nothing,
+  [(mma) => isSupported(mma) && isNothing(mma.value)],
+  (mma) => nothing,
 )
 defineHandler(
   join,
   [(mma) => isSupported(mma) && isSupported(mma.value)],
-  (mma) => join(mma.value.value, setUnion(mma.supports, mma.value.supports)),
+  (mma) =>
+    join(
+      Supported(mma.value.value, setUnion(mma.supports, mma.value.supports)),
+    ),
 )
