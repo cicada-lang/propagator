@@ -1,8 +1,10 @@
+monads/nothing-monad
+用 generic 函数定义 lift -- 删除 `skipIncompleteInputs`
+monads/supported-monad -- 删除 `maybeUnwrapSupported`
+
 > propagator 支持 dependencies for provenance
 >
 > - https://github.com/cicada-lang/propagator/issues/2
-
-fix `maybeUnwrapSupported` -- learn from `nary-unpacking`
 
 `barometer` -- 的测试带上 `promises` -- 用论文中讲故事的方式来写测试
 
