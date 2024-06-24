@@ -6,7 +6,7 @@ import { setUnion } from "../utils/Set.js"
 import { isFunction } from "../utils/isFunction.js"
 
 defineHandler(fmap, [isFunction, isSupported], (f, ma: Supported<any>) =>
-  Supported(bind(ma.value, f), ma.supports),
+  Supported(bind(ma.value, f), ma.support),
 )
 
 defineHandler(join, [isSupported], (mma) => mma)
@@ -19,7 +19,5 @@ defineHandler(
   join,
   [(mma) => isSupported(mma) && isSupported(mma.value)],
   (mma) =>
-    join(
-      Supported(mma.value.value, setUnion(mma.supports, mma.value.supports)),
-    ),
+    join(Supported(mma.value.value, setUnion(mma.support, mma.value.support))),
 )

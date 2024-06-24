@@ -2,14 +2,18 @@
 
 > - https://github.com/cicada-lang/propagator/issues/2
 
+抽出来一个叫 `Support` 的 type
+
+improve interface for `put` -- second argument should be list of optional promises
+
 测试反向运算的 provenance
+
 test about "a justified-intervals anomaly"
 
 - 即 supports 的集合可能与 supported value put 进来的顺序有关
 
 # later
 
-improve interface for `put` -- second argument should be list of optional promises
 `utils/Set` -- `setIntersection` & `setDifference` -- 为了完备
 
 # propagator 支持 dependencies for alternate worldviews

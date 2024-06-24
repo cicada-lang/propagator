@@ -84,7 +84,7 @@ test("examples / barometer / with supported value", async () => {
 
   await run()
 
-  assert.deepStrictEqual(buildingHeight.content.supports, new Set(["shadows"]))
+  assert.deepStrictEqual(buildingHeight.content.support, new Set(["shadows"]))
   assert(
     intervalAlmostEqual(
       buildingHeight.content.value,
@@ -99,7 +99,7 @@ test("examples / barometer / with supported value", async () => {
 
   await run()
 
-  assert.deepStrictEqual(buildingHeight.content.supports, new Set(["shadows"]))
+  assert.deepStrictEqual(buildingHeight.content.support, new Set(["shadows"]))
   assert(
     intervalAlmostEqual(
       buildingHeight.content.value,
@@ -113,7 +113,7 @@ test("examples / barometer / with supported value", async () => {
   await run()
 
   assert.deepStrictEqual(
-    buildingHeight.content.supports,
+    buildingHeight.content.support,
     new Set(["shadows", "better-fall-time"]),
   )
   assert(
@@ -129,10 +129,22 @@ test("examples / barometer / with supported value", async () => {
   await run()
 
   assert.deepStrictEqual(
-    buildingHeight.content.supports,
+    buildingHeight.content.support,
     new Set(["superintendent"]),
   )
   assert.deepStrictEqual(buildingHeight.content.value, 45)
+
+  //   (content barometer-height)
+  // #(supported #(interval .3 .30328)
+  //   (superintendent better-fall-time shadows))
+  //   (content barometer-shadow)
+  // #(supported #(interval .366 .37)
+  //   (better-fall-time superintendent shadows))
+  //   (content building-shadow)
+  // #(supported #(interval 54.9 55.1) (shadows))
+  //   (content fall-time)
+  // #(supported #(interval 3.0255 3.0322)
+  //   (shadows superintendent))
 
   log(barometerHeight.content)
   log(barometerShadow.content)

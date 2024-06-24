@@ -16,7 +16,7 @@ export function supportedMerge<A, B>(
     // 正向和反向的 implies 代表等价。
     if (implies(increment.value, mergedValue)) {
       // 倾向于 content，除非 increment 真的有更多信息。
-      if (setIsSubsetOf(content.supports, increment.supports)) {
+      if (setIsSubsetOf(content.support, increment.support)) {
         return content
       } else {
         return increment
@@ -30,6 +30,6 @@ export function supportedMerge<A, B>(
     return increment
   }
 
-  const mergedSupports = setUnion(content.supports, increment.supports)
-  return Supported(mergedValue, mergedSupports)
+  const mergedSupport = setUnion(content.support, increment.support)
+  return Supported(mergedValue, mergedSupport)
 }
