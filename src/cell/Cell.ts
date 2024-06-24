@@ -1,11 +1,11 @@
-import { merge, type Contradiction } from "../merge/index.js"
+import { merge, type MergeConflict } from "../merge/index.js"
 import type { Propagator } from "../propagator/index.js"
 import { nothing, type Nothing } from "./Nothing.js"
 
 export type Merge<T> = (
   content: T | Nothing,
   increment: any,
-) => T | Nothing | Contradiction
+) => T | Nothing | MergeConflict
 
 export type Cell<T> = {
   "@type": "Cell"

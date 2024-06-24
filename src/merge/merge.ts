@@ -9,7 +9,7 @@ import {
   isInterval,
 } from "../interval/index.js"
 import { isNumber } from "../utils/isNumber.js"
-import { theContradiction } from "./Contradiction.js"
+import { theMergeConflict } from "./MergeConflict.js"
 
 // # The contract of `merge`
 // The contract of the generic function merge is that it takes two
@@ -63,23 +63,23 @@ defineHandler(merge, [isAnything, isNothing], (content, increment) => content)
 defineHandler(merge, [isNothing, isAnything], (content, increment) => increment)
 
 defineHandler(merge, [isNumber, isNumber], (content, increment) =>
-  increment === content ? content : theContradiction,
+  increment === content ? content : theMergeConflict,
 )
 
 defineHandler(merge, [isInterval, isInterval], (content, increment) => {
   const newInterval = intervalIntersect(content, increment)
   if (intervalEqual(newInterval, content)) return content
   if (intervalEqual(newInterval, increment)) return increment
-  if (intervalIsEmpty(newInterval)) return theContradiction
+  if (intervalIsEmpty(newInterval)) return theMergeConflict
   return newInterval
 })
 
 defineHandler(merge, [isInterval, isNumber], (content, increment) =>
-  intervalContainsNumber(content, increment) ? increment : theContradiction,
+  intervalContainsNumber(content, increment) ? increment : theMergeConflict,
 )
 
 defineHandler(merge, [isNumber, isInterval], (content, increment) =>
-  intervalContainsNumber(increment, content) ? content : theContradiction,
+  intervalContainsNumber(increment, content) ? content : theMergeConflict,
 )
 
 function isSimple(x: any): boolean {

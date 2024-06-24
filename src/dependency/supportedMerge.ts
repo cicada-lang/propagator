@@ -1,11 +1,11 @@
-import { implies, merge, type Contradiction } from "../merge/index.js"
+import { implies, merge, type MergeConflict } from "../merge/index.js"
 import { setIsSubsetOf, setUnion } from "../utils/Set.js"
 import { Supported } from "./Supported.js"
 
 export function supportedMerge<A, B>(
   content: Supported<A>,
   increment: Supported<B>,
-): Supported<A | B> | Contradiction {
+): Supported<A | B> | MergeConflict {
   const mergedValue = merge(content.value, increment.value)
 
   // 这里的 cases 可以写成更对称的样子，

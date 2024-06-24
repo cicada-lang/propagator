@@ -1,2 +1,2 @@
-export * from "./Contradiction.js"
+export * from "./MergeConflict.js"
 export * from "./merge.js"
