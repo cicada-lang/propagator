@@ -1,10 +1,10 @@
 # propagator 支持 dependencies for provenance
 
 > - https://github.com/cicada-lang/propagator/issues/2
->   `coercing(toInterval, f)`
->   `coercing(toSupported, f)`
->   测试反向运算的 provenance
->   test about "a justified-intervals anomaly"
+
+`coercing(toSupported, f)`
+测试反向运算的 provenance
+test about "a justified-intervals anomaly"
 
 - 即 supports 的集合可能与 supported value put 进来的顺序有关
 
