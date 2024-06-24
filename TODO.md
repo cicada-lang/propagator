@@ -1,12 +1,14 @@
-> propagator 支持 dependencies for provenance
->
-> - https://github.com/cicada-lang/propagator/issues/2
-
 quit using `console.error` and `console.dir` -- use log instead for deep object
 
 improve interface for `put` -- second argument should be list of optional promises
 
 `applyAfter` (`coercing`)
+
+> propagator 支持 dependencies for provenance
+>
+> - https://github.com/cicada-lang/propagator/issues/2
+
+测试反向运算的 provenance
 
 test about "a justified-intervals anomaly"
 
