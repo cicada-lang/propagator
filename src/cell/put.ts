@@ -1,4 +1,4 @@
-import { isMergeConflict } from "../merge/index.js"
+import { detectMergeConflict } from "../merge/index.js"
 import { schedule } from "../scheduler/index.js"
 import { type Cell } from "./Cell.js"
 
@@ -7,7 +7,7 @@ export function put<T>(cell: Cell<T>, increment?: T): void {
   if (newContent === cell.content) {
     return
   }
-  if (isMergeConflict(newContent)) {
+  if (detectMergeConflict(newContent)) {
     console.error({
       who: "addContent",
       message: "Ack! Inconsistency!",

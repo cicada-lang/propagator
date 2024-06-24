@@ -2,12 +2,9 @@
 >
 > - https://github.com/cicada-lang/propagator/issues/2
 
-`detectMergeConflict`
 `applyAfter` (`coercing`)
 
-fix `isMergeConflict` for `Supported`
-
-- `isMergeConflict` should be a generic
+`detectMergeConflict` should be a generic -- for `Supported`
 
 test about "a justified-intervals anomaly"
 
