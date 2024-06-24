@@ -2,8 +2,6 @@
 
 > - https://github.com/cicada-lang/propagator/issues/2
 
-improve interface for `put` -- second argument should be list of optional promises
-
 测试反向运算的 provenance
 
 test about "a justified-intervals anomaly"
