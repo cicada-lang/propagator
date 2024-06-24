@@ -2,7 +2,7 @@
 >
 > - https://github.com/cicada-lang/propagator/issues/2
 
-`barometer` -- 的测试带上 `promises` -- 用论文中讲故事的方式来写测试
+`coercing`
 
 fix `isContradiction` for `Supported`
 

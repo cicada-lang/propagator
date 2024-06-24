@@ -1,5 +1,5 @@
 import { isNothing } from "../cell/index.js"
-import { isSupported, supportedMerge } from "../dependency/index.js"
+import { Supported, isSupported, supportedMerge } from "../dependency/index.js"
 import { defineGeneric, defineHandler } from "../generic/index.js"
 import {
   intervalContainsNumber,
@@ -36,11 +36,15 @@ import { theContradiction } from "./Contradiction.js"
 export const merge = defineGeneric({
   default(...args) {
     // no default, be explicit.
-    console.error({
-      who: "merge",
-      message: "Unhandled args.",
-      args,
-    })
+    console.dir(
+      {
+        who: "merge",
+        message: "Unhandled args.",
+        args,
+        this: this,
+      },
+      { depth: null },
+    )
 
     throw new Error(`[merge] Unhandled args.`)
   },
@@ -78,4 +82,14 @@ defineHandler(merge, [isNumber, isInterval], (content, increment) =>
   intervalContainsNumber(increment, content) ? content : theContradiction,
 )
 
+function isSimple(x: any): boolean {
+  return isNumber(x) || isInterval(x)
+}
+
 defineHandler(merge, [isSupported, isSupported], supportedMerge)
+defineHandler(merge, [isSimple, isSupported], (v, m) =>
+  supportedMerge(Supported(v, new Set()), m),
+)
+defineHandler(merge, [isSupported, isSimple], (m, v) =>
+  supportedMerge(m, Supported(v, new Set())),
+)

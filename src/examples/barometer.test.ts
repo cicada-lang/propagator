@@ -81,7 +81,68 @@ test("examples / barometer / with supported value", async () => {
   put(barometerHeight, Supported(Interval(0.3, 0.32), new Set(["shadows"])))
   put(barometerShadow, Supported(Interval(0.36, 0.37), new Set(["shadows"])))
 
-  // await run()
+  await run()
 
-  // console.log(buildingHeight)
+  assert.deepStrictEqual(buildingHeight.content.supports, new Set(["shadows"]))
+  assert(
+    intervalAlmostEqual(
+      buildingHeight.content.value,
+      Interval(44.514, 48.978),
+      0.001,
+    ),
+  )
+
+  const fallTime = Cell()
+  fallDuration(fallTime, buildingHeight)
+  put(fallTime, Supported(Interval(2.9, 3.3), new Set(["lousy-fall-time"])))
+
+  await run()
+
+  assert.deepStrictEqual(buildingHeight.content.supports, new Set(["shadows"]))
+  assert(
+    intervalAlmostEqual(
+      buildingHeight.content.value,
+      Interval(44.514, 48.978),
+      0.001,
+    ),
+  )
+
+  put(fallTime, Supported(Interval(2.9, 3.1), new Set(["better-fall-time"])))
+
+  await run()
+
+  assert.deepStrictEqual(
+    buildingHeight.content.supports,
+    new Set(["shadows", "better-fall-time"]),
+  )
+  assert(
+    intervalAlmostEqual(
+      buildingHeight.content.value,
+      Interval(44.514, 47.243),
+      0.001,
+    ),
+  )
+
+  put(buildingHeight, Supported(45, new Set(["superintendent"])))
+
+  await run()
+
+  assert.deepStrictEqual(
+    buildingHeight.content.supports,
+    new Set(["superintendent"]),
+  )
+  assert.deepStrictEqual(buildingHeight.content.value, 45)
+
+  console.log(barometerHeight.content)
+  console.log(barometerShadow.content)
+  console.log(buildingShadow.content)
+  console.log(fallTime.content)
+
+  {
+    const [t, h] = fallDuration()
+    put(h, 45)
+
+    await run()
+    console.log(t.content)
+  }
 })

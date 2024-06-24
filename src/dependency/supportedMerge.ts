@@ -6,15 +6,15 @@ export function supportedMerge<A, B>(
   content: Supported<A>,
   increment: Supported<B>,
 ): Supported<A | B> | Contradiction {
-  const mergedContent = merge(content.value, increment.value)
+  const mergedValue = merge(content.value, increment.value)
 
   // 这里的 cases 可以写成更对称的样子，
   // 但是这里为了效率（少调用 merge 的次数），
   // 写的不是那么对称了。
 
-  if (mergedContent === content.value) {
+  if (mergedValue === content.value) {
     // 正向和反向的 implies 代表等价。
-    if (implies(increment, mergedContent)) {
+    if (implies(increment.value, mergedValue)) {
       // 倾向于 content，除非 increment 真的有更多信息。
       if (setIsSubsetOf(content.supports, increment.supports)) {
         return content
@@ -26,10 +26,10 @@ export function supportedMerge<A, B>(
     return content
   }
 
-  if (mergedContent === increment.value) {
+  if (mergedValue === increment.value) {
     return increment
   }
 
   const mergedSupports = setUnion(content.supports, increment.supports)
-  return Supported(mergedContent, mergedSupports)
+  return Supported(mergedValue, mergedSupports)
 }
