@@ -1,7 +1,6 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { Cell } from "../cell/Cell.js"
-import { put } from "../cell/put.js"
+import { Cell, put } from "../cell/index.js"
 import { run } from "../scheduler/index.js"
 import { heronStep } from "./heron.js"
 
