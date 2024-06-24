@@ -2,7 +2,7 @@
 
 > - https://github.com/cicada-lang/propagator/issues/2
 
-抽出来一个叫 `Support` 的 type
+抽出 `SupportLike` 以及 `toSupport`
 
 improve interface for `put` -- second argument should be list of optional promises
 
