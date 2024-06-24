@@ -1,5 +1,9 @@
 import { isNothing } from "../cell/index.js"
-import { Supported, isSupported, supportedMerge } from "../dependency/index.js"
+import {
+  isSupported,
+  supportedMerge,
+  toSupported,
+} from "../dependency/index.js"
 import { defineGeneric, defineHandler } from "../generic/index.js"
 import {
   intervalContainsNumber,
@@ -8,6 +12,7 @@ import {
   intervalIsEmpty,
   isInterval,
 } from "../interval/index.js"
+import { coercing } from "../utils/coercing.js"
 import { isNumber } from "../utils/isNumber.js"
 import { log } from "../utils/log.js"
 import { theMergeConflict } from "./MergeConflict.js"
@@ -85,9 +90,13 @@ function isSimple(x: any): boolean {
 }
 
 defineHandler(merge, [isSupported, isSupported], supportedMerge)
-defineHandler(merge, [isSimple, isSupported], (v, m) =>
-  supportedMerge(Supported(v, new Set()), m),
+defineHandler(
+  merge,
+  [isSimple, isSupported],
+  coercing(toSupported, supportedMerge),
 )
-defineHandler(merge, [isSupported, isSimple], (m, v) =>
-  supportedMerge(m, Supported(v, new Set())),
+defineHandler(
+  merge,
+  [isSupported, isSimple],
+  coercing(toSupported, supportedMerge),
 )

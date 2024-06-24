@@ -2,7 +2,6 @@
 
 > - https://github.com/cicada-lang/propagator/issues/2
 
-`coercing(toSupported, f)`
 测试反向运算的 provenance
 test about "a justified-intervals anomaly"
 

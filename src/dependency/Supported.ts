@@ -17,3 +17,8 @@ export function Supported<T>(value: T, supports: Set<string>): Supported<T> {
 export function isSupported(x: any): x is Supported<any> {
   return isNonNullObject(x) && x["@type"] === "Supported"
 }
+
+export function toSupported(x: any): Supported<any> {
+  if (isSupported(x)) return x
+  return Supported(x, new Set())
+}
