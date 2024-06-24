@@ -6,18 +6,16 @@ import {
   intervalMul,
   intervalSub,
   isInterval,
+  toInterval,
 } from "../interval/index.js"
+import { coercing } from "../utils/coercing.js"
 import { isNumber } from "../utils/isNumber.js"
 
 export const add = defineGeneric()
 defineHandler(add, [isNumber, isNumber], (x, y) => x + y)
 defineHandler(add, [isInterval, isInterval], intervalAdd)
-defineHandler(add, [isInterval, isNumber], (x, y) =>
-  intervalAdd(x, exactInterval(y)),
-)
-defineHandler(add, [isNumber, isInterval], (x, y) =>
-  intervalAdd(exactInterval(x), y),
-)
+defineHandler(add, [isInterval, isNumber], coercing(toInterval, intervalAdd))
+defineHandler(add, [isNumber, isInterval], coercing(toInterval, intervalAdd))
 
 export const sub = defineGeneric()
 defineHandler(sub, [isNumber, isNumber], (x, y) => x - y)

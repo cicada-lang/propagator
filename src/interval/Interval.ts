@@ -21,3 +21,8 @@ export function exactInterval(x: number): Interval {
 export function isInterval(x: any): x is Interval {
   return isNonNullObject(x) && x["@type"] === "Interval"
 }
+
+export function toInterval(x: number | Interval): Interval {
+  if (isInterval(x)) return x
+  return exactInterval(x)
+}
