@@ -4,6 +4,7 @@ import "../monads/nothing-monad.js"
 import "../monads/supported-monad.js"
 import { schedule } from "../scheduler/index.js"
 import type { MaybePromise } from "../utils/MaybePromise.js"
+import { log } from "../utils/log.js"
 import { repeatApply } from "../utils/repeatApply.js"
 import type { Propagator } from "./Propagator.js"
 import { type PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.js"
@@ -61,15 +62,16 @@ export function definePrimitive<A extends number>(
 
       return [...paddings, output]
     } else {
-      console.error({
+      const message = `The number of arguments ${args.length} exceed arity plus one: ${arity + 1}`
+      log({
         who: "PropagatorDefinition",
         constroctor: "definePrimitive",
+        message,
         definition,
         args,
       })
-      throw new Error(
-        `[PropagatorDefinition] The number of arguments ${args.length} exceed arity plus one: ${arity + 1}`,
-      )
+
+      throw new Error(`[PropagatorDefinition] ${message}`)
     }
   }
 

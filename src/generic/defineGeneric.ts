@@ -1,3 +1,4 @@
+import { log } from "../utils/log.js"
 import {
   matchPredicates,
   type GenericDefinition,
@@ -23,16 +24,17 @@ export function defineGeneric(
     if (options.default) {
       return options.default(...args)
     } else {
-      console.dir(
-        {
-          who: "GenericDefinition",
-          constroctor: "defineGeneric",
-          definition,
-          args,
-        },
-        { depth: null },
-      )
-      throw new Error(`[GenericDefinition] Unhandled args and not default.`)
+      const message = "Unhandled args and not default."
+      log({
+        kind: "Error",
+        who: "GenericDefinition",
+        constroctor: "defineGeneric",
+        message,
+        definition,
+        args,
+      })
+
+      throw new Error(`[GenericDefinition] ${message}`)
     }
   }
 

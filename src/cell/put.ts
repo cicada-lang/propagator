@@ -1,5 +1,6 @@
 import { detectMergeConflict, merge } from "../merge/index.js"
 import { schedule } from "../scheduler/index.js"
+import { log } from "../utils/log.js"
 import { type Cell } from "./Cell.js"
 
 export function put<T>(cell: Cell<T>, increment?: T): void {
@@ -9,14 +10,16 @@ export function put<T>(cell: Cell<T>, increment?: T): void {
   }
 
   if (detectMergeConflict(newContent)) {
-    console.error({
+    const message = "Ack! Inconsistency!"
+    log({
+      kind: "Error",
       who: "put",
-      message: "Ack! Inconsistency!",
+      message,
       increment,
       oldContent: cell.content,
     })
 
-    throw new Error(`[put] Ack! Inconsistency!`)
+    throw new Error(`[put] ${message}`)
   }
 
   cell.content = newContent

@@ -9,6 +9,7 @@ import {
   isInterval,
 } from "../interval/index.js"
 import { isNumber } from "../utils/isNumber.js"
+import { log } from "../utils/log.js"
 import { theMergeConflict } from "./MergeConflict.js"
 
 // # The contract of `merge`
@@ -36,15 +37,12 @@ import { theMergeConflict } from "./MergeConflict.js"
 export const merge = defineGeneric({
   default(...args) {
     // no default, be explicit.
-    console.dir(
-      {
-        who: "merge",
-        message: "Unhandled args.",
-        args,
-        this: this,
-      },
-      { depth: null },
-    )
+    log({
+      kind: "Error",
+      who: "merge",
+      message: "Unhandled args.",
+      args,
+    })
 
     throw new Error(`[merge] Unhandled args.`)
   },

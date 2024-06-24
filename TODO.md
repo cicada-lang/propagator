@@ -1,5 +1,3 @@
-quit using `console.error` and `console.dir` -- use log instead for deep object
-
 improve interface for `put` -- second argument should be list of optional promises
 
 `applyAfter` (`coercing`)
