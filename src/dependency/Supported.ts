@@ -3,6 +3,15 @@ import { isNonNullObject } from "../utils/isNonNullObject.js"
 import { log } from "../utils/log.js"
 
 export type Support = Set<string>
+export type SupportLike = Support | Array<string>
+
+export function toSupport(x: SupportLike): Support {
+  if (x instanceof Array) {
+    return new Set(x)
+  }
+
+  return x
+}
 
 export type Supported<T> = {
   "@type": "Supported"
@@ -14,9 +23,7 @@ export function Supported<T>(
   value: T,
   support: Support | Array<string>,
 ): Supported<T> {
-  if (support instanceof Array) {
-    support = new Set(support)
-  }
+  support = toSupport(support)
 
   return {
     "@type": "Supported",
@@ -52,9 +59,7 @@ export function assertSupported(
   }
 
   if (support !== undefined) {
-    if (support instanceof Array) {
-      support = new Set(support)
-    }
+    support = toSupport(support)
 
     assert.deepStrictEqual(target.support, support)
   }

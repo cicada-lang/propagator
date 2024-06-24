@@ -2,8 +2,6 @@
 
 > - https://github.com/cicada-lang/propagator/issues/2
 
-抽出 `SupportLike` 以及 `toSupport`
-
 improve interface for `put` -- second argument should be list of optional promises
 
 测试反向运算的 provenance
