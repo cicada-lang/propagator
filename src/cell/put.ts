@@ -1,9 +1,9 @@
-import { detectMergeConflict } from "../merge/index.js"
+import { detectMergeConflict, merge } from "../merge/index.js"
 import { schedule } from "../scheduler/index.js"
 import { type Cell } from "./Cell.js"
 
 export function put<T>(cell: Cell<T>, increment?: T): void {
-  const newContent = cell.merge(cell.content, increment)
+  const newContent = merge(cell.content, increment)
   if (newContent === cell.content) {
     return
   }
