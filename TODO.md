@@ -2,9 +2,11 @@
 >
 > - https://github.com/cicada-lang/propagator/issues/2
 
-`applyAfter` (`coercing`)
+quit using `console.error` and `console.dir` -- use log instead for deep object
 
-`detectMergeConflict` should be a generic -- for `Supported`
+improve interface for `put` -- second argument should be list of optional promises
+
+`applyAfter` (`coercing`)
 
 test about "a justified-intervals anomaly"
 

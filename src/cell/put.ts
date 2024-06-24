@@ -7,15 +7,16 @@ export function put<T>(cell: Cell<T>, increment?: T): void {
   if (newContent === cell.content) {
     return
   }
+
   if (detectMergeConflict(newContent)) {
     console.error({
-      who: "addContent",
+      who: "put",
       message: "Ack! Inconsistency!",
       increment,
       oldContent: cell.content,
     })
 
-    throw new Error(`[addContent] Ack! Inconsistency!`)
+    throw new Error(`[put] Ack! Inconsistency!`)
   }
 
   cell.content = newContent
