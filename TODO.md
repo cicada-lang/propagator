@@ -1,7 +1,3 @@
-# propagator 支持 dependencies for provenance
-
-> - https://github.com/cicada-lang/propagator/issues/2
-
 # later
 
 `utils/Set` -- `setIntersection` & `setDifference` -- 为了完备
