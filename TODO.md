@@ -1,12 +1,6 @@
-utils/assertions -- `assertEqual` and `assertTrue`
-
 # propagator 支持 dependencies for provenance
 
 > - https://github.com/cicada-lang/propagator/issues/2
-
-test about "a justified-intervals anomaly"
-
-- 即 supports 的集合可能与 supported value put 进来的顺序有关
 
 # later
 
