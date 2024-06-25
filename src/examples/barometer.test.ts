@@ -1,7 +1,7 @@
 import assert from "node:assert"
 import { test } from "node:test"
 import { Cell, put } from "../cell/index.js"
-import { assertSupported } from "../dependency/index.js"
+import { Supported, assertSupported } from "../dependency/index.js"
 import { Interval, intervalAlmostEqual } from "../interval/index.js"
 import { run } from "../scheduler/index.js"
 import { log } from "../utils/log.js"
@@ -78,9 +78,9 @@ test("examples / barometer / similarTriangles & fallDuration", async () => {
 test("examples / barometer / with supported value", async () => {
   const [barometerShadow, barometerHeight, buildingShadow, buildingHeight] =
     similarTriangles()
-  put(buildingShadow, Interval(54.9, 55.1), ["shadows"])
-  put(barometerHeight, Interval(0.3, 0.32), ["shadows"])
-  put(barometerShadow, Interval(0.36, 0.37), ["shadows"])
+  put(buildingShadow, Supported(Interval(54.9, 55.1), ["shadows"]))
+  put(barometerHeight, Supported(Interval(0.3, 0.32), ["shadows"]))
+  put(barometerShadow, Supported(Interval(0.36, 0.37), ["shadows"]))
 
   await run()
 
@@ -95,7 +95,7 @@ test("examples / barometer / with supported value", async () => {
 
   const fallTime = Cell()
   fallDuration(fallTime, buildingHeight)
-  put(fallTime, Interval(2.9, 3.3), ["lousy-fall-time"])
+  put(fallTime, Supported(Interval(2.9, 3.3), ["lousy-fall-time"]))
 
   await run()
 
@@ -108,7 +108,7 @@ test("examples / barometer / with supported value", async () => {
     ),
   )
 
-  put(fallTime, Interval(2.9, 3.1), ["better-fall-time"])
+  put(fallTime, Supported(Interval(2.9, 3.1), ["better-fall-time"]))
 
   await run()
 
@@ -121,7 +121,7 @@ test("examples / barometer / with supported value", async () => {
     ),
   )
 
-  put(buildingHeight, 45, ["superintendent"])
+  put(buildingHeight, Supported(45, ["superintendent"]))
 
   await run()
 
