@@ -1,7 +1,3 @@
-# later
-
-`utils/Set` -- `setIntersection` & `setDifference` -- 为了完备
-
 # propagator 支持 dependencies for alternate worldviews
 
 > - https://github.com/cicada-lang/propagator/issues/3

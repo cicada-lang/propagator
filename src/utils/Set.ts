@@ -2,9 +2,31 @@ export function setUnion<T>(x: Set<T>, y: Set<T>): Set<T> {
   return new Set([...x, ...y])
 }
 
-// setIntersection
-// setDifference
-// setSymmetricDifference
+export function setIntersection<T>(x: Set<T>, y: Set<T>): Set<T> {
+  const z = new Set<T>()
+  for (const e of x) {
+    if (y.has(e)) {
+      z.add(e)
+    }
+  }
+
+  return z
+}
+
+export function setDifference<T>(x: Set<T>, y: Set<T>): Set<T> {
+  const z = new Set<T>()
+  for (const e of x) {
+    if (!y.has(e)) {
+      z.add(e)
+    }
+  }
+
+  return z
+}
+
+export function setSymmetricDifference<T>(x: Set<T>, y: Set<T>): Set<T> {
+  return setDifference(setUnion(x, y), setIntersection(x, y))
+}
 
 export function setIsSubsetOf<T>(x: Set<T>, y: Set<T>): boolean {
   for (const e of x) {
