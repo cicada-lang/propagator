@@ -1,8 +1,8 @@
+utils/assertions -- `assertEqual` and `assertTrue`
+
 # propagator 支持 dependencies for provenance
 
 > - https://github.com/cicada-lang/propagator/issues/2
-
-测试反向运算的 provenance
 
 test about "a justified-intervals anomaly"
 

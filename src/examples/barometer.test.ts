@@ -4,7 +4,6 @@ import { Cell, put } from "../cell/index.js"
 import { Supported, assertSupported } from "../dependency/index.js"
 import { Interval, intervalAlmostEqual } from "../interval/index.js"
 import { run } from "../scheduler/index.js"
-import { log } from "../utils/log.js"
 import { fallDuration, similarTriangles } from "./barometer.js"
 
 test("examples / barometer / fallDuration", async () => {
@@ -128,28 +127,56 @@ test("examples / barometer / with supported value", async () => {
   assertSupported(buildingHeight.content, ["superintendent"])
   assert.deepStrictEqual(buildingHeight.content.value, 45)
 
-  //   (content barometer-height)
-  // #(supported #(interval .3 .30328)
-  //   (superintendent better-fall-time shadows))
-  //   (content barometer-shadow)
-  // #(supported #(interval .366 .37)
-  //   (better-fall-time superintendent shadows))
-  //   (content building-shadow)
-  // #(supported #(interval 54.9 55.1) (shadows))
-  //   (content fall-time)
-  // #(supported #(interval 3.0255 3.0322)
-  //   (shadows superintendent))
+  assertSupported(barometerHeight.content, [
+    "superintendent",
+    "better-fall-time",
+    "shadows",
+  ])
+  assert(
+    intervalAlmostEqual(
+      barometerHeight.content.value,
+      Interval(0.3, 0.30328),
+      0.001,
+    ),
+  )
 
-  log(barometerHeight.content)
-  log(barometerShadow.content)
-  log(buildingShadow.content)
-  log(fallTime.content)
+  assertSupported(barometerShadow.content, [
+    "superintendent",
+    "better-fall-time",
+    "shadows",
+  ])
+  assert(
+    intervalAlmostEqual(
+      barometerShadow.content.value,
+      Interval(0.366, 0.37),
+      0.001,
+    ),
+  )
+
+  assertSupported(buildingShadow.content, ["shadows"])
+  assert(
+    intervalAlmostEqual(
+      buildingShadow.content.value,
+      Interval(54.9, 55.1),
+      0.001,
+    ),
+  )
+
+  assertSupported(fallTime.content, ["superintendent"])
+  assert(
+    intervalAlmostEqual(
+      fallTime.content.value,
+      Interval(3.0255, 3.0322),
+      0.001,
+    ),
+  )
 
   {
     const [t, h] = fallDuration()
     put(h, 45)
 
     await run()
-    log(t.content)
+
+    assert(intervalAlmostEqual(t.content, Interval(3.0255, 3.0322), 0.001))
   }
 })
