@@ -2,6 +2,10 @@
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
+`dependency/BeliefSystem` has `beliefs: Array<Supported>`
+
+- `TMS` 是个不好的命名，也许我们应该用 `BeliefSystem`
+
 # propagator 支持 dependencies for implicit search
 
 > - https://github.com/cicada-lang/propagator/issues/4
