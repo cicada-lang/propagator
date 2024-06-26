@@ -16,6 +16,7 @@ export function supportedMerge<A, B>(
     // 正向和反向的 implies 代表等价。
     if (implies(increment.value, mergedValue)) {
       // 倾向于 content，除非 increment 真的有更多信息。
+      // 更小的 support 集合，代表拥有更多的信息（更精确的依赖关系）。
       if (setIsSubsetOf(content.support, increment.support)) {
         return content
       } else {
