@@ -20,6 +20,8 @@ import { type PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.
 //   "create propagator constructor from native function"
 // 因为真正的 propagator 类似 subscriber，
 // 是可以不带参数就调用的 closure。
+// - 也许不应该用不带参数的 closure 来实现 propagator，
+//   应该用定义时所提供的函数本身，运行时才提供参数。
 // 但是这个名字太长了，并且为了与深嵌入的 API 一致，
 // 我们用了 define 这个前缀，因为深嵌入的 API 可能是：
 //   definePrimitive(mod, name, arity, fn)
