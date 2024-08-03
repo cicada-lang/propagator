@@ -1,3 +1,11 @@
+# learn
+
+理解 TMS -- 读论文或书。
+
+学会 propagator 和 type system 之间的关系。
+
+# maybe
+
 [maybe] rename `dependency/` to `supported/`
 [maybe] rename `Supported` to `Belief`
 
