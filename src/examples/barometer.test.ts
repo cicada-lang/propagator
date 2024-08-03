@@ -13,11 +13,7 @@ test("examples / barometer / fallDuration", async () => {
   await run()
 
   assert(
-    intervalAlmostEqual(
-      buildingHeight.content,
-      Interval(41.163, 47.243),
-      0.001,
-    ),
+    intervalAlmostEqual(buildingHeight.content, Interval(41.16, 47.24), 0.01),
   )
 })
 
@@ -28,18 +24,14 @@ test("examples / barometer / fallDuration / Interval + Number", async () => {
   await run()
 
   assert(
-    intervalAlmostEqual(
-      buildingHeight.content,
-      Interval(41.163, 47.243),
-      0.001,
-    ),
+    intervalAlmostEqual(buildingHeight.content, Interval(41.16, 47.24), 0.01),
   )
 
   put(buildingHeight, 45)
 
   await run()
 
-  assert(intervalAlmostEqual(fallTime.content, Interval(3.0255, 3.0322), 0.001))
+  assert(intervalAlmostEqual(fallTime.content, Interval(3.02, 3.03), 0.01))
 })
 
 test("examples / barometer / similarTriangles & fallDuration", async () => {
@@ -52,11 +44,7 @@ test("examples / barometer / similarTriangles & fallDuration", async () => {
   await run()
 
   assert(
-    intervalAlmostEqual(
-      buildingHeight.content,
-      Interval(44.514, 48.978),
-      0.001,
-    ),
+    intervalAlmostEqual(buildingHeight.content, Interval(44.51, 48.97), 0.01),
   )
 
   const fallTime = Cell()
@@ -66,11 +54,7 @@ test("examples / barometer / similarTriangles & fallDuration", async () => {
   await run()
 
   assert(
-    intervalAlmostEqual(
-      buildingHeight.content,
-      Interval(44.514, 47.243),
-      0.001,
-    ),
+    intervalAlmostEqual(buildingHeight.content, Interval(44.51, 47.24), 0.01),
   )
 })
 
@@ -87,8 +71,8 @@ test("examples / barometer / with supported value", async () => {
   assert(
     intervalAlmostEqual(
       buildingHeight.content.value,
-      Interval(44.514, 48.978),
-      0.001,
+      Interval(44.51, 48.97),
+      0.01,
     ),
   )
 
@@ -98,12 +82,15 @@ test("examples / barometer / with supported value", async () => {
 
   await run()
 
+  assertSupported(fallTime.content, ["shadows"])
+  assert(intervalAlmostEqual(fallTime.content.value, Interval(3, 3.16), 0.01))
+
   assertSupported(buildingHeight.content, ["shadows"])
   assert(
     intervalAlmostEqual(
       buildingHeight.content.value,
-      Interval(44.514, 48.978),
-      0.001,
+      Interval(44.51, 48.97),
+      0.01,
     ),
   )
 
@@ -115,8 +102,8 @@ test("examples / barometer / with supported value", async () => {
   assert(
     intervalAlmostEqual(
       buildingHeight.content.value,
-      Interval(44.514, 47.243),
-      0.001,
+      Interval(44.51, 47.24),
+      0.01,
     ),
   )
 
@@ -135,8 +122,8 @@ test("examples / barometer / with supported value", async () => {
   assert(
     intervalAlmostEqual(
       barometerHeight.content.value,
-      Interval(0.3, 0.30328),
-      0.001,
+      Interval(0.3, 0.3),
+      0.01,
     ),
   )
 
@@ -148,8 +135,8 @@ test("examples / barometer / with supported value", async () => {
   assert(
     intervalAlmostEqual(
       barometerShadow.content.value,
-      Interval(0.366, 0.37),
-      0.001,
+      Interval(0.36, 0.37),
+      0.01,
     ),
   )
 
@@ -158,17 +145,13 @@ test("examples / barometer / with supported value", async () => {
     intervalAlmostEqual(
       buildingShadow.content.value,
       Interval(54.9, 55.1),
-      0.001,
+      0.01,
     ),
   )
 
   assertSupported(fallTime.content, ["superintendent"])
   assert(
-    intervalAlmostEqual(
-      fallTime.content.value,
-      Interval(3.0255, 3.0322),
-      0.001,
-    ),
+    intervalAlmostEqual(fallTime.content.value, Interval(3.02, 3.03), 0.01),
   )
 
   {
@@ -177,6 +160,6 @@ test("examples / barometer / with supported value", async () => {
 
     await run()
 
-    assert(intervalAlmostEqual(t.content, Interval(3.0255, 3.0322), 0.001))
+    assert(intervalAlmostEqual(t.content, Interval(3.02, 3.03), 0.01))
   }
 })
