@@ -1,3 +1,6 @@
+propagator 不应该是 nullary closure，应该是函数本身，
+运行的时候提供参数给函数。
+
 # propagator 支持 dependencies for alternate worldviews
 
 > - https://github.com/cicada-lang/propagator/issues/3
