@@ -1,13 +1,14 @@
-propagator 不应该是 nullary closure，应该是函数本身，
-运行的时候提供参数给函数。
+[maybe] rename `dependency/` to `supported/`
+[maybe] rename `Supported` to `Belief`
 
 # propagator 支持 dependencies for alternate worldviews
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
-`dependency/BeliefSystem` has `beliefs: Array<Supported>`
+`belief-system/BeliefSystem` has `beliefs: Array<Supported>`
 
 - `TMS` 是个不好的命名，也许我们应该用 `BeliefSystem`
+- 也许 `Supported` 应该被命名为 `Belief`
 
 # propagator 支持 dependencies for implicit search
 
@@ -25,3 +26,7 @@ propagator 不应该是 nullary closure，应该是函数本身，
 - 可能需要 multi interval 而不是简单的 interval 了
   - https://en.wikipedia.org/wiki/Interval_arithmetic
 - 可能 propagator 本身的分支机制就能处理 multi interval
+
+# maybe
+
+[maybe] propagator 不应该是 nullary closure，应该是函数本身，运行的时候提供参数给函数。
