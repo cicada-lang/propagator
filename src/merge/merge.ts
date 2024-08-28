@@ -1,5 +1,5 @@
+import { beliefMerge, isBelief, toBelief } from "../belief/index.js"
 import { isNothing } from "../cell/index.js"
-import { beliefMerge, isBelief, toBelief } from "../dependency/index.js"
 import { defineGeneric, defineHandler } from "../generic/index.js"
 import {
   intervalContainsNumber,

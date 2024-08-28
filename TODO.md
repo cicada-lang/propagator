@@ -4,8 +4,7 @@
 
 `belief-system/BeliefSystem` has `beliefs: Array<Belief>`
 
-- `TMS` 是个不好的命名，也许我们应该用 `BeliefSystem`
-- 也许 `Belief` 应该被命名为 `Belief`
+- `TMS` 是个不好的命名，我们用 `BeliefSystem`
 
 # propagator 支持 dependencies for implicit search
 

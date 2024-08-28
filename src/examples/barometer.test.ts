@@ -1,7 +1,7 @@
 import assert from "node:assert"
 import { test } from "node:test"
+import { Belief, assertBelief } from "../belief/index.js"
 import { Cell, put } from "../cell/index.js"
-import { Belief, assertBelief } from "../dependency/index.js"
 import { Interval, intervalAlmostEqual } from "../interval/index.js"
 import { run } from "../scheduler/index.js"
 import { fallDuration, similarTriangles } from "./barometer.js"

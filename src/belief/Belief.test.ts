@@ -1,9 +1,9 @@
 import assert from "node:assert"
 import { test } from "node:test"
 import { Cell, put } from "../cell/index.js"
-import { Belief, assertBelief } from "../dependency/index.js"
 import { Interval, intervalAlmostEqual } from "../interval/index.js"
 import { run } from "../scheduler/index.js"
+import { Belief, assertBelief } from "./index.js"
 
 test("dependency / a justified-intervals anomaly", async () => {
   // A:     [           ]

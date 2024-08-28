@@ -1,4 +1,4 @@
-import { isBelief } from "../dependency/index.js"
+import { isBelief } from "../belief/index.js"
 import { defineGeneric } from "../generic/defineGeneric.js"
 import { defineHandler } from "../generic/index.js"
 import { theMergeConflict } from "./MergeConflict.js"
