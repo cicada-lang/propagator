@@ -2,10 +2,6 @@
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
-`belief-system/BeliefSystem` has `beliefs: Array<Belief>`
-
-- `TMS` 是个不好的命名，我们用 `BeliefSystem`
-
 # propagator 支持 dependencies for implicit search
 
 > - https://github.com/cicada-lang/propagator/issues/4
@@ -25,4 +21,5 @@
 
 # maybe
 
-[maybe] propagator 不应该是 nullary closure，应该是函数本身，运行的时候提供参数给函数。
+[maybe] propagator 不应该是 nullary closure，
+应该是函数本身，运行的时候提供参数给函数。
