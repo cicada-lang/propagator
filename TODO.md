@@ -1,20 +1,11 @@
-# learn
-
-学会 propagator 和 type system 之间的关系。
-
-# maybe
-
-[maybe] rename `dependency/` to `supported/`
-[maybe] rename `Supported` to `Belief`
-
 # propagator 支持 dependencies for alternate worldviews
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
-`belief-system/BeliefSystem` has `beliefs: Array<Supported>`
+`belief-system/BeliefSystem` has `beliefs: Array<Belief>`
 
 - `TMS` 是个不好的命名，也许我们应该用 `BeliefSystem`
-- 也许 `Supported` 应该被命名为 `Belief`
+- 也许 `Belief` 应该被命名为 `Belief`
 
 # propagator 支持 dependencies for implicit search
 

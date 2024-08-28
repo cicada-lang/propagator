@@ -1,9 +1,5 @@
 import { isNothing } from "../cell/index.js"
-import {
-  isSupported,
-  supportedMerge,
-  toSupported,
-} from "../dependency/index.js"
+import { beliefMerge, isBelief, toBelief } from "../dependency/index.js"
 import { defineGeneric, defineHandler } from "../generic/index.js"
 import {
   intervalContainsNumber,
@@ -89,14 +85,6 @@ function isSimple(x: any): boolean {
   return isNumber(x) || isInterval(x)
 }
 
-defineHandler(merge, [isSupported, isSupported], supportedMerge)
-defineHandler(
-  merge,
-  [isSimple, isSupported],
-  coercing(toSupported, supportedMerge),
-)
-defineHandler(
-  merge,
-  [isSupported, isSimple],
-  coercing(toSupported, supportedMerge),
-)
+defineHandler(merge, [isBelief, isBelief], beliefMerge)
+defineHandler(merge, [isSimple, isBelief], coercing(toBelief, beliefMerge))
+defineHandler(merge, [isBelief, isSimple], coercing(toBelief, beliefMerge))

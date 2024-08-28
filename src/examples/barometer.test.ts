@@ -1,7 +1,7 @@
 import assert from "node:assert"
 import { test } from "node:test"
 import { Cell, put } from "../cell/index.js"
-import { Supported, assertSupported } from "../dependency/index.js"
+import { Belief, assertBelief } from "../dependency/index.js"
 import { Interval, intervalAlmostEqual } from "../interval/index.js"
 import { run } from "../scheduler/index.js"
 import { fallDuration, similarTriangles } from "./barometer.js"
@@ -58,16 +58,16 @@ test("examples / barometer / similarTriangles & fallDuration", async () => {
   )
 })
 
-test("examples / barometer / with supported value", async () => {
+test("examples / barometer / with belief value", async () => {
   const [barometerShadow, barometerHeight, buildingShadow, buildingHeight] =
     similarTriangles()
-  put(buildingShadow, Supported(Interval(54.9, 55.1), ["shadows"]))
-  put(barometerHeight, Supported(Interval(0.3, 0.32), ["shadows"]))
-  put(barometerShadow, Supported(Interval(0.36, 0.37), ["shadows"]))
+  put(buildingShadow, Belief(Interval(54.9, 55.1), ["shadows"]))
+  put(barometerHeight, Belief(Interval(0.3, 0.32), ["shadows"]))
+  put(barometerShadow, Belief(Interval(0.36, 0.37), ["shadows"]))
 
   await run()
 
-  assertSupported(buildingHeight.content, ["shadows"])
+  assertBelief(buildingHeight.content, ["shadows"])
   assert(
     intervalAlmostEqual(
       buildingHeight.content.value,
@@ -78,14 +78,14 @@ test("examples / barometer / with supported value", async () => {
 
   const fallTime = Cell()
   fallDuration(fallTime, buildingHeight)
-  put(fallTime, Supported(Interval(2.9, 3.3), ["lousy-fall-time"]))
+  put(fallTime, Belief(Interval(2.9, 3.3), ["lousy-fall-time"]))
 
   await run()
 
-  assertSupported(fallTime.content, ["shadows"])
+  assertBelief(fallTime.content, ["shadows"])
   assert(intervalAlmostEqual(fallTime.content.value, Interval(3, 3.16), 0.01))
 
-  assertSupported(buildingHeight.content, ["shadows"])
+  assertBelief(buildingHeight.content, ["shadows"])
   assert(
     intervalAlmostEqual(
       buildingHeight.content.value,
@@ -94,11 +94,11 @@ test("examples / barometer / with supported value", async () => {
     ),
   )
 
-  put(fallTime, Supported(Interval(2.9, 3.1), ["better-fall-time"]))
+  put(fallTime, Belief(Interval(2.9, 3.1), ["better-fall-time"]))
 
   await run()
 
-  assertSupported(buildingHeight.content, ["shadows", "better-fall-time"])
+  assertBelief(buildingHeight.content, ["shadows", "better-fall-time"])
   assert(
     intervalAlmostEqual(
       buildingHeight.content.value,
@@ -107,14 +107,14 @@ test("examples / barometer / with supported value", async () => {
     ),
   )
 
-  put(buildingHeight, Supported(45, ["superintendent"]))
+  put(buildingHeight, Belief(45, ["superintendent"]))
 
   await run()
 
-  assertSupported(buildingHeight.content, ["superintendent"])
+  assertBelief(buildingHeight.content, ["superintendent"])
   assert.deepStrictEqual(buildingHeight.content.value, 45)
 
-  assertSupported(barometerHeight.content, [
+  assertBelief(barometerHeight.content, [
     "superintendent",
     "better-fall-time",
     "shadows",
@@ -127,7 +127,7 @@ test("examples / barometer / with supported value", async () => {
     ),
   )
 
-  assertSupported(barometerShadow.content, [
+  assertBelief(barometerShadow.content, [
     "superintendent",
     "better-fall-time",
     "shadows",
@@ -140,7 +140,7 @@ test("examples / barometer / with supported value", async () => {
     ),
   )
 
-  assertSupported(buildingShadow.content, ["shadows"])
+  assertBelief(buildingShadow.content, ["shadows"])
   assert(
     intervalAlmostEqual(
       buildingShadow.content.value,
@@ -149,7 +149,7 @@ test("examples / barometer / with supported value", async () => {
     ),
   )
 
-  assertSupported(fallTime.content, ["superintendent"])
+  assertBelief(fallTime.content, ["superintendent"])
   assert(
     intervalAlmostEqual(fallTime.content.value, Interval(3.02, 3.03), 0.01),
   )

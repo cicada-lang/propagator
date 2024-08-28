@@ -1,2 +1,2 @@
-export * from "./Supported.js"
-export * from "./supportedMerge.js"
+export * from "./Belief.js"
+export * from "./beliefMerge.js"
