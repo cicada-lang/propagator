@@ -2,6 +2,8 @@
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
+`beliefSystemMerge`
+
 # propagator 支持 dependencies for implicit search
 
 > - https://github.com/cicada-lang/propagator/issues/4
