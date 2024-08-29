@@ -2,7 +2,7 @@
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
-test `BeliefSystem`
+barometer-belief-system.test.ts -- test `BeliefSystem`
 `beliefSystemQuery`
 
 # propagator 支持 dependencies for implicit search
