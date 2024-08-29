@@ -79,12 +79,12 @@ defineHandler(merge, [isInterval, isInterval], (content, increment) => {
   return newInterval
 })
 
-defineHandler(merge, [isInterval, isNumber], (content, increment) =>
-  intervalContainsNumber(content, increment) ? increment : theMergeConflict,
-)
-
 defineHandler(merge, [isNumber, isInterval], (content, increment) =>
   intervalContainsNumber(increment, content) ? content : theMergeConflict,
+)
+
+defineHandler(merge, [isInterval, isNumber], (content, increment) =>
+  intervalContainsNumber(content, increment) ? increment : theMergeConflict,
 )
 
 function isSimple(x: any): boolean {

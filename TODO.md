@@ -2,7 +2,8 @@
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
-barometer-belief-system.test.ts -- test `BeliefSystem`
+belief-system-monad.ts
+barometer-belief-system.test.ts
 `beliefSystemQuery`
 
 # propagator 支持 dependencies for implicit search
