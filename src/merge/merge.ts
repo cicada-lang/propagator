@@ -49,7 +49,12 @@ export const merge = defineGeneric({
   },
 })
 
-// Second argument is redundant for `merge`.
+// 第二个参数对于 merge 来说是多余的。
+// 这个实现就是用 lattice 的 meet (merge)
+// 来实现 ordered set 中的序关系（小于等于关系）。
+// 也就是说，信息越多就越具体，
+// 在 lattice 的中位置就更低，
+// 所以 merge 是 meet。
 export function implies<A, B>(x: A, y: B): boolean {
   return merge(x, y) === x
 }

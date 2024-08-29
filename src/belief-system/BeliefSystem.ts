@@ -6,6 +6,13 @@ export type BeliefSystem<A> = {
   beliefs: Array<Belief<A>>
 }
 
+export function BeliefSystem<A>(beliefs: Array<Belief<A>>): BeliefSystem<A> {
+  return {
+    "@type": "BeliefSystem",
+    beliefs,
+  }
+}
+
 export function isBeliefSystem(x: any): x is BeliefSystem<any> {
   return isNonNullObject(x) && x["@type"] === "BeliefSystem"
 }
