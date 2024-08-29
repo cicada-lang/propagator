@@ -1,3 +1,4 @@
+import { beliefSystemMerge, isBeliefSystem } from "../belief-system/index.js"
 import { beliefMerge, isBelief, toBelief } from "../belief/index.js"
 import { isNothing } from "../cell/index.js"
 import { defineGeneric, defineHandler } from "../generic/index.js"
@@ -93,3 +94,5 @@ function isSimple(x: any): boolean {
 defineHandler(merge, [isBelief, isBelief], beliefMerge)
 defineHandler(merge, [isSimple, isBelief], coercing(toBelief, beliefMerge))
 defineHandler(merge, [isBelief, isSimple], coercing(toBelief, beliefMerge))
+
+defineHandler(merge, [isBeliefSystem, isBeliefSystem], beliefSystemMerge)
