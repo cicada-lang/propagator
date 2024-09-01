@@ -30,6 +30,14 @@ export class QuotientSet<T> {
     return this
   }
 
+  addMany(xs: Array<T>): this {
+    for (const x of xs) {
+      this.add(x)
+    }
+
+    return this
+  }
+
   delete(x: T): boolean {
     const foundIndex = this.representatives.findIndex((y) => this.equal(x, y))
     if (foundIndex === -1) {
