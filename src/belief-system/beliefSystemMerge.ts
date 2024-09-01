@@ -2,7 +2,7 @@ import { Belief, isBelief } from "../belief/index.js"
 import { isNothing, nothing, type Nothing } from "../cell/index.js"
 import { implies, merge, type MergeConflict } from "../merge/index.js"
 import type { Reasons } from "../reason/index.js"
-import { setIsSubsetOf } from "../utils/Set.js"
+import { setIsSubsetOf } from "../utils/set/index.js"
 import { BeliefSystem } from "./BeliefSystem.js"
 
 export function beliefSystemMerge<A, B>(

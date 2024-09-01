@@ -22,7 +22,3 @@ export function toBeliefSystem(x: any): BeliefSystem<any> {
   if (isBelief(x)) return BeliefSystem([x])
   return BeliefSystem([Belief(x, new Set())])
 }
-
-// export function assertBeliefSystemReasons(target: any,   reasonGroups: Reasons | Array<string>,): asserts x is BeliefSystem<any> {
-
-// }

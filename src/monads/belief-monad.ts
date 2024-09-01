@@ -2,8 +2,8 @@ import { Belief, isBelief } from "../belief/index.js"
 import { isNothing, nothing } from "../cell/Nothing.js"
 import { defineHandler } from "../generic/index.js"
 import { bind, fmap, join } from "../monad/index.js"
-import { setUnion } from "../utils/Set.js"
 import { isFunction } from "../utils/isFunction.js"
+import { setUnion } from "../utils/set/index.js"
 
 defineHandler(fmap, [isFunction, isBelief], (f, ma) =>
   Belief(bind(ma.value, f), ma.reasons),

@@ -1,5 +1,5 @@
 import { implies, merge, type MergeConflict } from "../merge/index.js"
-import { setIsSubsetOf, setUnion } from "../utils/Set.js"
+import { setIsSubsetOf, setUnion } from "../utils/set/index.js"
 import { Belief } from "./Belief.js"
 
 export function beliefMerge<A, B>(
