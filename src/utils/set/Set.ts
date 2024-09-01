@@ -2,6 +2,10 @@ export function setUnion<T>(x: Set<T>, y: Set<T>): Set<T> {
   return new Set([...x, ...y])
 }
 
+export function setEqual<T>(x: Set<T>, y: Set<T>): boolean {
+  return x.size === y.size && setUnion(x, y).size === x.size
+}
+
 export function setIntersection<T>(x: Set<T>, y: Set<T>): Set<T> {
   const z = new Set<T>()
   for (const e of x) {
