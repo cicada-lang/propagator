@@ -6,7 +6,7 @@ import { setUnion } from "../utils/Set.js"
 import { isFunction } from "../utils/isFunction.js"
 
 defineHandler(fmap, [isFunction, isBelief], (f, ma) =>
-  Belief(bind(ma.value, f), ma.reason),
+  Belief(bind(ma.value, f), ma.reasons),
 )
 
 defineHandler(join, [isBelief], (mma) => mma)
@@ -16,5 +16,5 @@ defineHandler(
   (mma) => nothing,
 )
 defineHandler(join, [(mma) => isBelief(mma) && isBelief(mma.value)], (mma) =>
-  join(Belief(mma.value.value, setUnion(mma.reason, mma.value.reason))),
+  join(Belief(mma.value.value, setUnion(mma.reasons, mma.value.reasons))),
 )

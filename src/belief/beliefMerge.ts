@@ -17,7 +17,7 @@ export function beliefMerge<A, B>(
     if (implies(increment.value, mergedValue)) {
       // 倾向于 content，除非 increment 真的有更多信息。
       // 更小的 reason 集合，代表拥有更多的信息（更精确的依赖关系）。
-      if (setIsSubsetOf(content.reason, increment.reason)) {
+      if (setIsSubsetOf(content.reasons, increment.reasons)) {
         return content
       } else {
         return increment
@@ -31,6 +31,6 @@ export function beliefMerge<A, B>(
     return increment
   }
 
-  const mergedReason = setUnion(content.reason, increment.reason)
+  const mergedReason = setUnion(content.reasons, increment.reasons)
   return Belief(mergedValue, mergedReason)
 }

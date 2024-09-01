@@ -1,4 +1,4 @@
-import { Belief, isBelief, type Reason } from "../belief/index.js"
+import { Belief, isBelief, type Reasons } from "../belief/index.js"
 import { isNothing, nothing, type Nothing } from "../cell/index.js"
 import { implies, merge, type MergeConflict } from "../merge/index.js"
 import { setIsSubsetOf } from "../utils/Set.js"
@@ -30,7 +30,7 @@ function beliefSystemAssimilate<A, B>(
 }
 
 function subsumes<A, B>(x: Belief<A>, y: Belief<B>): boolean {
-  return implies(x.value, y.value) && setIsSubsetOf(x.reason, y.reason)
+  return implies(x.value, y.value) && setIsSubsetOf(x.reasons, y.reasons)
 }
 
 function beliefSystemAssimilateOne<A, B>(
@@ -59,10 +59,10 @@ function strongestConsequence<A>(
 }
 
 function isBeliefBelieved<A>(belief: Belief<A>): boolean {
-  return Array.from(belief.reason).every(isReasonEntryBelieved)
+  return Array.from(belief.reasons).every(isReasonEntryBelieved)
 }
 
-const globelReasonEntryBlackList: Reason = new Set()
+const globelReasonEntryBlackList: Reasons = new Set()
 
 function isReasonEntryBelieved(entry: string): boolean {
   return !globelReasonEntryBlackList.has(entry)

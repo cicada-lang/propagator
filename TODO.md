@@ -1,3 +1,5 @@
+rename assertBelief to assertBeliefReasons
+
 # propagator 支持 dependencies for alternate worldviews
 
 > - https://github.com/cicada-lang/propagator/issues/3

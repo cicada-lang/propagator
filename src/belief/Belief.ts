@@ -2,10 +2,11 @@ import assert from "node:assert"
 import { isNonNullObject } from "../utils/isNonNullObject.js"
 import { log } from "../utils/log.js"
 
-export type Reason = Set<string>
-export type ReasonLike = Reason | Array<string>
+export type Reason = string
+export type Reasons = Set<Reason>
+export type ReasonLike = Reasons | Array<Reason>
 
-export function toReason(x: ReasonLike): Reason {
+export function toReason(x: ReasonLike): Reasons {
   if (x instanceof Array) {
     return new Set(x)
   }
@@ -16,16 +17,19 @@ export function toReason(x: ReasonLike): Reason {
 export type Belief<T> = {
   "@type": "Belief"
   value: T
-  reason: Reason
+  reasons: Reasons
 }
 
-export function Belief<T>(value: T, reason: Reason | Array<string>): Belief<T> {
-  reason = toReason(reason)
+export function Belief<T>(
+  value: T,
+  reasons: Reasons | Array<string>,
+): Belief<T> {
+  reasons = toReason(reasons)
 
   return {
     "@type": "Belief",
     value,
-    reason,
+    reasons,
   }
 }
 
@@ -40,7 +44,7 @@ export function toBelief(x: any): Belief<any> {
 
 export function assertBelief(
   target: any,
-  reason?: Reason | Array<string>,
+  reasons?: Reasons | Array<string>,
 ): asserts target is Belief<any> {
   if (!isBelief(target)) {
     const message = `Assertion fails.`
@@ -49,15 +53,15 @@ export function assertBelief(
       who: "assertBelief",
       message,
       target,
-      reason,
+      reasons,
     })
 
     throw new Error(`[assertBelief] ${message}`)
   }
 
-  if (reason !== undefined) {
-    reason = toReason(reason)
+  if (reasons !== undefined) {
+    reasons = toReason(reasons)
 
-    assert.deepStrictEqual(target.reason, reason)
+    assert.deepStrictEqual(target.reasons, reasons)
   }
 }

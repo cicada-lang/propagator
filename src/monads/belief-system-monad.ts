@@ -21,7 +21,7 @@ defineHandler(
         mma.beliefs.flatMap((belief) =>
           isBeliefSystem(belief.value)
             ? belief.value.beliefs.map((innerBelief) =>
-                join(Belief(innerBelief, belief.reason)),
+                join(Belief(innerBelief, belief.reasons)),
               )
             : [belief],
         ),
