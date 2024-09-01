@@ -33,7 +33,7 @@ export function toBelief(x: any): Belief<any> {
 
 export function assertBeliefReasons(
   target: any,
-  reasons?: Reasons | Array<string>,
+  reasons: Reasons | Array<string>,
 ): asserts target is Belief<any> {
   if (!isBelief(target)) {
     const message = `Assertion fails.`
@@ -48,9 +48,6 @@ export function assertBeliefReasons(
     throw new Error(`[assertBeliefReasons] ${message}`)
   }
 
-  if (reasons !== undefined) {
-    reasons = toReasons(reasons)
-
-    assert.deepStrictEqual(target.reasons, reasons)
-  }
+  reasons = toReasons(reasons)
+  assert.deepStrictEqual(target.reasons, reasons)
 }

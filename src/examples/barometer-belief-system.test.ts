@@ -20,7 +20,7 @@ test("examples / barometer-belief-system", async () => {
 
   console.dir(buildingHeight.content, { depth: null })
 
-  // assertBelief(buildingHeight.content, ["shadows"])
+  // assertBeliefReasons(buildingHeight.content, ["shadows"])
   // assert(
   //   intervalAlmostEqual(
   //     buildingHeight.content.value,
@@ -35,10 +35,10 @@ test("examples / barometer-belief-system", async () => {
 
   // await run()
 
-  // assertBelief(fallTime.content, ["shadows"])
+  // assertBeliefReasons(fallTime.content, ["shadows"])
   // assert(intervalAlmostEqual(fallTime.content.value, Interval(3, 3.16), 0.01))
 
-  // assertBelief(buildingHeight.content, ["shadows"])
+  // assertBeliefReasons(buildingHeight.content, ["shadows"])
   // assert(
   //   intervalAlmostEqual(
   //     buildingHeight.content.value,
@@ -51,7 +51,7 @@ test("examples / barometer-belief-system", async () => {
 
   // await run()
 
-  // assertBelief(buildingHeight.content, ["shadows", "better-fall-time"])
+  // assertBeliefReasons(buildingHeight.content, ["shadows", "better-fall-time"])
   // assert(
   //   intervalAlmostEqual(
   //     buildingHeight.content.value,
@@ -64,10 +64,10 @@ test("examples / barometer-belief-system", async () => {
 
   // await run()
 
-  // assertBelief(buildingHeight.content, ["superintendent"])
+  // assertBeliefReasons(buildingHeight.content, ["superintendent"])
   // assert.deepStrictEqual(buildingHeight.content.value, 45)
 
-  // assertBelief(barometerHeight.content, [
+  // assertBeliefReasons(barometerHeight.content, [
   //   "superintendent",
   //   "better-fall-time",
   //   "shadows",
@@ -80,7 +80,7 @@ test("examples / barometer-belief-system", async () => {
   //   ),
   // )
 
-  // assertBelief(barometerShadow.content, [
+  // assertBeliefReasons(barometerShadow.content, [
   //   "superintendent",
   //   "better-fall-time",
   //   "shadows",
@@ -93,7 +93,7 @@ test("examples / barometer-belief-system", async () => {
   //   ),
   // )
 
-  // assertBelief(buildingShadow.content, ["shadows"])
+  // assertBeliefReasons(buildingShadow.content, ["shadows"])
   // assert(
   //   intervalAlmostEqual(
   //     buildingShadow.content.value,
@@ -102,7 +102,7 @@ test("examples / barometer-belief-system", async () => {
   //   ),
   // )
 
-  // assertBelief(fallTime.content, ["superintendent"])
+  // assertBeliefReasons(fallTime.content, ["superintendent"])
   // assert(
   //   intervalAlmostEqual(fallTime.content.value, Interval(3.02, 3.03), 0.01),
   // )
