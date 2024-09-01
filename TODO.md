@@ -1,4 +1,4 @@
-use beliefEqual in test -- remove assertBeliefReasons
+remove assertBeliefReasons
 extract beliefSystemEqual
 
 # propagator 支持 dependencies for alternate worldviews

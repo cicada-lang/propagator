@@ -3,7 +3,7 @@ import { test } from "node:test"
 import { Cell, put } from "../cell/index.js"
 import { Interval, intervalAlmostEqual } from "../interval/index.js"
 import { run } from "../scheduler/index.js"
-import { Belief, assertBeliefReasons } from "./index.js"
+import { Belief, beliefEqual, isBelief } from "./index.js"
 
 test("dependency / a justified-intervals anomaly", async () => {
   // A:     [           ]
@@ -22,8 +22,13 @@ test("dependency / a justified-intervals anomaly", async () => {
   await run()
 
   // Actually no dependency on A, but A is recorded anyway.
-  assertBeliefReasons(interval.content, ["A", "B", "C"])
-  assert(intervalAlmostEqual(interval.content.value, Interval(50, 75), 0))
+
+  assert(
+    isBelief(interval.content) &&
+      beliefEqual(interval.content, Belief(Interval(50, 75), ["A", "B", "C"]), {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0),
+      }),
+  )
 
   {
     // The order matters.
@@ -35,7 +40,11 @@ test("dependency / a justified-intervals anomaly", async () => {
 
     await run()
 
-    assertBeliefReasons(interval.content, ["B", "C"])
-    assert(intervalAlmostEqual(interval.content.value, Interval(50, 75), 0))
+    assert(
+      isBelief(interval.content) &&
+        beliefEqual(interval.content, Belief(Interval(50, 75), ["B", "C"]), {
+          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0),
+        }),
+    )
   }
 })

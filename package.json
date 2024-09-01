@@ -12,6 +12,7 @@
     "build": "tsc",
     "build:watch": "tsc --watch",
     "test": "node --test",
+    "test:watch": "node --test --watch",
     "format": "prettier src --write"
   },
   "devDependencies": {
