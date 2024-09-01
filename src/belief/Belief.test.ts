@@ -3,7 +3,7 @@ import { test } from "node:test"
 import { Cell, put } from "../cell/index.js"
 import { Interval, intervalAlmostEqual } from "../interval/index.js"
 import { run } from "../scheduler/index.js"
-import { Belief, assertBelief } from "./index.js"
+import { Belief, assertBeliefReasons } from "./index.js"
 
 test("dependency / a justified-intervals anomaly", async () => {
   // A:     [           ]
@@ -22,7 +22,7 @@ test("dependency / a justified-intervals anomaly", async () => {
   await run()
 
   // Actually no dependency on A, but A is recorded anyway.
-  assertBelief(interval.content, ["A", "B", "C"])
+  assertBeliefReasons(interval.content, ["A", "B", "C"])
   assert(intervalAlmostEqual(interval.content.value, Interval(50, 75), 0))
 
   {
@@ -35,7 +35,7 @@ test("dependency / a justified-intervals anomaly", async () => {
 
     await run()
 
-    assertBelief(interval.content, ["B", "C"])
+    assertBeliefReasons(interval.content, ["B", "C"])
     assert(intervalAlmostEqual(interval.content.value, Interval(50, 75), 0))
   }
 })

@@ -42,7 +42,7 @@ export function toBelief(x: any): Belief<any> {
   return Belief(x, new Set())
 }
 
-export function assertBelief(
+export function assertBeliefReasons(
   target: any,
   reasons?: Reasons | Array<string>,
 ): asserts target is Belief<any> {
@@ -50,13 +50,13 @@ export function assertBelief(
     const message = `Assertion fails.`
     log({
       kind: "Error",
-      who: "assertBelief",
+      who: "assertBeliefReasons",
       message,
       target,
       reasons,
     })
 
-    throw new Error(`[assertBelief] ${message}`)
+    throw new Error(`[assertBeliefReasons] ${message}`)
   }
 
   if (reasons !== undefined) {
