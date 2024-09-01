@@ -2,6 +2,7 @@
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
+assertBeliefSystemReasons
 barometer-belief-system.test.ts -- finishing
 `beliefSystemQuery`
 

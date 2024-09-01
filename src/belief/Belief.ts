@@ -1,18 +1,7 @@
 import assert from "node:assert"
+import { toReasons, type Reasons } from "../reason/index.js"
 import { isNonNullObject } from "../utils/isNonNullObject.js"
 import { log } from "../utils/log.js"
-
-export type Reason = string
-export type Reasons = Set<Reason>
-export type ReasonLike = Reasons | Array<Reason>
-
-export function toReason(x: ReasonLike): Reasons {
-  if (x instanceof Array) {
-    return new Set(x)
-  }
-
-  return x
-}
 
 export type Belief<T> = {
   "@type": "Belief"
@@ -24,7 +13,7 @@ export function Belief<T>(
   value: T,
   reasons: Reasons | Array<string>,
 ): Belief<T> {
-  reasons = toReason(reasons)
+  reasons = toReasons(reasons)
 
   return {
     "@type": "Belief",
@@ -60,7 +49,7 @@ export function assertBeliefReasons(
   }
 
   if (reasons !== undefined) {
-    reasons = toReason(reasons)
+    reasons = toReasons(reasons)
 
     assert.deepStrictEqual(target.reasons, reasons)
   }
