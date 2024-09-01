@@ -1,12 +1,11 @@
-export function setUnion<T>(x: Set<T>, y: Set<T>): Set<T> {
+export function setUnion<T>(x: ReadonlySet<T>, y: ReadonlySet<T>): Set<T> {
   return new Set([...x, ...y])
 }
 
-export function setEqual<T>(x: Set<T>, y: Set<T>): boolean {
-  return x.size === y.size && setUnion(x, y).size === x.size
-}
-
-export function setIntersection<T>(x: Set<T>, y: Set<T>): Set<T> {
+export function setIntersection<T>(
+  x: ReadonlySet<T>,
+  y: ReadonlySet<T>,
+): Set<T> {
   const z = new Set<T>()
   for (const e of x) {
     if (y.has(e)) {
@@ -17,7 +16,7 @@ export function setIntersection<T>(x: Set<T>, y: Set<T>): Set<T> {
   return z
 }
 
-export function setDifference<T>(x: Set<T>, y: Set<T>): Set<T> {
+export function setDifference<T>(x: ReadonlySet<T>, y: ReadonlySet<T>): Set<T> {
   const z = new Set<T>()
   for (const e of x) {
     if (!y.has(e)) {
@@ -28,11 +27,17 @@ export function setDifference<T>(x: Set<T>, y: Set<T>): Set<T> {
   return z
 }
 
-export function setSymmetricDifference<T>(x: Set<T>, y: Set<T>): Set<T> {
+export function setSymmetricDifference<T>(
+  x: ReadonlySet<T>,
+  y: ReadonlySet<T>,
+): Set<T> {
   return setDifference(setUnion(x, y), setIntersection(x, y))
 }
 
-export function setIsSubsetOf<T>(x: Set<T>, y: Set<T>): boolean {
+export function setIsSubsetOf<T>(
+  x: ReadonlySet<T>,
+  y: ReadonlySet<T>,
+): boolean {
   for (const e of x) {
     if (!y.has(e)) {
       return false
@@ -42,11 +47,21 @@ export function setIsSubsetOf<T>(x: Set<T>, y: Set<T>): boolean {
   return true
 }
 
-export function setIsSupersetOf<T>(x: Set<T>, y: Set<T>): boolean {
+export function setEqual<T>(x: ReadonlySet<T>, y: ReadonlySet<T>): boolean {
+  return setIsSubsetOf(x, y) && setIsSubsetOf(y, x)
+}
+
+export function setIsSupersetOf<T>(
+  x: ReadonlySet<T>,
+  y: ReadonlySet<T>,
+): boolean {
   return setIsSubsetOf(y, x)
 }
 
-export function setIsDisjointFrom<T>(x: Set<T>, y: Set<T>): boolean {
+export function setIsDisjointFrom<T>(
+  x: ReadonlySet<T>,
+  y: ReadonlySet<T>,
+): boolean {
   for (const e of x) {
     if (y.has(e)) {
       return false
