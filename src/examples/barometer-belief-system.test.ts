@@ -3,6 +3,7 @@ import { BeliefSystem } from "../belief-system/index.js"
 import { Belief } from "../belief/index.js"
 import { put } from "../cell/index.js"
 import { Interval } from "../interval/index.js"
+import { run } from "../scheduler/index.js"
 import { similarTriangles } from "./barometer.js"
 
 test("examples / barometer-belief-system", async () => {
@@ -15,7 +16,9 @@ test("examples / barometer-belief-system", async () => {
     BeliefSystem([Belief(Interval(0.36, 0.37), ["shadows"])]),
   )
 
-  // await run()
+  await run()
+
+  console.dir(buildingHeight.content, { depth: null })
 
   // assertBelief(buildingHeight.content, ["shadows"])
   // assert(

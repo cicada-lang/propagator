@@ -1,4 +1,4 @@
-import { type Belief } from "../belief/index.js"
+import { Belief, isBelief } from "../belief/index.js"
 import { isNonNullObject } from "../utils/isNonNullObject.js"
 
 export type BeliefSystem<A> = {
@@ -15,4 +15,10 @@ export function BeliefSystem<A>(beliefs: Array<Belief<A>>): BeliefSystem<A> {
 
 export function isBeliefSystem(x: any): x is BeliefSystem<any> {
   return isNonNullObject(x) && x["@type"] === "BeliefSystem"
+}
+
+export function toBeliefSystem(x: any): BeliefSystem<any> {
+  if (isBeliefSystem(x)) return x
+  if (isBelief(x)) return BeliefSystem([x])
+  return BeliefSystem([Belief(x, new Set())])
 }

@@ -1,5 +1,5 @@
 import { Belief, isBelief, type Reason } from "../belief/index.js"
-import { nothing } from "../cell/index.js"
+import { isNothing, nothing, type Nothing } from "../cell/index.js"
 import { implies, merge, type MergeConflict } from "../merge/index.js"
 import { setIsSubsetOf } from "../utils/Set.js"
 import { BeliefSystem } from "./BeliefSystem.js"
@@ -15,9 +15,11 @@ export function beliefSystemMerge<A, B>(
 
 function beliefSystemAssimilate<A, B>(
   base: BeliefSystem<A>,
-  target: BeliefSystem<B> | Belief<B>,
+  target: BeliefSystem<B> | Belief<B> | Nothing,
 ): BeliefSystem<A | B> {
-  if (isBelief(target)) {
+  if (isNothing(target)) {
+    return base
+  } else if (isBelief(target)) {
     return beliefSystemAssimilateOne(base, target)
   } else {
     return target.beliefs.reduce<BeliefSystem<A | B>>(
@@ -46,9 +48,14 @@ function beliefSystemAssimilateOne<A, B>(
   return BeliefSystem(notSubsumed)
 }
 
-function strongestConsequence<A>(candidate: BeliefSystem<A>): BeliefSystem<A> {
+function strongestConsequence<A>(
+  candidate: BeliefSystem<A>,
+): Belief<A> | Nothing {
   const stillBelievedBeliefs = candidate.beliefs.filter(isBeliefBelieved)
-  return stillBelievedBeliefs.reduce(merge, nothing)
+  return stillBelievedBeliefs.reduce(
+    (result, belief) => merge(result, belief),
+    nothing,
+  )
 }
 
 function isBeliefBelieved<A>(belief: Belief<A>): boolean {
