@@ -1,6 +1,7 @@
 import { Cell, addPropagator, put } from "../cell/index.js"
 import { naryFmap } from "../monad/index.js"
 import "../monads/belief-monad.js"
+import "../monads/belief-system-monad.js"
 import "../monads/nothing-monad.js"
 import { schedule } from "../scheduler/index.js"
 import type { MaybePromise } from "../utils/MaybePromise.js"

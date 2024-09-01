@@ -2,7 +2,6 @@
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
-belief-system-monad.ts
 barometer-belief-system.test.ts
 `beliefSystemQuery`
 

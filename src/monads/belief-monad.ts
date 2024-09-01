@@ -5,7 +5,7 @@ import { bind, fmap, join } from "../monad/index.js"
 import { setUnion } from "../utils/Set.js"
 import { isFunction } from "../utils/isFunction.js"
 
-defineHandler(fmap, [isFunction, isBelief], (f, ma: Belief<any>) =>
+defineHandler(fmap, [isFunction, isBelief], (f, ma) =>
   Belief(bind(ma.value, f), ma.reason),
 )
 
