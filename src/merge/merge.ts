@@ -60,7 +60,7 @@ export const merge = defineGeneric({
 // 也就是说，信息越多就越具体，
 // 在 lattice 的中位置就更低，
 // 所以 merge 是 meet。
-export function implies<A, B>(x: A, y: B): boolean {
+export function moreInformative<A, B>(x: A, y: B): boolean {
   return merge(x, y) === x
 }
 
