@@ -78,11 +78,10 @@ export const merge = defineGeneric({
 //
 // - 对区间来说，越小的区间就更精确，就包含更多信息。
 //   毕竟，区间是特殊的集合。
-//
-// - 对于 Belief 来说，「包含更多信息」可以被理解为
-//   （某个 cell 拥有）更强的信念。
-//   更强的信念，代表在更少的条件下相信更多的信息，
-///  「更少的条件下」被实现为更小的 reasons 集合。
+
+// 注意，对于 Belief 来说，merge 所定义的 implies，
+// 与之后定义 beliefSystemMerge 时所用到的 stronger，
+// 对 reasons 集合的理解方式是相反的。
 
 export function implies<A, B>(x: A, y: B): boolean {
   return merge(x, y) === x
