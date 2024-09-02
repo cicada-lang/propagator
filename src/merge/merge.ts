@@ -102,11 +102,11 @@ defineHandler(merge, [isBelief, isPrimitive], coercing(toBelief, beliefMerge))
 defineHandler(merge, [isBeliefSystem, isBeliefSystem], beliefSystemMerge)
 defineHandler(
   merge,
-  [isPrimitive, isBeliefSystem],
+  [(x) => isPrimitive(x) || isBelief(x), isBeliefSystem],
   coercing(toBeliefSystem, beliefSystemMerge),
 )
 defineHandler(
   merge,
-  [isBeliefSystem, isPrimitive],
+  [isBeliefSystem, (x) => isPrimitive(x) || isBelief(x)],
   coercing(toBeliefSystem, beliefSystemMerge),
 )
