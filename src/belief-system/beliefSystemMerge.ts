@@ -51,7 +51,7 @@ function assimilateOne<A, B>(
   // from that in some beliefs already in the belief system. If so, we
   // can just throw the new one away.
 
-  if (base.beliefs.some((oldBelief) => stronger(oldBelief, belief))) {
+  if (base.beliefs.some((oldBelief) => isStronger(oldBelief, belief))) {
     return base
   }
 
@@ -64,7 +64,7 @@ function assimilateOne<A, B>(
   // 前者还包含了偏序关系中不可比较的情况。
 
   const strongerOldBeliefs = base.beliefs.filter(
-    (oldBelief) => !stronger(belief, oldBelief),
+    (oldBelief) => !isStronger(belief, oldBelief),
   )
 
   return BeliefSystem<A | B>([...strongerOldBeliefs, belief])
@@ -81,7 +81,7 @@ function assimilateOne<A, B>(
 // 注意，这与用 merge 所定义的 belief 之间的 implies 不同，
 // merge 两个 belief 时，不是 reasons 集合之间求交，而是求并。
 
-function stronger<A, B>(x: Belief<A>, y: Belief<B>): boolean {
+function isStronger<A, B>(x: Belief<A>, y: Belief<B>): boolean {
   return implies(x.value, y.value) && setIsSubsetOf(x.reasons, y.reasons)
 }
 
