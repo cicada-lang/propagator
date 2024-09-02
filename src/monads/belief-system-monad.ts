@@ -1,7 +1,7 @@
 import { BeliefSystem, isBeliefSystem } from "../belief-system/index.js"
 import { Belief } from "../belief/index.js"
 import { defineHandler } from "../generic/index.js"
-import { fmap, join } from "../monad/index.js"
+import { flatten, fmap } from "../monad/index.js"
 import { isFunction } from "../utils/isFunction.js"
 
 defineHandler(fmap, [isFunction, isBeliefSystem], (f, ma: BeliefSystem<any>) =>
@@ -9,19 +9,19 @@ defineHandler(fmap, [isFunction, isBeliefSystem], (f, ma: BeliefSystem<any>) =>
 )
 
 defineHandler(
-  join,
+  flatten,
   [
     (mma) =>
       isBeliefSystem(mma) &&
       mma.beliefs.some((belief) => isBeliefSystem(belief.value)),
   ],
   (mma: BeliefSystem<any>) =>
-    join(
+    flatten(
       BeliefSystem(
         mma.beliefs.flatMap((belief) =>
           isBeliefSystem(belief.value)
             ? belief.value.beliefs.map((innerBelief) =>
-                join(Belief(innerBelief, belief.reasons)),
+                flatten(Belief(innerBelief, belief.reasons)),
               )
             : [belief],
         ),

@@ -4,10 +4,10 @@ import { defineGeneric } from "../generic/index.js"
 export const fmap = defineGeneric({ default: (f, ma) => f(ma) })
 
 // (M(M(A))) -> M(A)
-export const join = defineGeneric({ default: (mma) => mma })
+export const flatten = defineGeneric({ default: (mma) => mma })
 
 // (M(A), (A) -> M(B)) -> M(B)
-export const bind = (ma: any, f: (x: any) => any) => join(fmap(f, ma))
+export const bind = (ma: any, f: (x: any) => any) => flatten(fmap(f, ma))
 
 // ((A0, A1, ...) -> B) -> (M(A0), M(A1), ...) -> M(B)
 export function naryFmap(
