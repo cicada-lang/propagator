@@ -46,7 +46,7 @@ function beliefSystemAssimilateOne<A, B>(
     (oldBelief) => !subsumes(belief, oldBelief),
   )
 
-  return BeliefSystem(notSubsumed)
+  return BeliefSystem<A | B>([...notSubsumed, belief])
 }
 
 function strongestConsequence<A>(
