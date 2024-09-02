@@ -2,14 +2,28 @@
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
-`beliefSystemQuery`
-
-barometer-belief-system.test.ts -- finial version
+`beliefSystemQuery` -- 如果可以的话，避免使用全局变量
 
 [refactoring] `beliefMerge`
 
 - 为什么要用集合的 union 来处理 reasons 集合？
 - more informative 如何理解？到底和后面对 isStronger 的定义是否一致？
+
+barometer-belief-system.test.ts -- finial version
+
+- 理解我们的测试中与书中有差异的地方。
+
+  书中第一个测试只有：
+
+  ```typescript
+  Belief(Interval(44.51, 47.24), ["shadows", "fall-time"])
+  ```
+
+  而没有
+
+  ```typescript
+  Belief(Interval(41.16, 47.24), ["fall-time"])
+  ```
 
 # propagator 支持 dependencies for implicit search
 
