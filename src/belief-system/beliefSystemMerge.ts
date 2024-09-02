@@ -1,6 +1,6 @@
 import { Belief } from "../belief/index.js"
 import { isNothing, nothing, type Nothing } from "../cell/index.js"
-import { merge, moreInformative, type MergeConflict } from "../merge/index.js"
+import { implies, merge, type MergeConflict } from "../merge/index.js"
 import type { Reasons } from "../reason/index.js"
 import { setIsSubsetOf } from "../utils/set/index.js"
 import { BeliefSystem } from "./BeliefSystem.js"
@@ -75,9 +75,7 @@ function assimilateOne<A, B>(
 // - A belief has less reasons is stronger.
 
 function stronger<A, B>(x: Belief<A>, y: Belief<B>): boolean {
-  return (
-    moreInformative(x.value, y.value) && setIsSubsetOf(x.reasons, y.reasons)
-  )
+  return implies(x.value, y.value) && setIsSubsetOf(x.reasons, y.reasons)
 }
 
 function strongestConsequence<A>(
