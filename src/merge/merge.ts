@@ -60,12 +60,12 @@ export const merge = defineGeneric({
 // - implies 是 ordered set 中的 "less or equal to"。
 //   虽然 "more informative" 一词中有一个 "more"，
 //   但是其实就序集而言它是更小。
-//
+
 // 注意术语所在的领域：
 //
 // - merge 是就 partial information 而言的术语。
 // - implies 是就命题之间的蕴含而言的术语。
-//
+
 // 最好用例子来理解 "more informative"：
 //
 // - 对集合来说，越小的集合越具体，包含的信息更多。

@@ -16,7 +16,7 @@ export function beliefSystemMerge<A, B>(
   increment: BeliefSystem<B>,
 ): BeliefSystem<A | B> | MergeConflict {
   const candidate = assimilate(content, increment)
-  const consequence = strongestConsequence(candidate)
+  const consequence = strongest(candidate.beliefs)
   return assimilateOne(candidate, consequence)
 }
 
@@ -74,14 +74,15 @@ function assimilateOne<A, B>(
 // - A belief has stronger value is stronger.
 // - A belief has less reasons is stronger.
 
+// 注意，这与用 merge 所定义的 belief 之间的 implies 不同，
+// merge 两个 belief 时，不是 reasons 集合之间求交，而是求并。
+
 function stronger<A, B>(x: Belief<A>, y: Belief<B>): boolean {
   return implies(x.value, y.value) && setIsSubsetOf(x.reasons, y.reasons)
 }
 
-function strongestConsequence<A>(
-  candidate: BeliefSystem<A>,
-): Belief<A> | Nothing {
-  const stillBelievedBeliefs = candidate.beliefs.filter(isBeliefBelieved)
+function strongest<A>(beliefs: Array<Belief<A>>): Belief<A> | Nothing {
+  const stillBelievedBeliefs = beliefs.filter(isBeliefBelieved)
   return stillBelievedBeliefs.reduce(
     (result, belief) => merge(result, belief),
     nothing,
