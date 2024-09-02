@@ -6,8 +6,8 @@ import { setIsSubsetOf } from "../utils/set/index.js"
 import { BeliefSystem } from "./BeliefSystem.js"
 
 // Asking the belief system to deduce all the consequences of all its
-// facts all the time is perhaps a bad idea, so when we merge belief
-// systems we assimilate the facts from the incoming one into the
+// beliefs all the time is perhaps a bad idea, so when we merge belief
+// systems we assimilate the beliefs from the incoming one into the
 // current one, and then deduce only those consequences that are
 // relevant to the current worldview.
 
@@ -70,11 +70,11 @@ function assimilateOne<A, B>(
   return BeliefSystem<A | B>([...strongerOldBeliefs, belief])
 }
 
-// The predicate `stronger` returns true only if the information
+// The predicate `isStronger` returns true only if the information
 // contained in the second argument is deducible from that contained
 // in the first.
 
-// About the ordered set of beliefs:
+// About stronger belief:
 // - A belief has stronger value is stronger.
 // - A belief has less reasons is stronger.
 
@@ -85,6 +85,13 @@ function isStronger<A, B>(x: Belief<A>, y: Belief<B>): boolean {
   return implies(x.value, y.value) && setIsSubsetOf(x.reasons, y.reasons)
 }
 
+// The procedure `strongest` finds the most informative consequence
+// of the current worldview. It does this by using merge to combine
+// all of the currently believed beliefs.
+
+// 注意，这里的 "most informative" 又是就 merge 而言的了，
+// 别忘了 merge 所定义的 implies 与 isStronger 不同。
+
 function strongest<A>(beliefs: Array<Belief<A>>): Belief<A> | Nothing {
   const stillBelievedBeliefs = beliefs.filter(isBeliefBelieved)
   return stillBelievedBeliefs.reduce(
@@ -94,11 +101,11 @@ function strongest<A>(beliefs: Array<Belief<A>>): Belief<A> | Nothing {
 }
 
 function isBeliefBelieved<A>(belief: Belief<A>): boolean {
-  return Array.from(belief.reasons).every(isReasonEntryBelieved)
+  return Array.from(belief.reasons).every(isReasonBelieved)
 }
 
-const globelReasonEntryBlackList: Reasons = new Set()
+const globelReasonBlackList: Reasons = new Set()
 
-function isReasonEntryBelieved(entry: string): boolean {
-  return !globelReasonEntryBlackList.has(entry)
+function isReasonBelieved(entry: string): boolean {
+  return !globelReasonBlackList.has(entry)
 }

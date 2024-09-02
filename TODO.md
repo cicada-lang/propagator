@@ -3,7 +3,13 @@
 > - https://github.com/cicada-lang/propagator/issues/3
 
 `beliefSystemQuery`
+
 barometer-belief-system.test.ts -- finial version
+
+[refactoring] `beliefMerge`
+
+- 为什么要用集合的 union 来处理 reasons 集合？
+- more informative 如何理解？到底和后面对 isStronger 的定义是否一致？
 
 # propagator 支持 dependencies for implicit search
 
