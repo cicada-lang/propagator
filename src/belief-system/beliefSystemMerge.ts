@@ -5,11 +5,11 @@ import type { Reasons } from "../reason/index.js"
 import { setIsSubsetOf } from "../utils/set/index.js"
 import { BeliefSystem } from "./BeliefSystem.js"
 
-// Asking the TMS to deduce all the consequences of all its facts all
-// the time is perhaps a bad idea, so when we merge TMSes we
-// assimilate the facts from the incoming one into the current one,
-// and then deduce only those consequences that are relevant to the
-// current worldview.
+// Asking the belief system to deduce all the consequences of all its
+// facts all the time is perhaps a bad idea, so when we merge belief
+// systems we assimilate the facts from the incoming one into the
+// current one, and then deduce only those consequences that are
+// relevant to the current worldview.
 
 export function beliefSystemMerge<A, B>(
   content: BeliefSystem<A>,
@@ -21,7 +21,8 @@ export function beliefSystemMerge<A, B>(
 }
 
 // The procedure `assimilate` incorporates all the given items, one by
-// one, into the given TMS with no deduction of consequences.
+// one, into the given belief system with no deduction of
+// consequences.
 
 function assimilate<A, B>(
   base: BeliefSystem<A>,
@@ -37,10 +38,6 @@ function assimilate<A, B>(
   )
 }
 
-function subsumes<A, B>(x: Belief<A>, y: Belief<B>): boolean {
-  return implies(x.value, y.value) && setIsSubsetOf(x.reasons, y.reasons)
-}
-
 function assimilateOne<A, B>(
   base: BeliefSystem<A>,
   belief: Belief<B> | Nothing,
@@ -49,15 +46,36 @@ function assimilateOne<A, B>(
     return base
   }
 
-  if (base.beliefs.some((oldBelief) => subsumes(oldBelief, belief))) {
+  // When we add a new belief to an existing belief system we check
+  // whether the information contained in the new belief is deducible
+  // from that in some belief already in the TMS. If so, we can just
+  // throw the new one away.
+
+  if (base.beliefs.some((oldBelief) => stronger(oldBelief, belief))) {
     return base
   }
 
-  const notSubsumed = base.beliefs.filter(
-    (oldBelief) => !subsumes(belief, oldBelief),
+  // Conversely, if the information in any existing belief is
+  // deducible from the information in the new one, we can throw those
+  // existing ones away.
+
+  const strongerOldBeliefs = base.beliefs.filter(
+    (oldBelief) => !stronger(belief, oldBelief),
   )
 
-  return BeliefSystem<A | B>([...notSubsumed, belief])
+  return BeliefSystem<A | B>([...strongerOldBeliefs, belief])
+}
+
+// The predicate `stronger` returns true only if the information
+// contained in the second argument is deducible from that contained
+// in the first.
+
+// About the ordered set of beliefs:
+// - A belief has stronger value is stronger.
+// - A belief has less reasons is stronger.
+
+function stronger<A, B>(x: Belief<A>, y: Belief<B>): boolean {
+  return implies(x.value, y.value) && setIsSubsetOf(x.reasons, y.reasons)
 }
 
 function strongestConsequence<A>(
