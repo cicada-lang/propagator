@@ -1,3 +1,8 @@
+修复 lattice 笔记中关于 propagator 的各种错误
+
+- "more information" 代表 <=，而不是 >= （书中也错了）。
+- Number <= Interval <= Belief <= BeliefSystem 是错误的。
+
 [refactoring] register imports in `monad/index.ts`
 
 [refactoring] should not define handlers of `merge` in one file
