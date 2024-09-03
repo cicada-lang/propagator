@@ -1,4 +1,4 @@
-import { implies, merge, type MergeConflict } from "../merge/index.js"
+import { merge, type MergeConflict } from "../merge/index.js"
 import { setIsSubsetOf, setUnion } from "../utils/set/index.js"
 import { Belief } from "./Belief.js"
 
@@ -8,29 +8,25 @@ export function beliefMerge<A, B>(
 ): Belief<A | B> | MergeConflict {
   const mergedValue = merge(content.value, increment.value)
 
-  // 这里的 cases 可以写成更对称的样子，
-  // 但是这里为了效率（少调用 merge 的次数），
-  // 写的不是那么对称了。
-
-  if (mergedValue === content.value) {
-    // 正向和反向的 implies 代表等价。
-    if (implies(increment.value, mergedValue)) {
-      // 倾向于 content，除非 increment 真的有更多信息。
-      // 更小的 reason 集合，代表拥有更多的信息（更精确的依赖关系）。
-      if (setIsSubsetOf(content.reasons, increment.reasons)) {
-        return content
-      } else {
-        return increment
-      }
+  if (mergedValue === content.value && mergedValue === increment.value) {
+    // 当 content.value 与 increment.value 等价时，
+    // 取 reasons 更小的，又当 reasons 一样大时，取 content。
+    // 也就是说，当 content.value 与 increment.value 等价时，
+    // 只有当 increment.reasons 真的比 content.reasons 小，才取 increment。
+    if (setIsSubsetOf(content.reasons, increment.reasons)) {
+      return content
+    } else {
+      return increment
     }
-
-    return content
   }
 
   if (mergedValue === increment.value) {
     return increment
   }
 
-  const mergedReason = setUnion(content.reasons, increment.reasons)
-  return Belief(mergedValue, mergedReason)
+  if (mergedValue === content.value) {
+    return content
+  }
+
+  return Belief(mergedValue, setUnion(content.reasons, increment.reasons))
 }
