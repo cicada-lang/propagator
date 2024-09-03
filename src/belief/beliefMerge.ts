@@ -8,6 +8,12 @@ export function beliefMerge<A, B>(
 ): Belief<A | B> | MergeConflict {
   const mergedValue = merge(content.value, increment.value)
 
+  // 下面刚好是偏序关系中比较两个元素的四种可能：
+  // (1) = -- a = b
+  // (2) < -- a < b
+  // (3) > -- a > b
+  // (4) | -- a 与 b 不可比较
+
   if (mergedValue === content.value && mergedValue === increment.value) {
     // 当 content.value 与 increment.value 等价时，
     // 取 reasons 更小的，又当 reasons 一样大时，取 content。
