@@ -1,3 +1,13 @@
+[refactoring] register imports in `monad/index.ts`
+
+[refactoring] should not define handlers of `merge` in one file
+
+- register imports in `merge/index.ts`
+
+[refactoring] should not define handlers of `detectMergeConflict` in one file
+
+- register imports in `merge/index.ts`
+
 # propagator 支持 dependencies for alternate worldviews
 
 > - https://github.com/cicada-lang/propagator/issues/3
