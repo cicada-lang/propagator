@@ -2,6 +2,24 @@ import { merge, type MergeConflict } from "../merge/index.js"
 import { setIsSubsetOf, setUnion } from "../utils/set/index.js"
 import { Belief } from "./Belief.js"
 
+// The important thing is to describe how to merge the information
+// contained in two such data structures; The value contained in the
+// answer must of course be the merge of the values contained in the
+// two inputs, but sometimes we may get away with using only some of
+// the supporting premises.
+
+// There are three cases:
+//
+// - if neither the new nor the old values are redundant, then we need
+//   both their supports;
+//
+// - if either is strictly redundant, we needn’t include its support;
+//
+// - and if they are equivalent, we can choose which support to
+//   use. In this case, we use the support of the value already
+//   present unless the support of the new one is strictly more
+//   informative (i.e., is a strict subset of the same premises).
+
 export function beliefMerge<A, B>(
   content: Belief<A>,
   increment: Belief<B>,
