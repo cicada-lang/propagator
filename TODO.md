@@ -2,8 +2,6 @@
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
-barometer-belief-system.test.ts -- test `beliefSystemQuery`
-
 barometer-belief-system.test.ts -- 理解我们的测试中与书中有差异的地方
 
 - 书中第一个测试只有：
