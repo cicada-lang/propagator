@@ -1,5 +1,3 @@
-[refactoring] extract `merge-nothing`
-
 [refactoring] extract `implies`
 
 [refactoring] should not define handlers of `merge` in one file

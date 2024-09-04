@@ -1,5 +1,4 @@
-import { isNothing } from "../cell/index.js"
-import { defineGeneric, defineHandler } from "../generic/index.js"
+import { defineGeneric } from "../generic/index.js"
 import { log } from "../utils/log.js"
 
 // # The contract of `merge`
@@ -70,10 +69,3 @@ export const merge = defineGeneric({
 export function implies<A, B>(x: A, y: B): boolean {
   return merge(x, y) === x
 }
-
-function isAnything(x: any): true {
-  return true
-}
-
-defineHandler(merge, [isAnything, isNothing], (content, increment) => content)
-defineHandler(merge, [isNothing, isAnything], (content, increment) => increment)
