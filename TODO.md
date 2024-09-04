@@ -1,8 +1,3 @@
-[note] 修复 lattice 笔记中关于 propagator 的各种错误
-
-- "more information" 代表 <=，而不是 >= （书中也错了）。
-- Number <= Interval <= Belief <= BeliefSystem 是错误的。
-
 # propagator 支持 dependencies for alternate worldviews
 
 > - https://github.com/cicada-lang/propagator/issues/3
@@ -28,6 +23,13 @@ barometer-belief-system.test.ts -- 理解我们的测试中与书中有差异的
 # propagator 支持 dependencies for implicit search
 
 > - https://github.com/cicada-lang/propagator/issues/4
+
+# 修复 lattice 笔记
+
+[note] 修复 lattice 笔记中关于 propagator 的各种错误
+
+- "more information" 代表 <=，而不是 >= （书中也错了）。
+- Number <= Interval <= Belief <= BeliefSystem 是错误的。
 
 # 完成 "The Art" 中的 Heron 例子
 
