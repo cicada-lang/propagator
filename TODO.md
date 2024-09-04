@@ -1,5 +1,3 @@
-[refactoring] extract `implies`
-
 [note] 修复 lattice 笔记中关于 propagator 的各种错误
 
 - "more information" 代表 <=，而不是 >= （书中也错了）。
