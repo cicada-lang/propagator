@@ -1,5 +1,6 @@
 import { Belief } from "../belief/index.js"
 import { type Reason, type Reasons } from "../reason/index.js"
+import { scheduleAllEverScheduledPropagators } from "../scheduler/index.js"
 
 export function isBeliefBelieved<A>(belief: Belief<A>): boolean {
   return Array.from(belief.reasons).every(isReasonBelieved)
@@ -22,13 +23,13 @@ function isReasonBelieved(reason: Reason): boolean {
 export function kickOut(reason: Reason): void {
   if (!globelReasonBlackList.has(reason)) {
     globelReasonBlackList.add(reason)
-    // TODO
+    scheduleAllEverScheduledPropagators()
   }
 }
 
 export function bringIn(reason: Reason): void {
   if (globelReasonBlackList.has(reason)) {
     globelReasonBlackList.delete(reason)
-    // TODO
+    scheduleAllEverScheduledPropagators()
   }
 }

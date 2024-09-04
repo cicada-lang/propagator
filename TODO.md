@@ -2,8 +2,6 @@
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
-fix `kickOut` and `bringIn` -- alert all propagators!
-
 barometer-belief-system.test.ts -- 完整模仿始终的 tests
 
 # propagator 支持 dependencies for implicit search
