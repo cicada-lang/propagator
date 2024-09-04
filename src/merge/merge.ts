@@ -1,9 +1,3 @@
-import {
-  beliefSystemMerge,
-  isBeliefSystem,
-  toBeliefSystem,
-} from "../belief-system/index.js"
-import { beliefMerge, isBelief, toBelief } from "../belief/index.js"
 import { isNothing } from "../cell/index.js"
 import { defineGeneric, defineHandler } from "../generic/index.js"
 import {
@@ -13,10 +7,8 @@ import {
   intervalIsEmpty,
   isInterval,
 } from "../interval/index.js"
-import { coercing } from "../utils/coercing.js"
 import { isNumber } from "../utils/isNumber.js"
 import { log } from "../utils/log.js"
-import { isPrimitive } from "./isPrimitive.js"
 import { theMergeConflict } from "./MergeConflict.js"
 
 // # The contract of `merge`
@@ -113,20 +105,4 @@ defineHandler(merge, [isNumber, isInterval], (content, increment) =>
 
 defineHandler(merge, [isInterval, isNumber], (content, increment) =>
   intervalContainsNumber(content, increment) ? increment : theMergeConflict,
-)
-
-defineHandler(merge, [isBelief, isBelief], beliefMerge)
-defineHandler(merge, [isPrimitive, isBelief], coercing(toBelief, beliefMerge))
-defineHandler(merge, [isBelief, isPrimitive], coercing(toBelief, beliefMerge))
-
-defineHandler(merge, [isBeliefSystem, isBeliefSystem], beliefSystemMerge)
-defineHandler(
-  merge,
-  [(x) => isPrimitive(x) || isBelief(x), isBeliefSystem],
-  coercing(toBeliefSystem, beliefSystemMerge),
-)
-defineHandler(
-  merge,
-  [isBeliefSystem, (x) => isPrimitive(x) || isBelief(x)],
-  coercing(toBeliefSystem, beliefSystemMerge),
 )

@@ -1,5 +1,6 @@
-[refactoring] extract `merge-belief-system`
 [refactoring] extract `merge-interval`
+[refactoring] extract `merge-number`
+[refactoring] extract `merge-nothing`
 
 [refactoring] extract `implies`
 
