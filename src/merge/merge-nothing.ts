@@ -1,5 +1,5 @@
-import { isNothing } from "../cell/index.js"
 import { defineHandler } from "../generic/index.js"
+import { isNothing } from "../nothing/index.js"
 import { merge } from "./merge.js"
 
 function isAnything(x: any): true {

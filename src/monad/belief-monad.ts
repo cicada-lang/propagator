@@ -1,6 +1,6 @@
 import { Belief, isBelief } from "../belief/index.js"
-import { isNothing, nothing } from "../cell/Nothing.js"
 import { defineHandler } from "../generic/index.js"
+import { isNothing, nothing } from "../nothing/index.js"
 import { isFunction } from "../utils/isFunction.js"
 import { setUnion } from "../utils/set/index.js"
 import { bind, flatten, fmap } from "./monad.js"

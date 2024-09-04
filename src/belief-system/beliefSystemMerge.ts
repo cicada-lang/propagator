@@ -1,6 +1,6 @@
 import { Belief } from "../belief/index.js"
-import { isNothing, nothing, type Nothing } from "../cell/index.js"
 import { implies, merge, type MergeConflict } from "../merge/index.js"
+import { isNothing, nothing, type Nothing } from "../nothing/index.js"
 import type { Reasons } from "../reason/index.js"
 import { setIsSubsetOf } from "../utils/set/index.js"
 import { BeliefSystem } from "./BeliefSystem.js"
