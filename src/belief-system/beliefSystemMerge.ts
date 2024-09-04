@@ -38,7 +38,7 @@ function assimilate<A, B>(
   )
 }
 
-function assimilateOne<A, B>(
+export function assimilateOne<A, B>(
   base: BeliefSystem<A>,
   belief: Belief<B> | Nothing,
 ): BeliefSystem<A | B> {

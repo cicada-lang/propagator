@@ -2,9 +2,7 @@
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
-`beliefSystemQuery` -- 如果可以的话，避免使用全局变量
-
-barometer-belief-system.test.ts -- finial version
+barometer-belief-system.test.ts -- test `beliefSystemQuery`
 
 barometer-belief-system.test.ts -- 理解我们的测试中与书中有差异的地方
 
