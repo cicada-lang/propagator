@@ -1,9 +1,3 @@
-# propagator 支持 dependencies for alternate worldviews
-
-> - https://github.com/cicada-lang/propagator/issues/3
-
-test about "The justified-intervals anomaly revisited"
-
 # propagator 支持 dependencies for implicit search
 
 > - https://github.com/cicada-lang/propagator/issues/4
