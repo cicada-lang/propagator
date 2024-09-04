@@ -3,15 +3,25 @@ import { test } from "node:test"
 import {
   BeliefSystem,
   beliefSystemEqual,
+  beliefSystemQuery,
+  bringIn,
   isBeliefSystem,
+  kickOut,
 } from "../belief-system/index.js"
-import { Belief } from "../belief/index.js"
+import { Belief, beliefEqual } from "../belief/index.js"
 import { Cell, put } from "../cell/index.js"
 import { Interval, intervalAlmostEqual, isInterval } from "../interval/index.js"
+import { isNothing } from "../nothing/index.js"
 import { run } from "../scheduler/index.js"
 import { fallDuration, similarTriangles } from "./barometer.js"
 
 test("examples / barometer-belief-system", async () => {
+  // If we put belief systems in our cells, we can revisit the
+  // building-height problem, and see how dependencies and worldviews
+  // let us change our mind about which of our experiments to believe,
+  // and compute the consequences of one or another subset of our
+  // measurements:
+
   const [barometerShadow, barometerHeight, buildingShadow, buildingHeight] =
     similarTriangles()
   put(buildingShadow, BeliefSystem([Belief(Interval(54.9, 55.1), ["shadows"])]))
@@ -34,6 +44,12 @@ test("examples / barometer-belief-system", async () => {
       ),
   )
 
+  // Nothing much changes while there is only one source of
+  // information. Where we had a belief, we now have a belief system
+  // with one belief in it.
+
+  // The answer changes more dramatically when we add a second experiment:
+
   const fallTime = Cell()
   fallDuration(fallTime, buildingHeight)
   put(fallTime, BeliefSystem([Belief(Interval(2.9, 3.1), ["fall-time"])]))
@@ -55,9 +71,180 @@ test("examples / barometer-belief-system", async () => {
       ),
   )
 
+  // Now the belief system remembers the deductions made in the first
+  // (shadows) experiment, as well as the consequences of both
+  // experiments together.
+
+  // TODO Unlike the follow notes, my implementation does include
+  // fall-time.  I do not know why yet.
+
+  // The consequences of the fall-time experiment alone are not
+  // computed yet, because we chose to build our system not to compute
+  // them. The reasoning behind this design decision was that, in my
+  // experience, it was not a good idea to compute all the
+  // consequences of all the premises all the time; rather we just
+  // compute the strongest consequence of all the premises in the
+  // current worldview taken together. The current worldview at this
+  // point believes both shadows and fall-time, because we made
+  // believing everything the default, and that default has not yet
+  // been overridden.
+
+  // In this particular system, we chose to make the worldview
+  // implicit and global.  That works fine on a uniprocessor, but a
+  // more distributed propagator network might be better served by a
+  // more local notion of worldview, and by propagating changes
+  // thereto explicitly rather than letting them instantly affect the
+  // entire network.
+  //
+  // - It would probably be a good idea for waves of worldview changes
+  //   to travel through the network “faster” than other changes, to
+  //   minimize work spent on computing in worldviews that are no
+  //   longer interesting.
+
+  // With an implicit global worldview, one can query a belief system,
+  // without additional input, to get the most informative value
+  // supported by premises in the current worldview:
+
+  assert(
+    isBeliefSystem(buildingHeight.content) &&
+      beliefEqual(
+        beliefSystemQuery(buildingHeight.content) as Belief<any>,
+        Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
+        {
+          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+        },
+      ),
+  )
+
+  // As we will see later, tms-query is the lens through which (most)
+  // propagators view belief systems -- this is what allows the
+  // network to work on just one worldview at a time, without having
+  // to work out all the myriad variations of what to believe and what
+  // not to believe until requested.
+
+  // The following test that, the `buildingHeight.content`
+  // will not change after `beliefSystemQuery`.
+
+  await run()
+
+  assert(
+    isBeliefSystem(buildingHeight.content) &&
+      beliefSystemEqual(
+        buildingHeight.content,
+        BeliefSystem([
+          Belief(Interval(44.51, 48.97), ["shadows"]),
+          Belief(Interval(41.16, 47.24), ["fall-time"]),
+          Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
+        ]),
+        {
+          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+        },
+      ),
+  )
+
+  // The answer above should remind the reader of the situation that
+  // obtained in `barometer-belief.test.ts`. We have again computed
+  // the best estimate of the height of our building from measuring
+  // various shadows and then dropping a barometer off the roof.  The
+  // new and powerful development is that we also provide a means to
+  // manipu- late which premises are in the current worldview. For our
+  // next example, removing the fall-time premise causes the belief
+  // system query to fall back to the less-informative inference that
+  // can be made using only the shadows experiment:
+
+  kickOut("fall-time")
+
+  await run()
+
+  assert(
+    isBeliefSystem(buildingHeight.content) &&
+      beliefEqual(
+        beliefSystemQuery(buildingHeight.content) as Belief<any>,
+        Belief(Interval(44.51, 48.97), ["shadows"]),
+        {
+          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+        },
+      ),
+  )
+
+  // If we also remove the shadows premise, our poor system no longer
+  // has anything to believe at all! Therefore, belief system query
+  // dutifully reports that nothing can be concluded about the height
+  // of the building from the currently believed premises:
+
+  kickOut("shadows")
+
+  await run()
+
+  assert(
+    isBeliefSystem(buildingHeight.content) &&
+      isNothing(beliefSystemQuery(buildingHeight.content) as Belief<any>),
+  )
+
+  // The following test that, the `buildingHeight.content`
+  // will not change even after calling `kickOut`.
+
+  assert(
+    isBeliefSystem(buildingHeight.content) &&
+      beliefSystemEqual(
+        buildingHeight.content,
+        BeliefSystem([
+          Belief(Interval(44.51, 48.97), ["shadows"]),
+          Belief(Interval(41.16, 47.24), ["fall-time"]),
+          Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
+        ]),
+        {
+          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+        },
+      ),
+  )
+
+  // We can also ask the system for the best answer it can give if we
+  // trust the fall-time experiment but not the shadows experiment:
+
+  bringIn("fall-time")
+
+  await run()
+
+  assert(
+    isBeliefSystem(buildingHeight.content) &&
+      beliefEqual(
+        beliefSystemQuery(buildingHeight.content) as Belief<any>,
+        Belief(Interval(41.16, 47.24), ["fall-time"]),
+        {
+          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+        },
+      ),
+  )
+
+  // The consequences of fall-time without shadows are new: this is
+  // the first time we put the network into exactly that
+  // worldview. This is therefore a new deduction, and the full belief
+  // system remembers it:
+
+  assert(
+    isBeliefSystem(buildingHeight.content) &&
+      beliefSystemEqual(
+        buildingHeight.content,
+        BeliefSystem([
+          Belief(Interval(44.51, 48.97), ["shadows"]),
+          Belief(Interval(41.16, 47.24), ["fall-time"]),
+          Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
+        ]),
+        {
+          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+        },
+      ),
+  )
+
+  // Now, if we give the superintendent a barometer, we can add her
+  // input to the totality of our knowledge about this building
+
   put(buildingHeight, Belief(45, ["superintendent"]))
 
   await run()
+
+  // and observe that it is stored faithfully along with all the rest,
 
   assert(
     isBeliefSystem(buildingHeight.content) &&
@@ -81,6 +268,40 @@ test("examples / barometer-belief-system", async () => {
       ),
   )
 
+  // though indeed if we trust it,
+  // it provides the best estimate we have:
+
+  assert(
+    isBeliefSystem(buildingHeight.content) &&
+      beliefEqual(
+        beliefSystemQuery(buildingHeight.content) as Belief<any>,
+        Belief(45, ["superintendent"]),
+        {
+          valueEqual: (x, y) => x === y,
+        },
+      ),
+  )
+
+  // (and restoring our faith in the shadows experiment has no effect
+  // on the accuracy of this answer).
+
+  bringIn("shadows")
+
+  await run()
+
+  assert(
+    isBeliefSystem(buildingHeight.content) &&
+      beliefEqual(
+        beliefSystemQuery(buildingHeight.content) as Belief<any>,
+        Belief(45, ["superintendent"]),
+        {
+          valueEqual: (x, y) => x === y,
+        },
+      ),
+  )
+
+  // Let's see `barometerHeight.content` just for fun.
+
   assert(
     isBeliefSystem(barometerHeight.content) &&
       beliefSystemEqual(
@@ -100,4 +321,13 @@ test("examples / barometer-belief-system", async () => {
         },
       ),
   )
+
+  // On this simple example, we have illustrated a very powerful
+  // mechanism. Our network can believe various different pieces of
+  // information, and by keeping track of the reasons why it believes
+  // them, the network can keep them separate from each other, and
+  // keep straight the different consequences of its different
+  // beliefs. By manipulating the worldview -- the set of premises the
+  // network believes at any one time -- we can ask it to compute what
+  // it can supposing one set of beliefs or another, as we like.
 })

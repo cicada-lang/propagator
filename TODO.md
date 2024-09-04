@@ -2,7 +2,7 @@
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
-barometer-belief-system.test.ts -- 完整模仿始终的 tests
+test about "The justified-intervals anomaly revisited"
 
 # propagator 支持 dependencies for implicit search
 
