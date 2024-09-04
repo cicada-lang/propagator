@@ -1,8 +1,7 @@
-import { Belief } from "../belief/index.js"
 import { type MergeConflict } from "../merge/index.js"
 import { isNothing, type Nothing } from "../nothing/index.js"
+import { assimilateOne } from "./assimilateOne.js"
 import { BeliefSystem } from "./BeliefSystem.js"
-import { isStrongerBelief } from "./isStrongerBelief.js"
 import { strongestBelief } from "./strongestBelief.js"
 
 // Asking the belief system to deduce all the consequences of all its
@@ -36,36 +35,4 @@ function assimilate<A, B>(
     (result, belief) => assimilateOne(result, belief),
     base,
   )
-}
-
-export function assimilateOne<A, B>(
-  base: BeliefSystem<A>,
-  belief: Belief<B> | Nothing,
-): BeliefSystem<A | B> {
-  if (isNothing(belief)) {
-    return base
-  }
-
-  // When we add a new belief to an existing belief system we check
-  // whether the information contained in the new belief is deducible
-  // from that in some beliefs already in the belief system. If so, we
-  // can just throw the new one away.
-
-  if (base.beliefs.some((oldBelief) => isStrongerBelief(oldBelief, belief))) {
-    return base
-  }
-
-  // Conversely, if the information in any existing belief is
-  // deducible from the information in the new one, we can throw those
-  // existing ones away.
-
-  // 注意，对于偏序关系来说，
-  // not(lteq(x, y)) 不等于 lteq(y, x)，
-  // 前者还包含了偏序关系中不可比较的情况。
-
-  const strongerOldBeliefs = base.beliefs.filter(
-    (oldBelief) => !isStrongerBelief(belief, oldBelief),
-  )
-
-  return BeliefSystem<A | B>([...strongerOldBeliefs, belief])
 }
