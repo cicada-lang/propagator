@@ -1,4 +1,3 @@
-[refactoring] extract `merge-number`
 [refactoring] extract `merge-nothing`
 
 [refactoring] extract `implies`

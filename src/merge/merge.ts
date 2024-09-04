@@ -1,8 +1,6 @@
 import { isNothing } from "../cell/index.js"
 import { defineGeneric, defineHandler } from "../generic/index.js"
-import { isNumber } from "../utils/isNumber.js"
 import { log } from "../utils/log.js"
-import { theMergeConflict } from "./MergeConflict.js"
 
 // # The contract of `merge`
 // The contract of the generic function merge is that it takes two
@@ -79,7 +77,3 @@ function isAnything(x: any): true {
 
 defineHandler(merge, [isAnything, isNothing], (content, increment) => content)
 defineHandler(merge, [isNothing, isAnything], (content, increment) => increment)
-
-defineHandler(merge, [isNumber, isNumber], (content, increment) =>
-  increment === content ? content : theMergeConflict,
-)
