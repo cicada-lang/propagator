@@ -1,7 +1,7 @@
 import type { Belief } from "../belief/index.js"
 import type { Nothing } from "../nothing/Nothing.js"
 import type { BeliefSystem } from "./BeliefSystem.js"
-import { assimilateOne as assimilateBelief } from "./assimilateOne.js"
+import { assimilateOne as assimilateBelief } from "./assimilateBelief.js"
 import { strongestBelief } from "./strongestBelief.js"
 
 export function beliefSystemQuery<A>(

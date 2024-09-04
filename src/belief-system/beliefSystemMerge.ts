@@ -1,6 +1,6 @@
 import { type MergeConflict } from "../merge/index.js"
 import { isNothing, type Nothing } from "../nothing/index.js"
-import { assimilateOne } from "./assimilateOne.js"
+import { assimilateOne } from "./assimilateBelief.js"
 import { BeliefSystem } from "./BeliefSystem.js"
 import { strongestBelief } from "./strongestBelief.js"
 
