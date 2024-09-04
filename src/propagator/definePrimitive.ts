@@ -1,6 +1,5 @@
 import { Cell, addPropagator, put } from "../cell/index.js"
 import { naryFmap } from "../monad/index.js"
-import "../monads/index.js"
 import { schedule } from "../scheduler/index.js"
 import type { MaybePromise } from "../utils/MaybePromise.js"
 import { log } from "../utils/log.js"

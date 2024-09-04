@@ -1,8 +1,8 @@
 import { BeliefSystem, isBeliefSystem } from "../belief-system/index.js"
 import { Belief } from "../belief/index.js"
 import { defineHandler } from "../generic/index.js"
-import { flatten, fmap } from "../monad/index.js"
 import { isFunction } from "../utils/isFunction.js"
+import { flatten, fmap } from "./monad.js"
 
 defineHandler(fmap, [isFunction, isBeliefSystem], (f, ma: BeliefSystem<any>) =>
   BeliefSystem(ma.beliefs.map((belief) => fmap(f, belief))),
