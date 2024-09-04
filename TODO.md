@@ -1,13 +1,5 @@
 [refactoring] extract `implies`
 
-[refactoring] should not define handlers of `merge` in one file
-
-- register imports in `merge/index.ts`
-
-[refactoring] should not define handlers of `detectMergeConflict` in one file
-
-- register imports in `merge/index.ts`
-
 [note] 修复 lattice 笔记中关于 propagator 的各种错误
 
 - "more information" 代表 <=，而不是 >= （书中也错了）。
