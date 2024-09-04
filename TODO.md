@@ -1,9 +1,4 @@
-修复 lattice 笔记中关于 propagator 的各种错误
-
-- "more information" 代表 <=，而不是 >= （书中也错了）。
-- Number <= Interval <= Belief <= BeliefSystem 是错误的。
-
-[refactoring] register imports in `monad/index.ts`
+[refactoring] remove `monads/` -- move the modules to each type's dir
 
 [refactoring] should not define handlers of `merge` in one file
 
@@ -12,6 +7,11 @@
 [refactoring] should not define handlers of `detectMergeConflict` in one file
 
 - register imports in `merge/index.ts`
+
+[note] 修复 lattice 笔记中关于 propagator 的各种错误
+
+- "more information" 代表 <=，而不是 >= （书中也错了）。
+- Number <= Interval <= Belief <= BeliefSystem 是错误的。
 
 # propagator 支持 dependencies for alternate worldviews
 
