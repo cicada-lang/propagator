@@ -1,3 +1,6 @@
+[refactoring] extract `merge-belief-system`
+[refactoring] extract `merge-interval`
+
 [refactoring] extract `implies`
 
 [refactoring] should not define handlers of `merge` in one file
