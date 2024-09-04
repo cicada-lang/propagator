@@ -16,6 +16,7 @@ import {
 import { coercing } from "../utils/coercing.js"
 import { isNumber } from "../utils/isNumber.js"
 import { log } from "../utils/log.js"
+import { isPrimitive } from "./isPrimitive.js"
 import { theMergeConflict } from "./MergeConflict.js"
 
 // # The contract of `merge`
@@ -113,10 +114,6 @@ defineHandler(merge, [isNumber, isInterval], (content, increment) =>
 defineHandler(merge, [isInterval, isNumber], (content, increment) =>
   intervalContainsNumber(content, increment) ? increment : theMergeConflict,
 )
-
-function isPrimitive(x: any): boolean {
-  return isNumber(x) || isInterval(x)
-}
 
 defineHandler(merge, [isBelief, isBelief], beliefMerge)
 defineHandler(merge, [isPrimitive, isBelief], coercing(toBelief, beliefMerge))

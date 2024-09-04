@@ -1,3 +1,5 @@
+[refactoring] extract `implies`
+
 [refactoring] should not define handlers of `merge` in one file
 
 - register imports in `merge/index.ts`
