@@ -300,7 +300,23 @@ test("examples / barometer-belief-system", async () => {
       ),
   )
 
-  // Let's see `barometerHeight.content` just for fun.
+  // On this simple example, we have illustrated a very powerful
+  // mechanism. Our network can believe various different pieces of
+  // information, and by keeping track of the reasons why it believes
+  // them, the network can keep them separate from each other, and
+  // keep straight the different consequences of its different
+  // beliefs. By manipulating the worldview -- the set of premises the
+  // network believes at any one time -- we can ask it to compute what
+  // it can supposing one set of beliefs or another, as we like.
+
+  // # The justified-intervals anomaly revisited
+
+  // If we briefly turn our attention to the height of the barometers
+  // we have been dropping and giving away, we notice that as before,
+  // in addition to the originally supplied measurements, the system
+  // has made a variety of deductions about it, based on reasoning
+  // backwards from our estimates of the height of the building and
+  // the other measurements in the shadows experiment.
 
   assert(
     isBeliefSystem(barometerHeight.content) &&
@@ -322,12 +338,77 @@ test("examples / barometer-belief-system", async () => {
       ),
   )
 
-  // On this simple example, we have illustrated a very powerful
-  // mechanism. Our network can believe various different pieces of
-  // information, and by keeping track of the reasons why it believes
-  // them, the network can keep them separate from each other, and
-  // keep straight the different consequences of its different
-  // beliefs. By manipulating the worldview -- the set of premises the
-  // network believes at any one time -- we can ask it to compute what
-  // it can supposing one set of beliefs or another, as we like.
+  // If we should ask for the best estimate of the height of the
+  // barometer, we observe the same problem we noticed in the previous
+  // section, namely that the system produces a spurious dependency on
+  // the fall-time experiment, whose findings are actually redundant
+  // for answering this question.
+
+  assert(
+    isBeliefSystem(barometerHeight.content) &&
+      beliefEqual(
+        beliefSystemQuery(barometerHeight.content) as Belief<any>,
+        Belief(Interval(0.3, 0.3), ["shadows", "fall-time", "superintendent"]),
+        {
+          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+        },
+      ),
+  )
+
+  // We can verify the irrelevance of the fall-time measurements by
+  // disbelieving them and observing that the answer remains the same,
+  // but with more accurate dependencies.
+
+  kickOut("fall-time")
+
+  await run()
+
+  assert(
+    isBeliefSystem(barometerHeight.content) &&
+      beliefEqual(
+        beliefSystemQuery(barometerHeight.content) as Belief<any>,
+        Belief(Interval(0.3, 0.3), ["shadows", "superintendent"]),
+        {
+          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+        },
+      ),
+  )
+
+  // What is more, having been asked to make that deduction, the truth
+  // maintenance system remembers it, and produces the better answer
+  // thereafter, even if we subsequently restore our faith in the
+  // fall-time experiment,
+
+  bringIn("fall-time")
+
+  await run()
+
+  assert(
+    isBeliefSystem(barometerHeight.content) &&
+      beliefEqual(
+        beliefSystemQuery(barometerHeight.content) as Belief<any>,
+        Belief(Interval(0.3, 0.3), ["shadows", "superintendent"]),
+        {
+          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+        },
+      ),
+  )
+
+  // and takes the opportunity to dispose of prior deductions that are
+  // obsoleted by this new realization.
+
+  assert(
+    isBeliefSystem(barometerHeight.content) &&
+      beliefSystemEqual(
+        barometerHeight.content,
+        BeliefSystem([
+          Belief(Interval(0.3, 0.32), ["shadows"]),
+          Belief(Interval(0.3, 0.31), ["shadows", "fall-time"]),
+          Belief(Interval(0.3, 0.3), ["shadows", "superintendent"]),
+        ]),
+        {
+          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+        },
+      ),
+  )
 })
