@@ -2,19 +2,9 @@
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
-barometer-belief-system.test.ts -- 理解我们的测试中与书中有差异的地方
+fix `kickOut` and `bringIn` -- alert all propagators!
 
-- 书中第一个测试只有：
-
-  ```typescript
-  Belief(Interval(44.51, 47.24), ["shadows", "fall-time"])
-  ```
-
-  而没有
-
-  ```typescript
-  Belief(Interval(41.16, 47.24), ["fall-time"])
-  ```
+barometer-belief-system.test.ts -- 完整模仿始终的 tests
 
 # propagator 支持 dependencies for implicit search
 
@@ -44,3 +34,19 @@ barometer-belief-system.test.ts -- 理解我们的测试中与书中有差异的
 
 [maybe] propagator 不应该是 nullary closure，
 应该是函数本身，运行的时候提供参数给函数。
+
+# later
+
+[later] barometer-belief-system.test.ts -- 理解我们的测试中与书中有差异的地方
+
+- 书中第一个测试只有：
+
+  ```typescript
+  Belief(Interval(44.51, 47.24), ["shadows", "fall-time"])
+  ```
+
+  而没有
+
+  ```typescript
+  Belief(Interval(41.16, 47.24), ["fall-time"])
+  ```

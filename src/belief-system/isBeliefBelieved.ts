@@ -11,10 +11,24 @@ function isReasonBelieved(reason: Reason): boolean {
   return !globelReasonBlackList.has(reason)
 }
 
+// Manually changing the black list violates the network’s
+// monotonicity assumptions, so all propagators whose inputs might
+// change under them need to be alerted when this happens.
+//
+// Altering all the propagators indiscriminately is a conservative
+// approximation that works reasonably for a single process
+// simulation.
+
 export function kickOut(reason: Reason): void {
-  globelReasonBlackList.add(reason)
+  if (!globelReasonBlackList.has(reason)) {
+    globelReasonBlackList.add(reason)
+    // TODO
+  }
 }
 
 export function bringIn(reason: Reason): void {
-  globelReasonBlackList.delete(reason)
+  if (globelReasonBlackList.has(reason)) {
+    globelReasonBlackList.delete(reason)
+    // TODO
+  }
 }
