@@ -1,4 +1,3 @@
-[refactoring] extract `merge-interval`
 [refactoring] extract `merge-number`
 [refactoring] extract `merge-nothing`
 
