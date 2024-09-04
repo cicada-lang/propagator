@@ -1,5 +1,3 @@
-[refactoring] remove `monads/` -- move the modules to each type's dir
-
 [refactoring] should not define handlers of `merge` in one file
 
 - register imports in `merge/index.ts`
