@@ -1,4 +1,6 @@
-# propagator 支持 dependencies for implicit search
+# 4.3 Dependencies Explain Contradictions
+
+# 4.4 Dependencies Improve Search
 
 > - https://github.com/cicada-lang/propagator/issues/4
 
