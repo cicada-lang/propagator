@@ -2,6 +2,7 @@
 
 > - https://github.com/cicada-lang/propagator/issues/3
 
+extract `isStrongerBelief`
 `beliefSystemQuery` -- 如果可以的话，避免使用全局变量
 
 barometer-belief-system.test.ts -- finial version

@@ -5,7 +5,7 @@ export function isBeliefBelieved<A>(belief: Belief<A>): boolean {
   return Array.from(belief.reasons).every(isReasonBelieved)
 }
 
-const globelReasonBlackList: Reasons = new Set()
+export const globelReasonBlackList: Reasons = new Set()
 
 function isReasonBelieved(entry: string): boolean {
   return !globelReasonBlackList.has(entry)

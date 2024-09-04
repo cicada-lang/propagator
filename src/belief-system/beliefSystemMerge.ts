@@ -1,9 +1,9 @@
 import { Belief } from "../belief/index.js"
-import { implies, merge, type MergeConflict } from "../merge/index.js"
-import { isNothing, nothing, type Nothing } from "../nothing/index.js"
+import { implies, type MergeConflict } from "../merge/index.js"
+import { isNothing, type Nothing } from "../nothing/index.js"
 import { setIsSubsetOf } from "../utils/set/index.js"
 import { BeliefSystem } from "./BeliefSystem.js"
-import { isBeliefBelieved } from "./isBeliefBelieved.js"
+import { strongestBelief } from "./strongestBelief.js"
 
 // Asking the belief system to deduce all the consequences of all its
 // beliefs all the time is perhaps a bad idea, so when we merge belief
@@ -16,7 +16,7 @@ export function beliefSystemMerge<A, B>(
   increment: BeliefSystem<B>,
 ): BeliefSystem<A | B> | MergeConflict {
   const candidate = assimilate(content, increment)
-  const consequence = strongest(candidate.beliefs)
+  const consequence = strongestBelief(candidate.beliefs)
   return assimilateOne(candidate, consequence)
 }
 
@@ -91,19 +91,4 @@ function assimilateOne<A, B>(
 
 function isStronger<A, B>(x: Belief<A>, y: Belief<B>): boolean {
   return implies(x.value, y.value) && setIsSubsetOf(x.reasons, y.reasons)
-}
-
-// The procedure `strongest` finds the most informative consequence
-// of the current worldview. It does this by using merge to combine
-// all of the currently believed beliefs.
-
-// 注意，这里的 "most informative" 又是就 merge 而言的了，
-// 别忘了 merge 所定义的 implies 与 isStronger 不同。
-
-function strongest<A>(beliefs: Array<Belief<A>>): Belief<A> | Nothing {
-  const stillBelievedBeliefs = beliefs.filter(isBeliefBelieved)
-  return stillBelievedBeliefs.reduce(
-    (result, belief) => merge(result, belief),
-    nothing,
-  )
 }
