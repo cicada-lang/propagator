@@ -3,7 +3,7 @@ import { type Nothing, isNothing } from "../nothing/Nothing.js"
 import { BeliefSystem } from "./BeliefSystem.js"
 import { isStrongerBelief } from "./isStrongerBelief.js"
 
-export function assimilateOne<A, B>(
+export function assimilateBelief<A, B>(
   base: BeliefSystem<A>,
   belief: Belief<B> | Nothing,
 ): BeliefSystem<A | B> {
