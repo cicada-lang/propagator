@@ -2,6 +2,7 @@ import { type MergeConflict } from "../merge/index.js"
 import { assimilateBelief } from "./assimilateBelief.js"
 import { assimilateBeliefSystem } from "./assimilateBeliefSystem.js"
 import { BeliefSystem } from "./BeliefSystem.js"
+import { checkConsistent } from "./checkConsistent.js"
 import { strongestBelief } from "./strongestBelief.js"
 
 // Asking the belief system to deduce all the consequences of all its
@@ -16,5 +17,6 @@ export function beliefSystemMerge<A, B>(
 ): BeliefSystem<A | B> | MergeConflict {
   const candidate = assimilateBeliefSystem(content, increment)
   const consequence = strongestBelief(candidate.beliefs)
+  checkConsistent(consequence)
   return assimilateBelief(candidate, consequence)
 }
