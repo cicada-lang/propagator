@@ -1,8 +1,14 @@
+`MergeConflict` 移至 `merge-conflict/` -- 正与 `nothing/` 相同
+
+`barometer-belief.test` -- 在测试中增加书中的叙述 -- 与对 belief-system 的测试相同
+
 # 4.3 Dependencies Explain Contradictions
+
+> https://github.com/cicada-lang/propagator/issues/9
 
 # 4.4 Dependencies Improve Search
 
-> - https://github.com/cicada-lang/propagator/issues/4
+> https://github.com/cicada-lang/propagator/issues/4
 
 # 修复 lattice 笔记
 

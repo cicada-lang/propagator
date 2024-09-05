@@ -30,8 +30,8 @@ export function defineGeneric(
         who: "GenericDefinition",
         constroctor: "defineGeneric",
         message,
-        definition,
         args,
+        definition,
       })
 
       throw new Error(`[GenericDefinition] ${message}`)

@@ -16,3 +16,7 @@ export function schedule(propagators: Array<Propagator>): void {
 export function scheduleAllEverScheduledPropagators(): void {
   schedule(Array.from(allEverScheduledPropagators))
 }
+
+export function clearScheduledPropagators(): void {
+  globalScheduler.jobs = []
+}

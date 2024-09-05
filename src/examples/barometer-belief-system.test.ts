@@ -411,4 +411,10 @@ test("examples / barometer-belief-system", async () => {
         },
       ),
   )
+
+  // log(buildingHeight.content)
+
+  // put(buildingHeight, Belief(Interval(46, 50), ["pressure"]))
+
+  // await run()
 })
