@@ -4,8 +4,6 @@
 
 > https://github.com/cicada-lang/propagator/issues/9
 
-fix `merge` on`MergeConflict`
-
 # 4.4 Dependencies Improve Search
 
 > https://github.com/cicada-lang/propagator/issues/4

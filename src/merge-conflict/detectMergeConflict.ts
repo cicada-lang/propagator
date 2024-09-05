@@ -1,10 +1,10 @@
 import { isBelief } from "../belief/index.js"
 import { defineGeneric } from "../generic/defineGeneric.js"
 import { defineHandler } from "../generic/index.js"
-import { theMergeConflict } from "./MergeConflict.js"
+import { isMergeConflict } from "./MergeConflict.js"
 
 export const detectMergeConflict = defineGeneric({
-  default: (x) => x === theMergeConflict,
+  default: isMergeConflict,
 })
 
 // If it so happens that two supported values contradict each other,
