@@ -6,6 +6,8 @@
 
 `MergeConflict` 移至 `merge-conflict/` -- 正与 `nothing/` 相同
 
+fix `on`MergeConflict`
+
 # 4.4 Dependencies Improve Search
 
 > https://github.com/cicada-lang/propagator/issues/4

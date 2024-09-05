@@ -13,6 +13,7 @@ import { Cell, put } from "../cell/index.js"
 import { Interval, intervalAlmostEqual, isInterval } from "../interval/index.js"
 import { isNothing } from "../nothing/index.js"
 import { run } from "../scheduler/index.js"
+import { log } from "../utils/log.js"
 import { fallDuration, similarTriangles } from "./barometer.js"
 
 test("examples / barometer-belief-system", async () => {
@@ -412,9 +413,10 @@ test("examples / barometer-belief-system", async () => {
       ),
   )
 
-  // log(buildingHeight.content)
+  put(buildingHeight, Belief(Interval(46, 50), ["pressure"]))
 
-  // put(buildingHeight, Belief(Interval(46, 50), ["pressure"]))
+  await run()
 
-  // await run()
+  log(buildingHeight.content)
+  log(beliefSystemQuery(buildingHeight.content))
 })
