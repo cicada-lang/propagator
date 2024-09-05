@@ -418,5 +418,5 @@ test("examples / barometer-belief-system", async () => {
   await run()
 
   log(buildingHeight.content)
-  log(beliefSystemQuery(buildingHeight.content))
+  // log(beliefSystemQuery(buildingHeight.content))
 })

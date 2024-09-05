@@ -4,6 +4,8 @@
 
 > https://github.com/cicada-lang/propagator/issues/9
 
+修复对 `MergeConflict` 的使用 -- 如何处理原实现中的 `call/cc`？
+
 # 4.4 Dependencies Improve Search
 
 > https://github.com/cicada-lang/propagator/issues/4
