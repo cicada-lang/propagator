@@ -1,4 +1,4 @@
-import { detectMergeConflict } from "../merge/detectMergeConflict.js"
+import { detectMergeConflict } from "../merge-conflict/detectMergeConflict.js"
 import { clearScheduledPropagators } from "../scheduler/schedule.js"
 import { log } from "../utils/log.js"
 

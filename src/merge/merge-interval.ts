@@ -6,8 +6,8 @@ import {
   intervalIsEmpty,
   isInterval,
 } from "../interval/index.js"
+import { theMergeConflict } from "../merge-conflict/index.js"
 import { isNumber } from "../utils/isNumber.js"
-import { theMergeConflict } from "./MergeConflict.js"
 import { merge } from "./merge.js"
 
 defineHandler(merge, [isInterval, isInterval], (content, increment) => {

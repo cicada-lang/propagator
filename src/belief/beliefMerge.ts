@@ -1,4 +1,5 @@
-import { merge, type MergeConflict } from "../merge/index.js"
+import type { MergeConflict } from "../merge-conflict/index.js"
+import { merge } from "../merge/index.js"
 import { setIsSubsetOf, setUnion } from "../utils/set/index.js"
 import { Belief } from "./Belief.js"
 

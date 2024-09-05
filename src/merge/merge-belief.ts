@@ -1,7 +1,7 @@
 import { beliefMerge, isBelief, toBelief } from "../belief/index.js"
 import { defineHandler } from "../generic/index.js"
+import { detectMergeConflict } from "../merge-conflict/index.js"
 import { coercing } from "../utils/coercing.js"
-import { detectMergeConflict } from "./detectMergeConflict.js"
 import { isPrimitive } from "./isPrimitive.js"
 import { merge } from "./merge.js"
 

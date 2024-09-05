@@ -1,4 +1,4 @@
-import { type MergeConflict } from "../merge/index.js"
+import { type MergeConflict } from "../merge-conflict/index.js"
 import { assimilateBelief } from "./assimilateBelief.js"
 import { assimilateBeliefSystem } from "./assimilateBeliefSystem.js"
 import { BeliefSystem } from "./BeliefSystem.js"
