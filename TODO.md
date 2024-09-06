@@ -2,7 +2,7 @@
 
 > https://github.com/cicada-lang/propagator/issues/9
 
-implementation `MergeConflict` without `call/cc`
+remove `checkConsistent` -- implementation `MergeConflict` without `call/cc`
 
 # 4.4 Dependencies Improve Search
 

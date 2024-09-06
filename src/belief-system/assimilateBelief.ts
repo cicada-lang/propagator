@@ -1,7 +1,5 @@
 import type { Belief } from "../belief/Belief.js"
-import { detectMergeConflict } from "../merge-conflict/detectMergeConflict.js"
 import { type Nothing, isNothing } from "../nothing/Nothing.js"
-import { log } from "../utils/log.js"
 import { BeliefSystem } from "./BeliefSystem.js"
 import { isStrongerBelief } from "./isStrongerBelief.js"
 
@@ -30,10 +28,6 @@ export function assimilateBelief<A>(
   const strongerOldBeliefs = base.beliefs.filter(
     (oldBelief) => !isStrongerBelief(belief, oldBelief),
   )
-
-  if (detectMergeConflict(belief)) {
-    log({ newSystem: BeliefSystem([...strongerOldBeliefs, belief]) })
-  }
 
   return BeliefSystem([...strongerOldBeliefs, belief])
 }

@@ -418,13 +418,13 @@ test("examples / barometer-belief-system", async () => {
   await run()
 
   log(beliefSystemQuery(buildingHeight.content))
-  log(buildingHeight.content)
+  //log(buildingHeight.content)
   log(beliefSystemQuery(barometerHeight.content))
 
-  // kickOut("pressure")
+  kickOut("pressure")
 
-  // await run()
+  await run()
 
-  // log(beliefSystemQuery(barometerHeight.content))
-  // log(beliefSystemQuery(buildingHeight.content))
+  log(beliefSystemQuery(buildingHeight.content))
+  log(beliefSystemQuery(barometerHeight.content))
 })

@@ -1,7 +1,5 @@
+import { log } from "console"
 import { detectMergeConflict } from "../merge-conflict/detectMergeConflict.js"
-
-import { clearScheduledPropagators } from "../scheduler/schedule.js"
-import { log } from "../utils/log.js"
 
 export function checkConsistent(value: any): void {
   return
@@ -10,6 +8,5 @@ export function checkConsistent(value: any): void {
     const who = "checkConsistent"
     const message = "Inconsistent value"
     log({ who, message, value })
-    clearScheduledPropagators()
   }
 }
