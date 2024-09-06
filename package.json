@@ -1,6 +1,6 @@
 {
   "name": "@cicada-lang/propagator",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "repository": "github:cicada-lang/propagator",
   "type": "module",
   "main": "./lib/index.js",
