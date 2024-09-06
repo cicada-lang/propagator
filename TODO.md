@@ -2,13 +2,6 @@
 
 > https://github.com/cicada-lang/propagator/issues/4
 
-# 修复 lattice 笔记
-
-[note] 修复 lattice 笔记中关于 propagator 的各种错误
-
-- "more information" 代表 <=，而不是 >= （书中也错了）。
-- Number <= Interval <= Belief <= BeliefSystem 是错误的。
-
 # 完成 "The Art" 中的 Heron 例子
 
 > - 需要设计 lattice 来逼近结果
