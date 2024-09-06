@@ -1,8 +1,5 @@
-# 4.3 Dependencies Explain Contradictions
-
-> https://github.com/cicada-lang/propagator/issues/9
-
 remove `checkConsistent` -- implementation `MergeConflict` without `call/cc`
+`beliefEqual` take optional `valueEqual`
 
 # 4.4 Dependencies Improve Search
 

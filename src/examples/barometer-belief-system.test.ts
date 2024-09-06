@@ -11,9 +11,9 @@ import {
 import { Belief, beliefEqual } from "../belief/index.js"
 import { Cell, put } from "../cell/index.js"
 import { Interval, intervalAlmostEqual, isInterval } from "../interval/index.js"
+import { theMergeConflict } from "../merge-conflict/index.js"
 import { isNothing } from "../nothing/index.js"
 import { run } from "../scheduler/index.js"
-import { log } from "../utils/log.js"
 import { fallDuration, similarTriangles } from "./barometer.js"
 
 test("examples / barometer-belief-system", async () => {
@@ -413,18 +413,122 @@ test("examples / barometer-belief-system", async () => {
       ),
   )
 
+  // We have been fortunate so far in having all our measurements
+  // agree with each other, so that all worldviews we could possibly
+  // hold were, in fact, internally consistent. But what if we had
+  // mutually contradictory data?
+  //
+  // [Suppose we compute the building's height by measuring the
+  // pressure of the barometer twice.]  Should this new information
+  // contradict our previous store of knowledge, we would like to
+  // know; and since the system maintains dependency information, it
+  // can even tell us which premises lead to trouble.
+
   put(buildingHeight, Belief(Interval(46, 50), ["pressure"]))
 
   await run()
 
-  log(beliefSystemQuery(buildingHeight.content))
-  //log(buildingHeight.content)
-  log(beliefSystemQuery(barometerHeight.content))
+  // Indeed, if we ask after the height of the building under this
+  // regime of contradictory information, we will be informed of the
+  // absence of a good answer,
 
+  assert(
+    isBeliefSystem(buildingHeight.content) &&
+      beliefEqual(
+        beliefSystemQuery(buildingHeight.content) as Belief<any>,
+        Belief(theMergeConflict, ["pressure", "superintendent"]),
+        {
+          valueEqual: (x, y) => x === y,
+        },
+      ),
+  )
+
+  // but it is appropriate for the system not to propagate
+  // consequences deducible in an inconsistent worldview, so the
+  // barometer-height remains unchanged:
+
+  assert(
+    isBeliefSystem(barometerHeight.content) &&
+      beliefEqual(
+        beliefSystemQuery(barometerHeight.content) as Belief<any>,
+        Belief(Interval(0.3, 0.3), ["shadows", "superintendent"]),
+        {
+          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+        },
+      ),
+  )
+
+  // It is up to us as the users of the system to choose which
+  // worldview to explore.  We can ascertain the consequences of
+  // disregarding the superintendent’s assertions,
+
+  kickOut("superintendent")
+
+  await run()
+
+  // both on our understanding of the height of the building
+
+  // TODO In the paper, the following reasons are:
+  // ["shadows", "pressure"]
+
+  assert(
+    isBeliefSystem(buildingHeight.content) &&
+      beliefEqual(
+        beliefSystemQuery(buildingHeight.content) as Belief<any>,
+        Belief(Interval(46, 47.24), ["shadows", "pressure", "fall-time"]),
+        {
+          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+        },
+      ),
+  )
+
+  // and on that of the barometer.
+
+  assert(
+    isBeliefSystem(barometerHeight.content) &&
+      beliefEqual(
+        beliefSystemQuery(barometerHeight.content) as Belief<any>,
+        Belief(Interval(0.3, 0.31), ["shadows", "pressure", "fall-time"]),
+        {
+          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+        },
+      ),
+  )
+
+  // Doing so does not cost us previously learned data, so we are free
+  // to change world-views at will, reasoning as we like in one
+  // consistent worldview or another.
+
+  bringIn("superintendent")
   kickOut("pressure")
 
   await run()
 
-  log(beliefSystemQuery(buildingHeight.content))
-  log(beliefSystemQuery(barometerHeight.content))
+  assert(
+    isBeliefSystem(buildingHeight.content) &&
+      beliefEqual(
+        beliefSystemQuery(buildingHeight.content) as Belief<any>,
+        Belief(45, ["superintendent"]),
+        {
+          valueEqual: (x, y) => x === y,
+        },
+      ),
+  )
+
+  assert(
+    isBeliefSystem(barometerHeight.content) &&
+      beliefEqual(
+        beliefSystemQuery(barometerHeight.content) as Belief<any>,
+        Belief(Interval(0.3, 0.3), ["shadows", "superintendent"]),
+        {
+          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+        },
+      ),
+  )
+
+  // As promised, contradictory beliefs are not traumatic. The deep
+  // reason contradiction handling works so well is that
+  // the-contradiction is just another partial information state, and
+  // our truth maintenance machinery operates on partial information
+  // by design.
 })
