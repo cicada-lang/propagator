@@ -1,10 +1,8 @@
-`barometer-belief.test` -- 在测试中增加书中的叙述 -- 与对 belief-system 的测试相同
-
 # 4.3 Dependencies Explain Contradictions
 
 > https://github.com/cicada-lang/propagator/issues/9
 
-修复对 `MergeConflict` 的使用 -- 如何处理原实现中的 `call/cc`？
+implementation `MergeConflict` without `call/cc`
 
 # 4.4 Dependencies Improve Search
 
@@ -36,6 +34,8 @@
 应该是函数本身，运行的时候提供参数给函数。
 
 # later
+
+[later] `barometer-belief.test` -- 在测试中增加书中的叙述 -- 与对 belief-system 的测试相同
 
 [later] barometer-belief-system.test.ts -- 理解我们的测试中与书中有差异的地方
 

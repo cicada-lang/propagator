@@ -1,4 +1,3 @@
-import type { MergeConflict } from "../merge-conflict/index.js"
 import { merge } from "../merge/index.js"
 import { setIsSubsetOf, setUnion } from "../utils/set/index.js"
 import { Belief } from "./Belief.js"
@@ -24,7 +23,7 @@ import { Belief } from "./Belief.js"
 export function beliefMerge<A, B>(
   content: Belief<A>,
   increment: Belief<B>,
-): Belief<A | B> | MergeConflict {
+): Belief<A | B> {
   const mergedValue = merge(content.value, increment.value)
 
   // 下面刚好是偏序关系中比较两个元素的四种可能：
@@ -44,6 +43,10 @@ export function beliefMerge<A, B>(
       return increment
     }
   }
+
+  // if (isMergeConflict(mergedValue)) {
+  //   console.log({ who: "beliefMerge", increment, content })
+  // }
 
   if (mergedValue === increment.value) {
     return increment
