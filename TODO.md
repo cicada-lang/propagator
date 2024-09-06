@@ -1,4 +1,3 @@
-remove `checkConsistent` -- implementation `MergeConflict` without `call/cc`
 `beliefEqual` take optional `valueEqual`
 
 # 4.4 Dependencies Improve Search
