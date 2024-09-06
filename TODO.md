@@ -1,5 +1,3 @@
-`beliefEqual` take optional `valueEqual`
-
 # 4.4 Dependencies Improve Search
 
 > https://github.com/cicada-lang/propagator/issues/4

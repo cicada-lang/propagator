@@ -277,9 +277,6 @@ test("examples / barometer-belief-system", async () => {
       beliefEqual(
         beliefSystemQuery(buildingHeight.content) as Belief<any>,
         Belief(45, ["superintendent"]),
-        {
-          valueEqual: (x, y) => x === y,
-        },
       ),
   )
 
@@ -295,9 +292,6 @@ test("examples / barometer-belief-system", async () => {
       beliefEqual(
         beliefSystemQuery(buildingHeight.content) as Belief<any>,
         Belief(45, ["superintendent"]),
-        {
-          valueEqual: (x, y) => x === y,
-        },
       ),
   )
 
@@ -437,9 +431,6 @@ test("examples / barometer-belief-system", async () => {
       beliefEqual(
         beliefSystemQuery(buildingHeight.content) as Belief<any>,
         Belief(theMergeConflict, ["pressure", "superintendent"]),
-        {
-          valueEqual: (x, y) => x === y,
-        },
       ),
   )
 

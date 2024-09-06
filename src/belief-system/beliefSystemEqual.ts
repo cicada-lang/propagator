@@ -5,11 +5,11 @@ import type { BeliefSystem } from "./BeliefSystem.js"
 export function beliefSystemEqual<A>(
   x: BeliefSystem<A>,
   y: BeliefSystem<A>,
-  options: {
-    valueEqual: (x: A, y: A) => boolean
+  options?: {
+    valueEqual?: (x: A, y: A) => boolean
   },
 ): boolean {
-  const { valueEqual } = options
+  const valueEqual = options?.valueEqual || ((x, y) => x === y)
 
   const equal = (x: Belief<A>, y: Belief<A>) =>
     beliefEqual(x, y, { valueEqual })
