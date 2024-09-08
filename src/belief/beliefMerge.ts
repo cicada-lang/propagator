@@ -20,10 +20,10 @@ import { Belief } from "./Belief.js"
 //   present unless the support of the new one is strictly more
 //   informative (i.e., is a strict subset of the same premises).
 
-export function beliefMerge<A, B>(
+export function beliefMerge<A>(
   content: Belief<A>,
-  increment: Belief<B>,
-): Belief<A | B> {
+  increment: Belief<A>,
+): Belief<A> {
   const mergedValue = merge(content.value, increment.value)
 
   // 下面刚好是偏序关系中比较两个元素的四种可能：
