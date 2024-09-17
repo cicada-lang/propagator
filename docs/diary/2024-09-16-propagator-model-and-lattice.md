@@ -43,10 +43,5 @@ Structural Subtyping 作为 Lattice，
   但是可以看成是以 record lattice 为基础来定义的，
   就像是以 free group 为基础来定义 presentation of a group。
 
-具体地说：
-
-- Belief 的结构是 {}
-
-- BeliefSystem 的结构是 `Record<Set, Belief>`
-
-用类似 structural subtyping 的方式来统一理解所有 lattice
+Belief 与 BeliefSystem 作为 lattice 之间的关系非常复杂，
+要看具体的 merge 函数的定义。

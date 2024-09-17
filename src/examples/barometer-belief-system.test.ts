@@ -90,11 +90,11 @@ test("examples / barometer-belief-system", async () => {
   // them. The reasoning behind this design decision was that, in my
   // experience, it was not a good idea to compute all the
   // consequences of all the premises all the time; rather we just
-  // compute the strongest consequence of all the premises in the
-  // current worldview taken together. The current worldview at this
-  // point believes both shadows and fall-time, because we made
-  // believing everything the default, and that default has not yet
-  // been overridden.
+  // compute the strongest [most information] consequence of all the
+  // premises in the current worldview taken together. The current
+  // worldview at this point believes both shadows and fall-time,
+  // because we made believing everything the default, and that
+  // default has not yet been overridden.
 
   // In this particular system, we chose to make the worldview
   // implicit and global.  That works fine on a uniprocessor, but a
