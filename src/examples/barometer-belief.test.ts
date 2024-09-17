@@ -1,7 +1,7 @@
 import assert from "node:assert"
 import { test } from "node:test"
 import { Belief, beliefEqual, isBelief } from "../belief/index.js"
-import { Cell, put } from "../cell/index.js"
+import { Cell, patch } from "../cell/index.js"
 import { Interval, intervalAlmostEqual } from "../interval/index.js"
 import { run } from "../scheduler/index.js"
 import { fallDuration, similarTriangles } from "./barometer.js"
@@ -9,9 +9,9 @@ import { fallDuration, similarTriangles } from "./barometer.js"
 test("examples / barometer-belief", async () => {
   const [barometerShadow, barometerHeight, buildingShadow, buildingHeight] =
     similarTriangles()
-  put(buildingShadow, Belief(Interval(54.9, 55.1), ["shadows"]))
-  put(barometerHeight, Belief(Interval(0.3, 0.32), ["shadows"]))
-  put(barometerShadow, Belief(Interval(0.36, 0.37), ["shadows"]))
+  patch(buildingShadow, Belief(Interval(54.9, 55.1), ["shadows"]))
+  patch(barometerHeight, Belief(Interval(0.3, 0.32), ["shadows"]))
+  patch(barometerShadow, Belief(Interval(0.36, 0.37), ["shadows"]))
 
   await run()
 
@@ -28,7 +28,7 @@ test("examples / barometer-belief", async () => {
 
   const fallTime = Cell()
   fallDuration(fallTime, buildingHeight)
-  put(fallTime, Belief(Interval(2.9, 3.3), ["lousy-fall-time"]))
+  patch(fallTime, Belief(Interval(2.9, 3.3), ["lousy-fall-time"]))
 
   await run()
 
@@ -50,7 +50,7 @@ test("examples / barometer-belief", async () => {
       ),
   )
 
-  put(fallTime, Belief(Interval(2.9, 3.1), ["better-fall-time"]))
+  patch(fallTime, Belief(Interval(2.9, 3.1), ["better-fall-time"]))
 
   await run()
 
@@ -65,7 +65,7 @@ test("examples / barometer-belief", async () => {
       ),
   )
 
-  put(buildingHeight, Belief(45, ["superintendent"]))
+  patch(buildingHeight, Belief(45, ["superintendent"]))
 
   await run()
 
@@ -130,7 +130,7 @@ test("examples / barometer-belief", async () => {
 
   {
     const [t, h] = fallDuration()
-    put(h, 45)
+    patch(h, 45)
 
     await run()
 

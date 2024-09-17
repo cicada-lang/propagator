@@ -1,13 +1,13 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { Cell, put } from "../cell/index.js"
+import { Cell, patch } from "../cell/index.js"
 import { run } from "../scheduler/index.js"
 import { heronStep } from "./heron.js"
 
 test("examples / heron / heronStep", async () => {
   const [x, guess, betterGuess] = heronStep()
-  put(x, 2)
-  put(guess, 1.4)
+  patch(x, 2)
+  patch(guess, 1.4)
 
   await run()
 

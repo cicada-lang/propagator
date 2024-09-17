@@ -1,13 +1,13 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { Cell, put } from "../cell/index.js"
+import { Cell, patch } from "../cell/index.js"
 import { run } from "../scheduler/index.js"
 import { adder, multiplier, product, sum } from "./index.js"
 
 test("propagators / arithmetic / adder", async () => {
   const [x, y, z] = adder()
-  put(x, 1)
-  put(y, 2)
+  patch(x, 1)
+  patch(y, 2)
 
   await run()
 
@@ -24,8 +24,8 @@ test("propagators / arithmetic / adder / expression-like", async () => {
 
 test("propagators / arithmetic / multiplier", async () => {
   const [x, y, z] = multiplier()
-  put(x, 2)
-  put(y, 3)
+  patch(x, 2)
+  patch(y, 3)
 
   await run()
 
@@ -35,8 +35,8 @@ test("propagators / arithmetic / multiplier", async () => {
 test("propagators / arithmetic / sum", async () => {
   {
     const [x, y, z] = sum()
-    put(x, 1)
-    put(y, 2)
+    patch(x, 1)
+    patch(y, 2)
 
     await run()
 
@@ -45,8 +45,8 @@ test("propagators / arithmetic / sum", async () => {
 
   {
     const [x, y, z] = sum()
-    put(x, 1)
-    put(z, 3)
+    patch(x, 1)
+    patch(z, 3)
 
     await run()
 
@@ -55,8 +55,8 @@ test("propagators / arithmetic / sum", async () => {
 
   {
     const [x, y, z] = sum()
-    put(y, 2)
-    put(z, 3)
+    patch(y, 2)
+    patch(z, 3)
 
     await run()
 
@@ -67,8 +67,8 @@ test("propagators / arithmetic / sum", async () => {
 test("propagators / arithmetic / product", async () => {
   {
     const [x, y, z] = product()
-    put(x, 2)
-    put(y, 3)
+    patch(x, 2)
+    patch(y, 3)
 
     await run()
 
@@ -77,8 +77,8 @@ test("propagators / arithmetic / product", async () => {
 
   {
     const [x, y, z] = product()
-    put(x, 2)
-    put(z, 6)
+    patch(x, 2)
+    patch(z, 6)
 
     await run()
 
@@ -87,8 +87,8 @@ test("propagators / arithmetic / product", async () => {
 
   {
     const [x, y, z] = product()
-    put(y, 3)
-    put(z, 6)
+    patch(y, 3)
+    patch(z, 6)
 
     await run()
 

@@ -9,7 +9,7 @@ import {
   kickOut,
 } from "../belief-system/index.js"
 import { Belief, beliefEqual } from "../belief/index.js"
-import { Cell, put } from "../cell/index.js"
+import { Cell, patch } from "../cell/index.js"
 import { Interval, intervalAlmostEqual, isInterval } from "../interval/index.js"
 import { theMergeConflict } from "../merge-conflict/index.js"
 import { isNothing } from "../nothing/index.js"
@@ -25,9 +25,15 @@ test("examples / barometer-belief-system", async () => {
 
   const [barometerShadow, barometerHeight, buildingShadow, buildingHeight] =
     similarTriangles()
-  put(buildingShadow, BeliefSystem([Belief(Interval(54.9, 55.1), ["shadows"])]))
-  put(barometerHeight, BeliefSystem([Belief(Interval(0.3, 0.32), ["shadows"])]))
-  put(
+  patch(
+    buildingShadow,
+    BeliefSystem([Belief(Interval(54.9, 55.1), ["shadows"])]),
+  )
+  patch(
+    barometerHeight,
+    BeliefSystem([Belief(Interval(0.3, 0.32), ["shadows"])]),
+  )
+  patch(
     barometerShadow,
     BeliefSystem([Belief(Interval(0.36, 0.37), ["shadows"])]),
   )
@@ -53,7 +59,7 @@ test("examples / barometer-belief-system", async () => {
 
   const fallTime = Cell()
   fallDuration(fallTime, buildingHeight)
-  put(fallTime, BeliefSystem([Belief(Interval(2.9, 3.1), ["fall-time"])]))
+  patch(fallTime, BeliefSystem([Belief(Interval(2.9, 3.1), ["fall-time"])]))
 
   await run()
 
@@ -241,7 +247,7 @@ test("examples / barometer-belief-system", async () => {
   // Now, if we give the superintendent a barometer, we can add her
   // input to the totality of our knowledge about this building
 
-  put(buildingHeight, Belief(45, ["superintendent"]))
+  patch(buildingHeight, Belief(45, ["superintendent"]))
 
   await run()
 
@@ -418,7 +424,7 @@ test("examples / barometer-belief-system", async () => {
   // know; and since the system maintains dependency information, it
   // can even tell us which premises lead to trouble.
 
-  put(buildingHeight, Belief(Interval(46, 50), ["pressure"]))
+  patch(buildingHeight, Belief(Interval(46, 50), ["pressure"]))
 
   await run()
 

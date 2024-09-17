@@ -1,6 +1,6 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { put } from "../cell/index.js"
+import { patch } from "../cell/index.js"
 import { run } from "../scheduler/index.js"
 import {
   celsiusKelvin,
@@ -10,7 +10,7 @@ import {
 
 test("examples / celsius / fahrenheitToCelsius", async () => {
   const [f, c] = fahrenheitToCelsius()
-  put(f, 77)
+  patch(f, 77)
 
   await run()
 
@@ -20,7 +20,7 @@ test("examples / celsius / fahrenheitToCelsius", async () => {
 test("examples / celsius / fahrenheitCelsius", async () => {
   {
     const [f, c] = fahrenheitCelsius()
-    put(f, 77)
+    patch(f, 77)
 
     await run()
 
@@ -29,7 +29,7 @@ test("examples / celsius / fahrenheitCelsius", async () => {
 
   {
     const [f, c] = fahrenheitCelsius()
-    put(c, 25)
+    patch(c, 25)
 
     await run()
 
@@ -40,7 +40,7 @@ test("examples / celsius / fahrenheitCelsius", async () => {
 test("examples / celsius / celsiusKelvin", async () => {
   const [f, c] = fahrenheitCelsius()
   const k = celsiusKelvin(c)
-  put(f, 77)
+  patch(f, 77)
 
   await run()
 

@@ -1,4 +1,4 @@
-import { Cell, addPropagator, put } from "../cell/index.js"
+import { Cell, addPropagator, patch } from "../cell/index.js"
 import { naryFmap } from "../monad/index.js"
 import { schedule } from "../scheduler/index.js"
 import type { MaybePromise } from "../utils/MaybePromise.js"
@@ -40,14 +40,14 @@ export function definePrimitive<A extends number>(
       const output = args[args.length - 1]
 
       watch(inputs, async () => {
-        put(output, await liftedFn(...inputs))
+        patch(output, await liftedFn(...inputs))
       })
     } else if (args.length === arity - 1) {
       const inputs = args
       const output = Cell()
 
       watch(inputs, async () => {
-        put(output, await liftedFn(...inputs))
+        patch(output, await liftedFn(...inputs))
       })
 
       return output
@@ -57,7 +57,7 @@ export function definePrimitive<A extends number>(
       const output = Cell()
 
       watch(inputs, async () => {
-        put(output, await liftedFn(...inputs))
+        patch(output, await liftedFn(...inputs))
       })
 
       return [...paddings, output]
