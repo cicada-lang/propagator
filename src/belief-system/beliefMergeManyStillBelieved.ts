@@ -1,9 +1,9 @@
 import type { Belief } from "../belief/Belief.js"
-import { merge } from "../merge/merge.js"
-import { type Nothing, nothing } from "../nothing/Nothing.js"
+import { beliefMergeMany } from "../belief/index.js"
+import { type Nothing } from "../nothing/Nothing.js"
 import { isStillBelieved } from "./isStillBelieved.js"
 
-// The procedure `strongest` finds the most informative consequence
+// This function finds the most informative consequence
 // of the current worldview. It does this by using merge to combine
 // all of the currently believed beliefs.
 // 注意，这里的 "most informative" 又是就 merge 而言的了，
@@ -12,9 +12,5 @@ import { isStillBelieved } from "./isStillBelieved.js"
 export function beliefMergeManyStillBelieved<A>(
   beliefs: Array<Belief<A>>,
 ): Belief<A> | Nothing {
-  const stillBelievedBeliefs = beliefs.filter(isStillBelieved)
-  return stillBelievedBeliefs.reduce(
-    (result, belief) => merge(result, belief),
-    nothing,
-  )
+  return beliefMergeMany(beliefs.filter(isStillBelieved))
 }
