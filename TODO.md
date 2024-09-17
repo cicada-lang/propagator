@@ -1,4 +1,3 @@
-rename `isBeliefBelieved` to `isStillBelieved`
 extract `beliefMergeMany`
 
 # 4.4 Dependencies Improve Search
