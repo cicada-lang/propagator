@@ -33,20 +33,26 @@ export function beliefMerge<A>(
   // (4) | -- a 与 b 不可比较
 
   if (mergedValue === content.value && mergedValue === increment.value) {
-    // 当 content.value 与 increment.value 等价时，
-    // 取 reasons 更小的，又当 reasons 一样大时，取 content。
+    // - 当 content.value 与 increment.value 相等时，取 reasons 更小的；
+    // - 当 reasons 也相等时，取 content。
+
     // 也就是说，当 content.value 与 increment.value 等价时，
     // 只有当 increment.reasons 真的比 content.reasons 小，才取 increment。
+
+    // 注意，这种取 subset 的行为等价于取 intersection，
+    // 与下面取 union 的行为，在 lattice 的意义上是相互对偶的：
+    // - 在 value 相等时用 intersection，就是用 set lattice。
+    // - 在 value 可比较时，直接取较小 value 的 reasons。
+    // - 在不可比较时用 union，就是用 dual set lattice。
+    // 和 dependent type 类似，这里是 dependent record，
+    // 即后项所取的 lattice 种类，取决于前项的值是否相等。
+
     if (setIsSubsetOf(content.reasons, increment.reasons)) {
       return content
     } else {
       return increment
     }
   }
-
-  // if (isMergeConflict(mergedValue)) {
-  //   console.log({ who: "beliefMerge", increment, content })
-  // }
 
   if (mergedValue === increment.value) {
     return increment
