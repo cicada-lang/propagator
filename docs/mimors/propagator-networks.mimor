@@ -12,3 +12,38 @@
   不应将单元视为存储一个值，
   而应将其视为<空>积累关于该值的信息</空>。
 </填空>
+
+<填空>
+  本论文的另一个更具技术性的贡献是，
+  在 cell 保存的信息中，带上<空>依赖信息</空>。
+</填空>
+
+<问>
+  Propagator Model 作为一个新的计算模型，
+  突破了传统的 expression evaluation paradigm。
+
+  类似的突破这种传统的计算模型还有哪些？
+
+  <答>
+    - logic programming
+
+    - constraint processing
+
+    - reactive programming
+
+    - actor model
+
+    - interaction network
+
+    - Petri net
+  </答>
+</问>
+
+<问>
+  很适合用来实现 Propagator Model
+  这个计算模型的更底层计算模型是什么？
+
+  <答>
+    Actor Model。
+  </答>
+</问>

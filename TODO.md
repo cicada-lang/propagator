@@ -1,3 +1,12 @@
+# mimor
+
+[mimor] 2 Design Principles
+[mimor] 3 Core Implementation
+[mimor] 4 Dependencies
+[mimor] 5 Expressive Power
+[mimor] 6 Towards a Programming Language
+[mimor] 7 Philosophical Insights
+
 # 4.4 Dependencies Improve Search
 
 > https://github.com/cicada-lang/propagator/issues/4
