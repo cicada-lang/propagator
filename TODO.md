@@ -1,7 +1,3 @@
-docs/mimors -- propagator.mimor
-
-- 又是隔一段时间重新回顾 propagator，是写 mimor 的好机会。
-
 # 4.4 Dependencies Improve Search
 
 > https://github.com/cicada-lang/propagator/issues/4
