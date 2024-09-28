@@ -94,10 +94,10 @@
 </填空>
 
 <问>
-  论文通过逐步扩展 merge 所能处理的数据类型，
+  论文通过逐步扩展 merge 所能处理的 partial information type，
   来扩展 propagator 的能力。
 
-  一共有四种数据类型，分别是什么？
+  一共实现了有四种 partial information type，分别是什么？
 
   <答>
     - Number

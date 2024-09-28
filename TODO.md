@@ -2,6 +2,15 @@
 
 > https://github.com/cicada-lang/propagator/issues/4
 
+propagators/constant.test
+propagators/boolean
+propagators/boolean.test
+global map about about nogood
+`propagators/conditional`
+`propagators/binaryAmb`
+`propagators/oneOf`
+examples/multipleDwelling
+
 # mimor
 
 [mimor] 4 Dependencies
