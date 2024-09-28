@@ -45,5 +45,50 @@
 
   <答>
     Actor Model。
+
+    用 actor 实现 propagator，
+    正如用图实现二分图，毕竟二分图也是特殊的图。
   </答>
 </问>
+
+<填空>
+  Propagator 是异步的（Asynchronous）,
+  自治的（Autonomous）且<空>无状态的（Stateless）</空>。
+</填空>
+
+<问>
+  如何理解 Propagator 是无状态的（Stateless）？
+
+  <答>
+    Propagator 本身是纯函数，所有的状态都保存在 cell 中。
+
+    状态总是不可避免地与时间有关。
+  </答>
+</问>
+
+<问>
+  如何理解 Propagator 是自治的（Autonomous）？
+
+  <答>
+    Propagator 时刻准备着进行计算，不需要任何前提条件。
+  </答>
+</问>
+
+<问>
+  如何理解 Propagator 是异步的（Asynchronous）？
+
+  <答>
+    一个 propagator 可以随时进行其计算，
+    没责任去与其他 propagator 在时间上相互协调。
+  </答>
+</问>
+
+<填空>
+  尝试从逻辑上推理出来，为什么应该保存 partial information。
+
+  - 大前提：多个 propagators 可以向同一个 cell 中赋值。
+
+  - 小前提：<空>多个值之间可能没有全序关系来判读谁好谁坏</空>。
+
+  - 结论：应该用偏序关系与 lattice，来 merge 多个值。
+</填空>

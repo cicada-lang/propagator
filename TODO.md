@@ -1,6 +1,5 @@
 # mimor
 
-[mimor] 2 Design Principles
 [mimor] 3 Core Implementation
 [mimor] 4 Dependencies
 [mimor] 5 Expressive Power
