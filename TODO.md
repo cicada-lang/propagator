@@ -3,6 +3,7 @@
 > https://github.com/cicada-lang/propagator/issues/4
 
 propagators/boolean -- inverter
+propagators/boolean.test -- inverter
 
 propagators/conditional
 propagators/conditional.test
