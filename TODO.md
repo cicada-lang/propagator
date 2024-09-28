@@ -1,13 +1,13 @@
+# 4.4 Dependencies Improve Search
+
+> https://github.com/cicada-lang/propagator/issues/4
+
 # mimor
 
 [mimor] 4 Dependencies
 [mimor] 5 Expressive Power
 [mimor] 6 Towards a Programming Language
 [mimor] 7 Philosophical Insights
-
-# 4.4 Dependencies Improve Search
-
-> https://github.com/cicada-lang/propagator/issues/4
 
 # 完成 "The Art" 中的 Heron 例子
 
