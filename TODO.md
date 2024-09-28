@@ -2,8 +2,6 @@
 
 > https://github.com/cicada-lang/propagator/issues/4
 
-propagators/switcher.test
-
 propagators/boolean -- inverter
 
 propagators/conditional
