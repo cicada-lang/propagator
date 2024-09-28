@@ -1,6 +1,5 @@
 # mimor
 
-[mimor] 3 Core Implementation
 [mimor] 4 Dependencies
 [mimor] 5 Expressive Power
 [mimor] 6 Towards a Programming Language

@@ -92,3 +92,45 @@
 
   - 结论：应该用偏序关系与 lattice，来 merge 多个值。
 </填空>
+
+<问>
+  论文通过逐步扩展 merge 所能处理的数据类型，
+  来扩展 propagator 的能力。
+
+  一共有四种数据类型，分别是什么？
+
+  <答>
+    - Number
+
+    - Interval
+
+    - Belief -- SupportedValue
+
+    - BeliefSystem -- TMS（Truth Maintenance System）
+
+  </答>
+</问>
+
+<问>
+  在论文中，Dependency 的作用一共有三层，分别是？
+
+  <答>
+    - Dependencies Track Provenance
+
+    - Dependencies Support Alternate Worldviews
+
+    - Dependencies Improve Search
+  </答>
+</问>
+
+<问>
+  用 dependencies 来优化搜索的技术叫什么？
+
+  <答>
+    Dependency-directed backtracking
+  </答>
+</问>
+
+<填空>
+  人类可以处理相互冲突的信念（inconsistent beliefs）而不<空>死机</空>。
+</填空>
