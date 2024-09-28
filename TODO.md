@@ -2,11 +2,18 @@
 
 > https://github.com/cicada-lang/propagator/issues/4
 
+propagators/switcher.test
+
+propagators/boolean -- inverter
+
+propagators/conditional
+propagators/conditional.test
+
 propagators/constant.test
 propagators/boolean
 propagators/boolean.test
 global map about about nogood
-`propagators/conditional`
+
 `propagators/binaryAmb`
 `propagators/oneOf`
 examples/multipleDwelling
