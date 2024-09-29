@@ -5,7 +5,7 @@
 propagators/boolean -- inverter
 propagators/boolean.test -- inverter
 
-propagators/conditional
+propagators/conditional -- conditional & conditionalWriter
 propagators/conditional.test
 
 propagators/constant.test
