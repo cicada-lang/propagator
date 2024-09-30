@@ -4,7 +4,6 @@
 
 > https://github.com/cicada-lang/propagator/issues/4
 
-propagators/conditional -- conditional & conditionalWriter
 propagators/conditional.test
 
 propagators/constant.test
