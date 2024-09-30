@@ -4,9 +4,7 @@
 
 > https://github.com/cicada-lang/propagator/issues/4
 
-propagators/constant.test
-propagators/boolean
-propagators/boolean.test
+extract constantCell
 global map about about nogood
 
 `propagators/binaryAmb`
