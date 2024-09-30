@@ -6,8 +6,8 @@
 
 global map about about nogood
 
-`propagators/binaryAmb`
-`propagators/oneOf`
+propagators/binaryAmb
+propagators/oneOf
 examples/multipleDwelling
 
 # mimor
