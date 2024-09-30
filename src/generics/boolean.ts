@@ -5,7 +5,7 @@ export const not = defineGeneric()
 defineHandler(not, [isBoolean], (x) => !x)
 
 export const and = defineGeneric()
-defineHandler(and, [isBoolean, isBoolean], (x) => x && y)
+defineHandler(and, [isBoolean, isBoolean], (x, y) => x && y)
 
 export const or = defineGeneric()
 defineHandler(or, [isBoolean, isBoolean], (x, y) => x || y)

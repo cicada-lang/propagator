@@ -4,8 +4,6 @@
 
 > https://github.com/cicada-lang/propagator/issues/4
 
-generics/boolean.test
-
 propagators/boolean -- inverter
 propagators/boolean.test -- inverter
 
