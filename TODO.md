@@ -1,6 +1,10 @@
+[docs] 总结各种 monad 的用法
+
 # 4.4 Dependencies Improve Search
 
 > https://github.com/cicada-lang/propagator/issues/4
+
+generics/boolean.test
 
 propagators/boolean -- inverter
 propagators/boolean.test -- inverter
