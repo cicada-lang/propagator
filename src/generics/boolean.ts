@@ -1,7 +1,11 @@
 import { defineGeneric, defineHandler } from "../generic/index.js"
 import { isBoolean } from "../utils/isBoolean.js"
 
-export const not = defineGeneric()
+export const not = defineGeneric({
+  default: (...args) => {
+    console.log("hi", args)
+  },
+})
 defineHandler(not, [isBoolean], (x) => !x)
 
 export const and = defineGeneric()

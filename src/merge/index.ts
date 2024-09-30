@@ -1,5 +1,6 @@
 export * from "./merge-belief-system.js"
 export * from "./merge-belief.js"
+export * from "./merge-boolean.js"
 export * from "./merge-interval.js"
 export * from "./merge-merge-conflict.js"
 export * from "./merge-nothing.js"

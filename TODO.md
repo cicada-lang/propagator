@@ -4,8 +4,6 @@
 
 > https://github.com/cicada-lang/propagator/issues/4
 
-propagators/boolean.test -- inverter
-
 propagators/conditional -- conditional & conditionalWriter
 propagators/conditional.test
 
