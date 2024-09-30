@@ -4,7 +4,6 @@
 
 > https://github.com/cicada-lang/propagator/issues/4
 
-extract constantCell
 global map about about nogood
 
 `propagators/binaryAmb`
