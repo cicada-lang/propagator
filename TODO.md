@@ -4,8 +4,6 @@
 
 > https://github.com/cicada-lang/propagator/issues/4
 
-propagators/conditional.test
-
 propagators/constant.test
 propagators/boolean
 propagators/boolean.test
