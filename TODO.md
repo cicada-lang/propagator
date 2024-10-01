@@ -29,13 +29,6 @@ examples/multipleDwelling
   所有类型不是 Cell 的参数，
   都可以被自动套上一个 `constantCell`
 
-# mimor
-
-[mimor] 4 Dependencies
-[mimor] 5 Expressive Power
-[mimor] 6 Towards a Programming Language
-[mimor] 7 Philosophical Insights
-
 # 完成 "The Art" 中的 Heron 例子
 
 > - 需要设计 lattice 来逼近结果
