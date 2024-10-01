@@ -1,3 +1,5 @@
+# docs
+
 [docs] 总结各种 monad 的用法
 
 # 4.4 Dependencies Improve Search
@@ -9,6 +11,23 @@ global map about about nogood
 propagators/binaryAmb
 propagators/oneOf
 examples/multipleDwelling
+
+# maybe
+
+`MergeConflict` -- 应该被命名为 `Contradiction`
+
+`Propagator` -- 应该是 `{ definition: PropagatorDefinition, args }`
+
+- NOTE 这样可能会限制实现方式，导致某些 propagator 难以实现，
+  需要在实现更多的 propagator 功能之后再做这个修改。
+- 不应该是 nullary closure `() => MaybePromise<void>`
+- 相应的 cell 中记录的不应该是 `Propagator`
+
+`PropagatorDefinition` -- auto `constantCell`
+
+- apply 一个 propagator 的时候，
+  所有类型不是 Cell 的参数，
+  都可以被自动套上一个 `constantCell`
 
 # mimor
 
@@ -29,11 +48,6 @@ examples/multipleDwelling
 - 可能需要 multi interval 而不是简单的 interval 了
   - https://en.wikipedia.org/wiki/Interval_arithmetic
 - 可能 propagator 本身的分支机制就能处理 multi interval
-
-# maybe
-
-[maybe] propagator 不应该是 nullary closure，
-应该是函数本身，运行的时候提供参数给函数。
 
 # later
 
