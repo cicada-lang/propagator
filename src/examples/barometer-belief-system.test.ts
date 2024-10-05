@@ -5,7 +5,6 @@ import {
   beliefSystemEqual,
   beliefSystemQuery,
   bringIn,
-  isBeliefSystem,
   kickOut,
 } from "../belief-system/index.js"
 import { Belief, beliefEqual } from "../belief/index.js"
@@ -41,14 +40,13 @@ test("examples / barometer-belief-system", async () => {
   await run()
 
   assert(
-    isBeliefSystem(buildingHeight.content) &&
-      beliefSystemEqual(
-        buildingHeight.content,
-        BeliefSystem([Belief(Interval(44.51, 48.97), ["shadows"])]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefSystemEqual(
+      buildingHeight.content,
+      BeliefSystem([Belief(Interval(44.51, 48.97), ["shadows"])]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // Nothing much changes while there is only one source of
@@ -64,18 +62,17 @@ test("examples / barometer-belief-system", async () => {
   await run()
 
   assert(
-    isBeliefSystem(buildingHeight.content) &&
-      beliefSystemEqual(
-        buildingHeight.content,
-        BeliefSystem([
-          Belief(Interval(44.51, 48.97), ["shadows"]),
-          Belief(Interval(41.16, 47.24), ["fall-time"]),
-          Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
-        ]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefSystemEqual(
+      buildingHeight.content,
+      BeliefSystem([
+        Belief(Interval(44.51, 48.97), ["shadows"]),
+        Belief(Interval(41.16, 47.24), ["fall-time"]),
+        Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
+      ]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // Now the belief system remembers the deductions made in the first
@@ -113,14 +110,13 @@ test("examples / barometer-belief-system", async () => {
   // supported by premises in the current worldview:
 
   assert(
-    isBeliefSystem(buildingHeight.content) &&
-      beliefEqual(
-        beliefSystemQuery(buildingHeight.content) as Belief<any>,
-        Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefEqual(
+      beliefSystemQuery(buildingHeight.content) as Belief<any>,
+      Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // As we will see later, tms-query is the lens through which (most)
@@ -135,18 +131,17 @@ test("examples / barometer-belief-system", async () => {
   await run()
 
   assert(
-    isBeliefSystem(buildingHeight.content) &&
-      beliefSystemEqual(
-        buildingHeight.content,
-        BeliefSystem([
-          Belief(Interval(44.51, 48.97), ["shadows"]),
-          Belief(Interval(41.16, 47.24), ["fall-time"]),
-          Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
-        ]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefSystemEqual(
+      buildingHeight.content,
+      BeliefSystem([
+        Belief(Interval(44.51, 48.97), ["shadows"]),
+        Belief(Interval(41.16, 47.24), ["fall-time"]),
+        Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
+      ]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // The answer above should remind the reader of the situation that
@@ -164,14 +159,13 @@ test("examples / barometer-belief-system", async () => {
   await run()
 
   assert(
-    isBeliefSystem(buildingHeight.content) &&
-      beliefEqual(
-        beliefSystemQuery(buildingHeight.content) as Belief<any>,
-        Belief(Interval(44.51, 48.97), ["shadows"]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefEqual(
+      beliefSystemQuery(buildingHeight.content) as Belief<any>,
+      Belief(Interval(44.51, 48.97), ["shadows"]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // If we also remove the shadows premise, our poor system no longer
@@ -183,27 +177,23 @@ test("examples / barometer-belief-system", async () => {
 
   await run()
 
-  assert(
-    isBeliefSystem(buildingHeight.content) &&
-      isNothing(beliefSystemQuery(buildingHeight.content) as Belief<any>),
-  )
+  assert(isNothing(beliefSystemQuery(buildingHeight.content) as Belief<any>))
 
   // The following test that, the `buildingHeight.content`
   // will not change even after calling `kickOut`.
 
   assert(
-    isBeliefSystem(buildingHeight.content) &&
-      beliefSystemEqual(
-        buildingHeight.content,
-        BeliefSystem([
-          Belief(Interval(44.51, 48.97), ["shadows"]),
-          Belief(Interval(41.16, 47.24), ["fall-time"]),
-          Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
-        ]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefSystemEqual(
+      buildingHeight.content,
+      BeliefSystem([
+        Belief(Interval(44.51, 48.97), ["shadows"]),
+        Belief(Interval(41.16, 47.24), ["fall-time"]),
+        Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
+      ]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // We can also ask the system for the best answer it can give if we
@@ -214,14 +204,13 @@ test("examples / barometer-belief-system", async () => {
   await run()
 
   assert(
-    isBeliefSystem(buildingHeight.content) &&
-      beliefEqual(
-        beliefSystemQuery(buildingHeight.content) as Belief<any>,
-        Belief(Interval(41.16, 47.24), ["fall-time"]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefEqual(
+      beliefSystemQuery(buildingHeight.content) as Belief<any>,
+      Belief(Interval(41.16, 47.24), ["fall-time"]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // The consequences of fall-time without shadows are new: this is
@@ -230,18 +219,17 @@ test("examples / barometer-belief-system", async () => {
   // system remembers it:
 
   assert(
-    isBeliefSystem(buildingHeight.content) &&
-      beliefSystemEqual(
-        buildingHeight.content,
-        BeliefSystem([
-          Belief(Interval(44.51, 48.97), ["shadows"]),
-          Belief(Interval(41.16, 47.24), ["fall-time"]),
-          Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
-        ]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefSystemEqual(
+      buildingHeight.content,
+      BeliefSystem([
+        Belief(Interval(44.51, 48.97), ["shadows"]),
+        Belief(Interval(41.16, 47.24), ["fall-time"]),
+        Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
+      ]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // Now, if we give the superintendent a barometer, we can add her
@@ -254,36 +242,34 @@ test("examples / barometer-belief-system", async () => {
   // and observe that it is stored faithfully along with all the rest,
 
   assert(
-    isBeliefSystem(buildingHeight.content) &&
-      beliefSystemEqual(
-        buildingHeight.content,
-        BeliefSystem<Interval | number>([
-          Belief(Interval(44.51, 48.97), ["shadows"]),
-          Belief(Interval(41.16, 47.24), ["fall-time"]),
-          Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
-          Belief(45, ["superintendent"]),
-        ]),
-        {
-          valueEqual: (x, y) => {
-            if (isInterval(x) && isInterval(y)) {
-              return intervalAlmostEqual(x, y, 0.01)
-            } else {
-              return x === y
-            }
-          },
+    beliefSystemEqual(
+      buildingHeight.content,
+      BeliefSystem<Interval | number>([
+        Belief(Interval(44.51, 48.97), ["shadows"]),
+        Belief(Interval(41.16, 47.24), ["fall-time"]),
+        Belief(Interval(44.51, 47.24), ["shadows", "fall-time"]),
+        Belief(45, ["superintendent"]),
+      ]),
+      {
+        valueEqual: (x, y) => {
+          if (isInterval(x) && isInterval(y)) {
+            return intervalAlmostEqual(x, y, 0.01)
+          } else {
+            return x === y
+          }
         },
-      ),
+      },
+    ),
   )
 
   // though indeed if we trust it,
   // it provides the best estimate we have:
 
   assert(
-    isBeliefSystem(buildingHeight.content) &&
-      beliefEqual(
-        beliefSystemQuery(buildingHeight.content) as Belief<any>,
-        Belief(45, ["superintendent"]),
-      ),
+    beliefEqual(
+      beliefSystemQuery(buildingHeight.content) as Belief<any>,
+      Belief(45, ["superintendent"]),
+    ),
   )
 
   // (and restoring our faith in the shadows experiment has no effect
@@ -294,11 +280,10 @@ test("examples / barometer-belief-system", async () => {
   await run()
 
   assert(
-    isBeliefSystem(buildingHeight.content) &&
-      beliefEqual(
-        beliefSystemQuery(buildingHeight.content) as Belief<any>,
-        Belief(45, ["superintendent"]),
-      ),
+    beliefEqual(
+      beliefSystemQuery(buildingHeight.content) as Belief<any>,
+      Belief(45, ["superintendent"]),
+    ),
   )
 
   // On this simple example, we have illustrated a very powerful
@@ -320,23 +305,18 @@ test("examples / barometer-belief-system", async () => {
   // the other measurements in the shadows experiment.
 
   assert(
-    isBeliefSystem(barometerHeight.content) &&
-      beliefSystemEqual(
-        barometerHeight.content,
-        BeliefSystem([
-          Belief(Interval(0.3, 0.32), ["shadows"]),
-          Belief(Interval(0.3, 0.31), ["shadows", "fall-time"]),
-          Belief(Interval(0.3, 0.3), [
-            "shadows",
-            "fall-time",
-            "superintendent",
-          ]),
-          Belief(Interval(0.29, 0.3), ["shadows", "superintendent"]),
-        ]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefSystemEqual(
+      barometerHeight.content,
+      BeliefSystem([
+        Belief(Interval(0.3, 0.32), ["shadows"]),
+        Belief(Interval(0.3, 0.31), ["shadows", "fall-time"]),
+        Belief(Interval(0.3, 0.3), ["shadows", "fall-time", "superintendent"]),
+        Belief(Interval(0.29, 0.3), ["shadows", "superintendent"]),
+      ]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // If we should ask for the best estimate of the height of the
@@ -346,14 +326,13 @@ test("examples / barometer-belief-system", async () => {
   // for answering this question.
 
   assert(
-    isBeliefSystem(barometerHeight.content) &&
-      beliefEqual(
-        beliefSystemQuery(barometerHeight.content) as Belief<any>,
-        Belief(Interval(0.3, 0.3), ["shadows", "fall-time", "superintendent"]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefEqual(
+      beliefSystemQuery(barometerHeight.content) as Belief<any>,
+      Belief(Interval(0.3, 0.3), ["shadows", "fall-time", "superintendent"]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // We can verify the irrelevance of the fall-time measurements by
@@ -365,14 +344,13 @@ test("examples / barometer-belief-system", async () => {
   await run()
 
   assert(
-    isBeliefSystem(barometerHeight.content) &&
-      beliefEqual(
-        beliefSystemQuery(barometerHeight.content) as Belief<any>,
-        Belief(Interval(0.3, 0.3), ["shadows", "superintendent"]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefEqual(
+      beliefSystemQuery(barometerHeight.content) as Belief<any>,
+      Belief(Interval(0.3, 0.3), ["shadows", "superintendent"]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // What is more, having been asked to make that deduction, the truth
@@ -385,32 +363,30 @@ test("examples / barometer-belief-system", async () => {
   await run()
 
   assert(
-    isBeliefSystem(barometerHeight.content) &&
-      beliefEqual(
-        beliefSystemQuery(barometerHeight.content) as Belief<any>,
-        Belief(Interval(0.3, 0.3), ["shadows", "superintendent"]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefEqual(
+      beliefSystemQuery(barometerHeight.content) as Belief<any>,
+      Belief(Interval(0.3, 0.3), ["shadows", "superintendent"]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // and takes the opportunity to dispose of prior deductions that are
   // obsoleted by this new realization.
 
   assert(
-    isBeliefSystem(barometerHeight.content) &&
-      beliefSystemEqual(
-        barometerHeight.content,
-        BeliefSystem([
-          Belief(Interval(0.3, 0.32), ["shadows"]),
-          Belief(Interval(0.3, 0.31), ["shadows", "fall-time"]),
-          Belief(Interval(0.3, 0.3), ["shadows", "superintendent"]),
-        ]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefSystemEqual(
+      barometerHeight.content,
+      BeliefSystem([
+        Belief(Interval(0.3, 0.32), ["shadows"]),
+        Belief(Interval(0.3, 0.31), ["shadows", "fall-time"]),
+        Belief(Interval(0.3, 0.3), ["shadows", "superintendent"]),
+      ]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // We have been fortunate so far in having all our measurements
@@ -433,11 +409,10 @@ test("examples / barometer-belief-system", async () => {
   // absence of a good answer,
 
   assert(
-    isBeliefSystem(buildingHeight.content) &&
-      beliefEqual(
-        beliefSystemQuery(buildingHeight.content) as Belief<any>,
-        Belief(theContradiction, ["pressure", "superintendent"]),
-      ),
+    beliefEqual(
+      beliefSystemQuery(buildingHeight.content) as Belief<any>,
+      Belief(theContradiction, ["pressure", "superintendent"]),
+    ),
   )
 
   // but it is appropriate for the system not to propagate
@@ -445,14 +420,13 @@ test("examples / barometer-belief-system", async () => {
   // barometer-height remains unchanged:
 
   assert(
-    isBeliefSystem(barometerHeight.content) &&
-      beliefEqual(
-        beliefSystemQuery(barometerHeight.content) as Belief<any>,
-        Belief(Interval(0.3, 0.3), ["shadows", "superintendent"]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefEqual(
+      beliefSystemQuery(barometerHeight.content) as Belief<any>,
+      Belief(Interval(0.3, 0.3), ["shadows", "superintendent"]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // It is up to us as the users of the system to choose which
@@ -469,27 +443,25 @@ test("examples / barometer-belief-system", async () => {
   // ["shadows", "pressure"]
 
   assert(
-    isBeliefSystem(buildingHeight.content) &&
-      beliefEqual(
-        beliefSystemQuery(buildingHeight.content) as Belief<any>,
-        Belief(Interval(46, 47.24), ["shadows", "pressure", "fall-time"]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefEqual(
+      beliefSystemQuery(buildingHeight.content) as Belief<any>,
+      Belief(Interval(46, 47.24), ["shadows", "pressure", "fall-time"]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // and on that of the barometer.
 
   assert(
-    isBeliefSystem(barometerHeight.content) &&
-      beliefEqual(
-        beliefSystemQuery(barometerHeight.content) as Belief<any>,
-        Belief(Interval(0.3, 0.31), ["shadows", "pressure", "fall-time"]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefEqual(
+      beliefSystemQuery(barometerHeight.content) as Belief<any>,
+      Belief(Interval(0.3, 0.31), ["shadows", "pressure", "fall-time"]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // Doing so does not cost us previously learned data, so we are free
@@ -502,25 +474,23 @@ test("examples / barometer-belief-system", async () => {
   await run()
 
   assert(
-    isBeliefSystem(buildingHeight.content) &&
-      beliefEqual(
-        beliefSystemQuery(buildingHeight.content) as Belief<any>,
-        Belief(45, ["superintendent"]),
-        {
-          valueEqual: (x, y) => x === y,
-        },
-      ),
+    beliefEqual(
+      beliefSystemQuery(buildingHeight.content) as Belief<any>,
+      Belief(45, ["superintendent"]),
+      {
+        valueEqual: (x, y) => x === y,
+      },
+    ),
   )
 
   assert(
-    isBeliefSystem(barometerHeight.content) &&
-      beliefEqual(
-        beliefSystemQuery(barometerHeight.content) as Belief<any>,
-        Belief(Interval(0.3, 0.3), ["shadows", "superintendent"]),
-        {
-          valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
-        },
-      ),
+    beliefEqual(
+      beliefSystemQuery(barometerHeight.content) as Belief<any>,
+      Belief(Interval(0.3, 0.3), ["shadows", "superintendent"]),
+      {
+        valueEqual: (x, y) => intervalAlmostEqual(x, y, 0.01),
+      },
+    ),
   )
 
   // As promised, contradictory beliefs are not traumatic. The deep

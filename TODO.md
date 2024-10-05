@@ -2,9 +2,11 @@
 
 > https://github.com/cicada-lang/propagator/issues/4
 
-global map about about nogood
-
 恢复之前实现时忽略的 check-consistent! 和 process-nogood!
+
+- belief-system/checkConsistent.ts
+
+global map about about nogood
 
 propagators/binaryAmb
 propagators/oneOf
