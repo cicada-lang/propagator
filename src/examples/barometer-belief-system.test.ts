@@ -439,8 +439,8 @@ test("examples / barometer-belief-system", async () => {
 
   // both on our understanding of the height of the building
 
-  // TODO In the paper, the following reasons are:
-  // ["shadows", "pressure"]
+  // TODO In the paper, the reasons for the following belief are:
+  // ["fall-time", "pressure"]
 
   assert(
     beliefEqual(
@@ -498,4 +498,16 @@ test("examples / barometer-belief-system", async () => {
   // the-contradiction is just another partial information state, and
   // our truth maintenance machinery operates on partial information
   // by design.
+
+  // TODO 为了实现下面的效果，scheme 实现中用到了 call/cc，
+  // 在 JS 的实现中我做不到 stop computing things immediately。
+
+  // On the other hand, contradictions are not quite like the other
+  // kinds of partial information, because we chose to make them have
+  // a global effect: we wanted our system to stop computing things in
+  // a given worldview immediately, as soon as it discovered that
+  // worldview to be contradictory anywhere. We must therefore do some
+  // work to treat contradictions a little specially. This work is a
+  // consequence of our particular choice of making the worldview
+  // global.
 })
