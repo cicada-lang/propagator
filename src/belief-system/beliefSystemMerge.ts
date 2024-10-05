@@ -10,11 +10,12 @@ import { BeliefSystem } from "./BeliefSystem.js"
 // current one, and then deduce only those consequences that are
 // relevant to the current worldview.
 
-export function beliefSystemMerge<A, B>(
+export function beliefSystemMerge<A>(
   content: BeliefSystem<A>,
-  increment: BeliefSystem<B>,
-): BeliefSystem<A | B> | Contradiction {
+  increment: BeliefSystem<A>,
+): BeliefSystem<A> | Contradiction {
   const candidate = assimilateBeliefSystem(content, increment)
   const consequence = beliefMergeManyStillBelieved(candidate.beliefs)
+  // checkConsistent(consequence)
   return assimilateBelief(candidate, consequence)
 }

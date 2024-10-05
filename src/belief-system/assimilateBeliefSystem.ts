@@ -5,11 +5,11 @@ import type { BeliefSystem } from "./BeliefSystem.js"
 // one, into the given belief system with no deduction of
 // consequences.
 
-export function assimilateBeliefSystem<A, B>(
+export function assimilateBeliefSystem<A>(
   base: BeliefSystem<A>,
-  target: BeliefSystem<B>,
-): BeliefSystem<A | B> {
-  return target.beliefs.reduce<BeliefSystem<A | B>>(
+  target: BeliefSystem<A>,
+): BeliefSystem<A> {
+  return target.beliefs.reduce<BeliefSystem<A>>(
     (result, belief) => assimilateBelief(result, belief),
     base,
   )
