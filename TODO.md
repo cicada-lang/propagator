@@ -3,8 +3,6 @@
 > https://github.com/cicada-lang/propagator/issues/4
 
 `nogood/` -- global map about about nogood
-`nogood/` -- `processNogood` -- should be called by `checkConsistent`
-
 `checkConsistent` -- 恢复之前实现时忽略的 check-consistent!
 
 propagators/binaryAmb
