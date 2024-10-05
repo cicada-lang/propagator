@@ -1,8 +1,11 @@
-import { type Belief } from "../belief/index.js"
+import {
+  beliefMergeManyStillBelieved,
+  checkConsistent,
+  type Belief,
+} from "../belief/index.js"
 import type { Nothing } from "../nothing/Nothing.js"
 import type { BeliefSystem } from "./BeliefSystem.js"
 import { assimilateBelief } from "./assimilateBelief.js"
-import { beliefMergeManyStillBelieved } from "./beliefMergeManyStillBelieved.js"
 
 export function beliefSystemQuery<A>(
   beliefSystem: BeliefSystem<A>,
@@ -13,5 +16,6 @@ export function beliefSystemQuery<A>(
     beliefSystem.beliefs = betterBeliefSystem.beliefs
   }
 
+  checkConsistent(answer)
   return answer
 }

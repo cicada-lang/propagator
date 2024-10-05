@@ -4,10 +4,8 @@ import {
   BeliefSystem,
   beliefSystemEqual,
   beliefSystemQuery,
-  bringIn,
-  kickOut,
 } from "../belief-system/index.js"
-import { Belief, beliefEqual } from "../belief/index.js"
+import { Belief, beliefEqual, bringIn, kickOut } from "../belief/index.js"
 import { Cell, patch } from "../cell/index.js"
 import { theContradiction } from "../contradiction/index.js"
 import { Interval, intervalAlmostEqual, isInterval } from "../interval/index.js"

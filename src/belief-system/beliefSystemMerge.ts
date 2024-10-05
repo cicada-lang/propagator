@@ -1,7 +1,10 @@
+import {
+  beliefMergeManyStillBelieved,
+  checkConsistent,
+} from "../belief/index.js"
 import { type Contradiction } from "../contradiction/index.js"
 import { assimilateBelief } from "./assimilateBelief.js"
 import { assimilateBeliefSystem } from "./assimilateBeliefSystem.js"
-import { beliefMergeManyStillBelieved } from "./beliefMergeManyStillBelieved.js"
 import { BeliefSystem } from "./BeliefSystem.js"
 
 // Asking the belief system to deduce all the consequences of all its
@@ -16,6 +19,6 @@ export function beliefSystemMerge<A>(
 ): BeliefSystem<A> | Contradiction {
   const candidate = assimilateBeliefSystem(content, increment)
   const consequence = beliefMergeManyStillBelieved(candidate.beliefs)
-  // checkConsistent(consequence)
+  checkConsistent(consequence)
   return assimilateBelief(candidate, consequence)
 }
