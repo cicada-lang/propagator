@@ -1,6 +1,6 @@
 import { beliefMerge, isBelief, toBelief } from "../belief/index.js"
+import { isContradictory } from "../contradiction/index.js"
 import { defineHandler } from "../generic/index.js"
-import { detectMergeConflict } from "../merge-conflict/index.js"
 import { coercing } from "../utils/coercing.js"
 import { isPrimitive } from "./isPrimitive.js"
 import { merge } from "./merge.js"
@@ -18,6 +18,6 @@ defineHandler(merge, [isBelief, isPrimitive], coercing(toBelief, beliefMerge))
 // contradiction, and whose support can carry information about why
 // the contradiction arose.
 
-defineHandler(detectMergeConflict, [isBelief], (belief) =>
-  detectMergeConflict(belief.value),
+defineHandler(isContradictory, [isBelief], (belief) =>
+  isContradictory(belief.value),
 )

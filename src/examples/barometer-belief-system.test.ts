@@ -10,8 +10,8 @@ import {
 } from "../belief-system/index.js"
 import { Belief, beliefEqual } from "../belief/index.js"
 import { Cell, patch } from "../cell/index.js"
+import { theContradiction } from "../contradiction/index.js"
 import { Interval, intervalAlmostEqual, isInterval } from "../interval/index.js"
-import { theMergeConflict } from "../merge-conflict/index.js"
 import { isNothing } from "../nothing/index.js"
 import { run } from "../scheduler/index.js"
 import { fallDuration, similarTriangles } from "./barometer.js"
@@ -436,7 +436,7 @@ test("examples / barometer-belief-system", async () => {
     isBeliefSystem(buildingHeight.content) &&
       beliefEqual(
         beliefSystemQuery(buildingHeight.content) as Belief<any>,
-        Belief(theMergeConflict, ["pressure", "superintendent"]),
+        Belief(theContradiction, ["pressure", "superintendent"]),
       ),
   )
 

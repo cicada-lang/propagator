@@ -18,8 +18,6 @@ examples/multipleDwelling
 
 # maybe
 
-`MergeConflict` -- 应该被命名为 `Contradiction`
-
 `Propagator` -- 应该是 `{ definition: PropagatorDefinition, args }`
 
 - NOTE 这样可能会限制实现方式，导致某些 propagator 难以实现，

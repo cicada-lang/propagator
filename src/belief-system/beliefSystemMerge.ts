@@ -1,4 +1,4 @@
-import { type MergeConflict } from "../merge-conflict/index.js"
+import { type Contradiction } from "../contradiction/index.js"
 import { assimilateBelief } from "./assimilateBelief.js"
 import { assimilateBeliefSystem } from "./assimilateBeliefSystem.js"
 import { beliefMergeManyStillBelieved } from "./beliefMergeManyStillBelieved.js"
@@ -13,7 +13,7 @@ import { BeliefSystem } from "./BeliefSystem.js"
 export function beliefSystemMerge<A, B>(
   content: BeliefSystem<A>,
   increment: BeliefSystem<B>,
-): BeliefSystem<A | B> | MergeConflict {
+): BeliefSystem<A | B> | Contradiction {
   const candidate = assimilateBeliefSystem(content, increment)
   const consequence = beliefMergeManyStillBelieved(candidate.beliefs)
   return assimilateBelief(candidate, consequence)
