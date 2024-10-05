@@ -1,16 +1,20 @@
-# docs
-
-[docs] 总结各种 monad 的用法
-
 # 4.4 Dependencies Improve Search
 
 > https://github.com/cicada-lang/propagator/issues/4
 
 global map about about nogood
 
+恢复之前实现时忽略的 check-consistent! 和 process-nogood!
+
 propagators/binaryAmb
 propagators/oneOf
 examples/multipleDwelling
+
+用 SAT solver 来测试 binaryAmb
+
+# docs
+
+[docs] 总结各种 monad 的用法
 
 # maybe
 
