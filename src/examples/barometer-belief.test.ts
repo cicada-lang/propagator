@@ -1,10 +1,10 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { Belief, beliefEqual, isBelief } from "../belief/index.js"
-import { Cell, patch } from "../cell/index.js"
-import { Interval, intervalAlmostEqual } from "../interval/index.js"
-import { run } from "../scheduler/index.js"
-import { fallDuration, similarTriangles } from "./barometer.js"
+import { Belief, beliefEqual, isBelief } from "../belief/index.ts"
+import { Cell, patch } from "../cell/index.ts"
+import { Interval, intervalAlmostEqual } from "../interval/index.ts"
+import { run } from "../scheduler/index.ts"
+import { fallDuration, similarTriangles } from "./barometer.ts"
 
 test("examples / barometer-belief", async () => {
   const [barometerShadow, barometerHeight, buildingShadow, buildingHeight] =

@@ -1,5 +1,5 @@
-import { globalScheduler } from "./globalScheduler.js"
-import type { Job } from "./Scheduler.js"
+import { globalScheduler } from "./globalScheduler.ts"
+import type { Job } from "./Scheduler.ts"
 
 export async function run(): Promise<void> {
   while (globalScheduler.jobs.length > 0) {

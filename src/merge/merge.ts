@@ -1,4 +1,4 @@
-import { defineGeneric } from "../generic/index.js"
+import { defineGeneric } from "../generic/index.ts"
 
 // # The contract of `merge`
 //

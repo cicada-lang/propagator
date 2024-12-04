@@ -1,1 +1,1 @@
-export * from "./Set.js"
+export * from "./Set.ts"

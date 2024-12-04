@@ -1,8 +1,8 @@
 import assert from "node:assert"
 import test from "node:test"
-import { nothing } from "../nothing/Nothing.js"
-import { run } from "../scheduler/index.js"
-import { constantCell } from "./constant.js"
+import { nothing } from "../nothing/Nothing.ts"
+import { run } from "../scheduler/index.ts"
+import { constantCell } from "./constant.ts"
 
 test("propagators / constant", async () => {
   const x = constantCell(1)

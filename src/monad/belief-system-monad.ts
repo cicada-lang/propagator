@@ -2,11 +2,11 @@ import {
   BeliefSystem,
   beliefSystemQuery,
   isBeliefSystem,
-} from "../belief-system/index.js"
-import { Belief, isBelief } from "../belief/index.js"
-import { defineHandler } from "../generic/index.js"
-import { isFunction } from "../utils/isFunction.js"
-import { flatten, fmap } from "./monad.js"
+} from "../belief-system/index.ts"
+import { Belief, isBelief } from "../belief/index.ts"
+import { defineHandler } from "../generic/index.ts"
+import { isFunction } from "../utils/isFunction.ts"
+import { flatten, fmap } from "./monad.ts"
 
 // If the input is a belief system, query it, operate on that, and
 // pack the result up into a (one-item) belief system.

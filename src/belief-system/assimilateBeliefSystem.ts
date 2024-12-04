@@ -1,5 +1,5 @@
-import { assimilateBelief } from "./assimilateBelief.js"
-import type { BeliefSystem } from "./BeliefSystem.js"
+import { assimilateBelief } from "./assimilateBelief.ts"
+import type { BeliefSystem } from "./BeliefSystem.ts"
 
 // The procedure `assimilate` incorporates all the given items, one by
 // one, into the given belief system with no deduction of

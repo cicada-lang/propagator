@@ -1,9 +1,9 @@
-import { Belief, isBelief } from "../belief/index.js"
-import { defineHandler } from "../generic/index.js"
-import { isNothing, nothing } from "../nothing/index.js"
-import { isFunction } from "../utils/isFunction.js"
-import { setUnion } from "../utils/set/index.js"
-import { bind, flatten, fmap } from "./monad.js"
+import { Belief, isBelief } from "../belief/index.ts"
+import { defineHandler } from "../generic/index.ts"
+import { isNothing, nothing } from "../nothing/index.ts"
+import { isFunction } from "../utils/isFunction.ts"
+import { setUnion } from "../utils/set/index.ts"
+import { bind, flatten, fmap } from "./monad.ts"
 
 defineHandler(fmap, [isFunction, isBelief], (f, ma) =>
   Belief(bind(ma.value, f), ma.reasons),

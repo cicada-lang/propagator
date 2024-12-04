@@ -1,1 +1,1 @@
-export * from "./Nothing.js"
+export * from "./Nothing.ts"

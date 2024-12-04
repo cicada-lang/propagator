@@ -1,6 +1,6 @@
 // https://en.wikipedia.org/wiki/Interval_arithmetic
 
-import { Interval } from "./Interval.js"
+import { Interval } from "./Interval.ts"
 
 export function intervalAdd(x: Interval, y: Interval): Interval {
   return Interval(x.low + y.low, x.high + y.high)

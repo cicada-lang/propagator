@@ -2,12 +2,12 @@ import {
   beliefSystemMerge,
   isBeliefSystem,
   toBeliefSystem,
-} from "../belief-system/index.js"
-import { isBelief } from "../belief/index.js"
-import { defineHandler } from "../generic/index.js"
-import { coercing } from "../utils/coercing.js"
-import { isPrimitive } from "./isPrimitive.js"
-import { merge } from "./merge.js"
+} from "../belief-system/index.ts"
+import { isBelief } from "../belief/index.ts"
+import { defineHandler } from "../generic/index.ts"
+import { coercing } from "../utils/coercing.ts"
+import { isPrimitive } from "./isPrimitive.ts"
+import { merge } from "./merge.ts"
 
 defineHandler(merge, [isBeliefSystem, isBeliefSystem], beliefSystemMerge)
 defineHandler(

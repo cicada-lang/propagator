@@ -1,11 +1,11 @@
-import { Cell, addPropagator, patch } from "../cell/index.js"
-import { naryFmap } from "../monad/index.js"
-import { schedule } from "../scheduler/index.js"
-import type { MaybePromise } from "../utils/MaybePromise.js"
-import { log } from "../utils/log.js"
-import { repeatApply } from "../utils/repeatApply.js"
-import type { Propagator } from "./Propagator.js"
-import { type PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.js"
+import { Cell, addPropagator, patch } from "../cell/index.ts"
+import { naryFmap } from "../monad/index.ts"
+import { schedule } from "../scheduler/index.ts"
+import type { MaybePromise } from "../utils/MaybePromise.ts"
+import { log } from "../utils/log.ts"
+import { repeatApply } from "../utils/repeatApply.ts"
+import type { Propagator } from "./Propagator.ts"
+import { type PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.ts"
 
 // # 关于 arity 的含义
 // 我们知道所有的 primitive 都是函数，

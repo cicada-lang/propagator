@@ -1,3 +1,3 @@
-export * from "./arithmetic.js"
-export * from "./boolean.js"
-export * from "./quadratic.js"
+export * from "./arithmetic.ts"
+export * from "./boolean.ts"
+export * from "./quadratic.ts"

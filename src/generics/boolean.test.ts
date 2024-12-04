@@ -1,6 +1,6 @@
 import assert from "node:assert"
 import test from "node:test"
-import { and, not, or } from "./boolean.js"
+import { and, not, or } from "./boolean.ts"
 
 test("generics / boolean", () => {
   assert.deepStrictEqual(not(true), false)

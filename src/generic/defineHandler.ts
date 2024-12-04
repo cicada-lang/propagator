@@ -2,7 +2,7 @@ import type {
   GenericDefinition,
   GenericHandler,
   Predicate,
-} from "./GenericDefinition.js"
+} from "./GenericDefinition.ts"
 
 export function defineHandler(
   definition: GenericDefinition,

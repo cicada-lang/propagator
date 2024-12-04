@@ -1,5 +1,5 @@
-import { Cell } from "../cell/index.js"
-import { definePropagator } from "../propagator/index.js"
+import { Cell } from "../cell/index.ts"
+import { definePropagator } from "../propagator/index.ts"
 import {
   constantCell,
   divider,
@@ -7,7 +7,7 @@ import {
   product,
   subtractor,
   sum,
-} from "../propagators/index.js"
+} from "../propagators/index.ts"
 
 // c = (f - 32) * 5/9
 

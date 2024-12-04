@@ -1,5 +1,5 @@
-import { nothing, type Nothing } from "../nothing/index.js"
-import type { Propagator } from "../propagator/index.js"
+import { nothing, type Nothing } from "../nothing/index.ts"
+import type { Propagator } from "../propagator/index.ts"
 
 export type Cell<T> = {
   "@type": "Cell"

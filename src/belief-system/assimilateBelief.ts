@@ -1,7 +1,7 @@
-import type { Belief } from "../belief/index.js"
-import { isStrongerBelief } from "../belief/index.js"
-import { type Nothing, isNothing } from "../nothing/index.js"
-import { BeliefSystem } from "./BeliefSystem.js"
+import type { Belief } from "../belief/index.ts"
+import { isStrongerBelief } from "../belief/index.ts"
+import { type Nothing, isNothing } from "../nothing/index.ts"
+import { BeliefSystem } from "./BeliefSystem.ts"
 
 export function assimilateBelief<A>(
   base: BeliefSystem<A>,

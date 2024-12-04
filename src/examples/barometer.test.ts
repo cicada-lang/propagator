@@ -1,9 +1,9 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { Cell, patch } from "../cell/index.js"
-import { Interval, intervalAlmostEqual } from "../interval/index.js"
-import { run } from "../scheduler/index.js"
-import { fallDuration, similarTriangles } from "./barometer.js"
+import { Cell, patch } from "../cell/index.ts"
+import { Interval, intervalAlmostEqual } from "../interval/index.ts"
+import { run } from "../scheduler/index.ts"
+import { fallDuration, similarTriangles } from "./barometer.ts"
 
 test("examples / barometer / fallDuration", async () => {
   const [fallTime, buildingHeight] = fallDuration()

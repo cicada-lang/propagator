@@ -1,8 +1,8 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { Cell, patch } from "../cell/index.js"
-import { run } from "../scheduler/index.js"
-import { adder, multiplier, product, sum } from "./index.js"
+import { Cell, patch } from "../cell/index.ts"
+import { run } from "../scheduler/index.ts"
+import { adder, multiplier, product, sum } from "./index.ts"
 
 test("propagators / arithmetic / adder", async () => {
   const [x, y, z] = adder()

@@ -1,1 +1,1 @@
-export * from "./processNogood.js"
+export * from "./processNogood.ts"

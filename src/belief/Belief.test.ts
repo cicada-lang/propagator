@@ -1,9 +1,9 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { Cell, patch } from "../cell/index.js"
-import { Interval, intervalAlmostEqual } from "../interval/index.js"
-import { run } from "../scheduler/index.js"
-import { Belief, beliefEqual, isBelief } from "./index.js"
+import { Cell, patch } from "../cell/index.ts"
+import { Interval, intervalAlmostEqual } from "../interval/index.ts"
+import { run } from "../scheduler/index.ts"
+import { Belief, beliefEqual, isBelief } from "./index.ts"
 
 test("dependency / a justified-intervals anomaly", async () => {
   // A:     [           ]

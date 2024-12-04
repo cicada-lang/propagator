@@ -1,1 +1,1 @@
-export * from "./QuotientSet.js"
+export * from "./QuotientSet.ts"

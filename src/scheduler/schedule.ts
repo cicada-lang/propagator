@@ -1,5 +1,5 @@
-import type { Propagator } from "../propagator/index.js"
-import { globalScheduler } from "./globalScheduler.js"
+import type { Propagator } from "../propagator/index.ts"
+import { globalScheduler } from "./globalScheduler.ts"
 
 const allEverScheduledPropagators = new Set<Propagator>()
 

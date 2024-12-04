@@ -1,4 +1,4 @@
-import { defineGeneric } from "../generic/index.js"
+import { defineGeneric } from "../generic/index.ts"
 
 // ((A) -> B, M(A)) -> M(B)
 export const fmap = defineGeneric({ default: (f, ma) => f(ma) })

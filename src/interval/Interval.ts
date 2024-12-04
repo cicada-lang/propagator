@@ -1,4 +1,4 @@
-import { isNonNullObject } from "../utils/isNonNullObject.js"
+import { isNonNullObject } from "../utils/isNonNullObject.ts"
 
 export type Interval = {
   "@type": "Interval"

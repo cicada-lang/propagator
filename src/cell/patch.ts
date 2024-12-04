@@ -1,6 +1,6 @@
-import { merge } from "../merge/index.js"
-import { schedule } from "../scheduler/index.js"
-import { type Cell } from "./Cell.js"
+import { merge } from "../merge/index.ts"
+import { schedule } from "../scheduler/index.ts"
+import { type Cell } from "./Cell.ts"
 
 export function patch<T>(cell: Cell<T>, increment?: any): void {
   const newContent = merge(cell.content, increment)

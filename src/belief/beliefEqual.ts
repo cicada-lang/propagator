@@ -1,5 +1,5 @@
-import { setEqual } from "../utils/set/index.js"
-import { type Belief } from "./index.js"
+import { setEqual } from "../utils/set/index.ts"
+import { type Belief } from "./index.ts"
 
 export function beliefEqual<A>(
   x: Belief<A>,

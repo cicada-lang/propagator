@@ -1,7 +1,7 @@
-import { theContradiction } from "../contradiction/index.js"
-import { defineHandler } from "../generic/index.js"
-import { isNumber } from "../utils/isNumber.js"
-import { merge } from "./merge.js"
+import { theContradiction } from "../contradiction/index.ts"
+import { defineHandler } from "../generic/index.ts"
+import { isNumber } from "../utils/isNumber.ts"
+import { merge } from "./merge.ts"
 
 defineHandler(merge, [isNumber, isNumber], (content, increment) =>
   increment === content ? content : theContradiction,

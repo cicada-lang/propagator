@@ -1,6 +1,6 @@
-import { merge } from "../merge/merge.js"
-import { type Nothing, nothing } from "../nothing/Nothing.js"
-import type { Belief } from "./Belief.js"
+import { merge } from "../merge/merge.ts"
+import { type Nothing, nothing } from "../nothing/Nothing.ts"
+import type { Belief } from "./Belief.ts"
 
 export function beliefMergeMany<A>(
   beliefs: Array<Belief<A>>,

@@ -1,5 +1,5 @@
-import { toReasons, type Reasons } from "../reason/index.js"
-import { isNonNullObject } from "../utils/isNonNullObject.js"
+import { toReasons, type Reasons } from "../reason/index.ts"
+import { isNonNullObject } from "../utils/isNonNullObject.ts"
 
 export type Belief<T> = {
   "@type": "Belief"

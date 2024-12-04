@@ -1,7 +1,7 @@
-import { isContradictory } from "../contradiction/isContradictory.js"
-import { processNogood } from "../nogood/index.js"
-import type { Nothing } from "../nothing/index.js"
-import { isBelief, type Belief } from "./Belief.js"
+import { isContradictory } from "../contradiction/isContradictory.ts"
+import { processNogood } from "../nogood/index.ts"
+import type { Nothing } from "../nothing/index.ts"
+import { isBelief, type Belief } from "./Belief.ts"
 
 export function checkConsistent(belief: Nothing | Belief<any>): void {
   if (isBelief(belief)) {

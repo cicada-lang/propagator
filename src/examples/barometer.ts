@@ -1,7 +1,7 @@
-import { Cell } from "../cell/index.js"
-import { Interval } from "../interval/index.js"
-import { definePropagator } from "../propagator/index.js"
-import { constantCell, product, quadratic } from "../propagators/index.js"
+import { Cell } from "../cell/index.ts"
+import { Interval } from "../interval/index.ts"
+import { definePropagator } from "../propagator/index.ts"
+import { constantCell, product, quadratic } from "../propagators/index.ts"
 
 // h = (1 / 2) * g * t * t
 

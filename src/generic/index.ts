@@ -1,3 +1,3 @@
-export * from "./defineGeneric.js"
-export * from "./defineHandler.js"
-export * from "./GenericDefinition.js"
+export * from "./defineGeneric.ts"
+export * from "./defineHandler.ts"
+export * from "./GenericDefinition.ts"

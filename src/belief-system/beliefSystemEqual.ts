@@ -1,6 +1,6 @@
-import { type Belief, beliefEqual } from "../belief/index.js"
-import { QuotientSet } from "../utils/quotient-set/index.js"
-import type { BeliefSystem } from "./BeliefSystem.js"
+import { type Belief, beliefEqual } from "../belief/index.ts"
+import { QuotientSet } from "../utils/quotient-set/index.ts"
+import type { BeliefSystem } from "./BeliefSystem.ts"
 
 export function beliefSystemEqual<A>(
   x: BeliefSystem<A>,

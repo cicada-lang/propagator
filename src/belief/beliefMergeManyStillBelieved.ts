@@ -1,7 +1,7 @@
-import type { Belief } from "../belief/Belief.js"
-import { beliefMergeMany } from "../belief/index.js"
-import { type Nothing } from "../nothing/Nothing.js"
-import { isStillBelieved } from "./isStillBelieved.js"
+import type { Belief } from "../belief/Belief.ts"
+import { beliefMergeMany } from "../belief/index.ts"
+import { type Nothing } from "../nothing/Nothing.ts"
+import { isStillBelieved } from "./isStillBelieved.ts"
 
 // This function finds the most informative consequence
 // of the current worldview. It does this by using merge to combine

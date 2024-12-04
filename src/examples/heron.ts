@@ -1,5 +1,5 @@
-import { definePropagator } from "../propagator/index.js"
-import { adder, constantCell, divider } from "../propagators/index.js"
+import { definePropagator } from "../propagator/index.ts"
+import { adder, constantCell, divider } from "../propagators/index.ts"
 
 // h = (g + x/g) / 2
 

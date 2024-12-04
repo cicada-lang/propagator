@@ -1,9 +1,9 @@
-import { beliefMerge, isBelief, toBelief } from "../belief/index.js"
-import { isContradictory } from "../contradiction/index.js"
-import { defineHandler } from "../generic/index.js"
-import { coercing } from "../utils/coercing.js"
-import { isPrimitive } from "./isPrimitive.js"
-import { merge } from "./merge.js"
+import { beliefMerge, isBelief, toBelief } from "../belief/index.ts"
+import { isContradictory } from "../contradiction/index.ts"
+import { defineHandler } from "../generic/index.ts"
+import { coercing } from "../utils/coercing.ts"
+import { isPrimitive } from "./isPrimitive.ts"
+import { merge } from "./merge.ts"
 
 defineHandler(merge, [isBelief, isBelief], beliefMerge)
 defineHandler(merge, [isPrimitive, isBelief], coercing(toBelief, beliefMerge))

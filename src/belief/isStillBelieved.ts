@@ -1,6 +1,6 @@
-import { Belief } from "../belief/index.js"
-import { type Reason, type Reasons } from "../reason/index.js"
-import { scheduleAllEverScheduledPropagators } from "../scheduler/index.js"
+import { Belief } from "../belief/index.ts"
+import { type Reason, type Reasons } from "../reason/index.ts"
+import { scheduleAllEverScheduledPropagators } from "../scheduler/index.ts"
 
 export function isStillBelieved<A>(belief: Belief<A>): boolean {
   return Array.from(belief.reasons).every(isReasonBelieved)

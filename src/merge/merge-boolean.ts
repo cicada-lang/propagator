@@ -1,7 +1,7 @@
-import { theContradiction } from "../contradiction/index.js"
-import { defineHandler } from "../generic/index.js"
-import { isBoolean } from "../utils/isBoolean.js"
-import { merge } from "./merge.js"
+import { theContradiction } from "../contradiction/index.ts"
+import { defineHandler } from "../generic/index.ts"
+import { isBoolean } from "../utils/isBoolean.ts"
+import { merge } from "./merge.ts"
 
 defineHandler(merge, [isBoolean, isBoolean], (content, increment) =>
   increment === content ? content : theContradiction,

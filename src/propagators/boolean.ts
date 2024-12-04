@@ -1,5 +1,5 @@
-import { and, not, or } from "../generics/index.js"
-import { definePrimitive } from "../propagator/index.js"
+import { and, not, or } from "../generics/index.ts"
+import { definePrimitive } from "../propagator/index.ts"
 
 export const inverter = definePrimitive(2, not)
 export const conjoiner = definePrimitive(3, and)

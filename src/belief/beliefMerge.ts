@@ -1,6 +1,6 @@
-import { merge } from "../merge/index.js"
-import { setIsSubsetOf, setUnion } from "../utils/set/index.js"
-import { Belief } from "./Belief.js"
+import { merge } from "../merge/index.ts"
+import { setIsSubsetOf, setUnion } from "../utils/set/index.ts"
+import { Belief } from "./Belief.ts"
 
 // The important thing is to describe how to merge the information
 // contained in two such data structures; The value contained in the

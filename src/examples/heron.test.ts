@@ -1,8 +1,8 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { Cell, patch } from "../cell/index.js"
-import { run } from "../scheduler/index.js"
-import { heronStep } from "./heron.js"
+import { Cell, patch } from "../cell/index.ts"
+import { run } from "../scheduler/index.ts"
+import { heronStep } from "./heron.ts"
 
 test("examples / heron / heronStep", async () => {
   const [x, guess, betterGuess] = heronStep()

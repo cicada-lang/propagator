@@ -1,4 +1,4 @@
-import type { Reasons } from "../reason/index.js"
+import type { Reasons } from "../reason/index.ts"
 
 export function processNogood(reasons: Reasons): void {
   const who = "processNogood"

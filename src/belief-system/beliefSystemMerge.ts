@@ -1,11 +1,11 @@
 import {
   beliefMergeManyStillBelieved,
   checkConsistent,
-} from "../belief/index.js"
-import { type Contradiction } from "../contradiction/index.js"
-import { assimilateBelief } from "./assimilateBelief.js"
-import { assimilateBeliefSystem } from "./assimilateBeliefSystem.js"
-import { BeliefSystem } from "./BeliefSystem.js"
+} from "../belief/index.ts"
+import { type Contradiction } from "../contradiction/index.ts"
+import { assimilateBelief } from "./assimilateBelief.ts"
+import { assimilateBeliefSystem } from "./assimilateBeliefSystem.ts"
+import { BeliefSystem } from "./BeliefSystem.ts"
 
 // Asking the belief system to deduce all the consequences of all its
 // beliefs all the time is perhaps a bad idea, so when we merge belief

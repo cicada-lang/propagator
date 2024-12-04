@@ -1,5 +1,5 @@
-import { Belief, isBelief } from "../belief/index.js"
-import { isNonNullObject } from "../utils/isNonNullObject.js"
+import { Belief, isBelief } from "../belief/index.ts"
+import { isNonNullObject } from "../utils/isNonNullObject.ts"
 
 export type BeliefSystem<A> = {
   "@type": "BeliefSystem"

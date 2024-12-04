@@ -1,7 +1,7 @@
-import { defineHandler } from "../generic/index.js"
-import { isNothing, nothing } from "../nothing/index.js"
-import { isFunction } from "../utils/isFunction.js"
-import { flatten, fmap } from "./monad.js"
+import { defineHandler } from "../generic/index.ts"
+import { isNothing, nothing } from "../nothing/index.ts"
+import { isFunction } from "../utils/isFunction.ts"
+import { flatten, fmap } from "./monad.ts"
 
 defineHandler(fmap, [isFunction, isNothing], (f, ma) => nothing)
 

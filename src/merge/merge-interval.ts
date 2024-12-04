@@ -1,14 +1,14 @@
-import { theContradiction } from "../contradiction/index.js"
-import { defineHandler } from "../generic/index.js"
+import { theContradiction } from "../contradiction/index.ts"
+import { defineHandler } from "../generic/index.ts"
 import {
   intervalContainsNumber,
   intervalEqual,
   intervalIntersect,
   intervalIsEmpty,
   isInterval,
-} from "../interval/index.js"
-import { isNumber } from "../utils/isNumber.js"
-import { merge } from "./merge.js"
+} from "../interval/index.ts"
+import { isNumber } from "../utils/isNumber.ts"
+import { merge } from "./merge.ts"
 
 defineHandler(merge, [isInterval, isInterval], (content, increment) => {
   const newInterval = intervalIntersect(content, increment)

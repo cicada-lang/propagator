@@ -1,5 +1,5 @@
-import { definePropagator } from "../propagator/index.js"
-import { inverter, switcher } from "./index.js"
+import { definePropagator } from "../propagator/index.ts"
+import { inverter, switcher } from "./index.ts"
 
 export const conditional = definePropagator(
   4,

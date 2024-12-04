@@ -1,6 +1,6 @@
 import assert from "node:assert"
 import test from "node:test"
-import { sqrt, square } from "./quadratic.js"
+import { sqrt, square } from "./quadratic.ts"
 
 test("generics / quadratic", async () => {
   assert.deepStrictEqual(square(2), 4)

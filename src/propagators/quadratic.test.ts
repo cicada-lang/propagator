@@ -1,8 +1,8 @@
 import assert from "node:assert"
 import test from "node:test"
-import { patch } from "../cell/index.js"
-import { run } from "../scheduler/index.js"
-import { quadratic } from "./quadratic.js"
+import { patch } from "../cell/index.ts"
+import { run } from "../scheduler/index.ts"
+import { quadratic } from "./quadratic.ts"
 
 test("propagators / quadratic", async () => {
   {

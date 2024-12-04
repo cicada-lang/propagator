@@ -1,7 +1,7 @@
 import assert from "node:assert"
 import test from "node:test"
-import { Interval } from "../interval/index.js"
-import { add } from "./arithmetic.js"
+import { Interval } from "../interval/index.ts"
+import { add } from "./arithmetic.ts"
 
 test("generics / arithmetic / add", () => {
   assert.deepStrictEqual(add(1, 2), 3)

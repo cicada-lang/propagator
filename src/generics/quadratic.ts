@@ -1,7 +1,7 @@
-import { defineGeneric } from "../generic/defineGeneric.js"
-import { defineHandler } from "../generic/defineHandler.js"
-import { intervalSqrt, intervalSquare, isInterval } from "../interval/index.js"
-import { isNumber } from "../utils/isNumber.js"
+import { defineGeneric } from "../generic/defineGeneric.ts"
+import { defineHandler } from "../generic/defineHandler.ts"
+import { intervalSqrt, intervalSquare, isInterval } from "../interval/index.ts"
+import { isNumber } from "../utils/isNumber.ts"
 
 export const square = defineGeneric()
 defineHandler(square, [isNumber], (x) => x * x)

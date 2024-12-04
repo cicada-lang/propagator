@@ -1,5 +1,5 @@
-import { defineGeneric, defineHandler } from "../generic/index.js"
-import { isBoolean } from "../utils/isBoolean.js"
+import { defineGeneric, defineHandler } from "../generic/index.ts"
+import { isBoolean } from "../utils/isBoolean.ts"
 
 export const not = defineGeneric({
   default: (...args) => {

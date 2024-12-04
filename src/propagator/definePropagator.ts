@@ -1,6 +1,6 @@
-import { Cell } from "../cell/index.js"
-import { repeatApply } from "../utils/repeatApply.js"
-import type { PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.js"
+import { Cell } from "../cell/index.ts"
+import { repeatApply } from "../utils/repeatApply.ts"
+import type { PropagatorDefinitionWithFixedArity } from "./PropagatorDefinition.ts"
 
 export function definePropagator<A extends number>(
   arity: A,

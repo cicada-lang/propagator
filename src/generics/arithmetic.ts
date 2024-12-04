@@ -1,4 +1,4 @@
-import { defineGeneric, defineHandler } from "../generic/index.js"
+import { defineGeneric, defineHandler } from "../generic/index.ts"
 import {
   intervalAdd,
   intervalDiv,
@@ -6,9 +6,9 @@ import {
   intervalSub,
   isInterval,
   toInterval,
-} from "../interval/index.js"
-import { coercing } from "../utils/coercing.js"
-import { isNumber } from "../utils/isNumber.js"
+} from "../interval/index.ts"
+import { coercing } from "../utils/coercing.ts"
+import { isNumber } from "../utils/isNumber.ts"
 
 export const add = defineGeneric()
 defineHandler(add, [isNumber, isNumber], (x, y) => x + y)

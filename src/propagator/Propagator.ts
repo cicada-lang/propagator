@@ -1,3 +1,3 @@
-import type { MaybePromise } from "../utils/MaybePromise.js"
+import type { MaybePromise } from "../utils/MaybePromise.ts"
 
 export type Propagator = () => MaybePromise<void>

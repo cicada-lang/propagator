@@ -1,12 +1,12 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { patch } from "../cell/index.js"
-import { run } from "../scheduler/index.js"
+import { patch } from "../cell/index.ts"
+import { run } from "../scheduler/index.ts"
 import {
   celsiusKelvin,
   fahrenheitCelsius,
   fahrenheitToCelsius,
-} from "./celsius.js"
+} from "./celsius.ts"
 
 test("examples / celsius / fahrenheitToCelsius", async () => {
   const [f, c] = fahrenheitToCelsius()

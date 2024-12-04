@@ -1,3 +1,3 @@
-export * from "./addPropagator.js"
-export * from "./Cell.js"
-export * from "./patch.js"
+export * from "./addPropagator.ts"
+export * from "./Cell.ts"
+export * from "./patch.ts"

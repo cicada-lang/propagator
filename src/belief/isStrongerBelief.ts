@@ -1,6 +1,6 @@
-import type { Belief } from "../belief/Belief.js"
-import { implies } from "../merge/merge.js"
-import { setIsSubsetOf } from "../utils/set/Set.js"
+import type { Belief } from "../belief/Belief.ts"
+import { implies } from "../merge/merge.ts"
+import { setIsSubsetOf } from "../utils/set/Set.ts"
 
 // The predicate `isStrongerBelief` returns true only if the
 // information contained in the second argument is deducible from that

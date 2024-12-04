@@ -1,7 +1,7 @@
-import { defineHandler } from "../generic/index.js"
-import { isNothing } from "../nothing/index.js"
-import { isAnything } from "./isAnything.js"
-import { merge } from "./merge.js"
+import { defineHandler } from "../generic/index.ts"
+import { isNothing } from "../nothing/index.ts"
+import { isAnything } from "./isAnything.ts"
+import { merge } from "./merge.ts"
 
 defineHandler(merge, [isAnything, isNothing], (content, increment) => content)
 defineHandler(merge, [isNothing, isAnything], (content, increment) => increment)

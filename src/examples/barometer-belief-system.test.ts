@@ -4,14 +4,14 @@ import {
   BeliefSystem,
   beliefSystemEqual,
   beliefSystemQuery,
-} from "../belief-system/index.js"
-import { Belief, beliefEqual, bringIn, kickOut } from "../belief/index.js"
-import { Cell, patch } from "../cell/index.js"
-import { theContradiction } from "../contradiction/index.js"
-import { Interval, intervalAlmostEqual, isInterval } from "../interval/index.js"
-import { isNothing } from "../nothing/index.js"
-import { run } from "../scheduler/index.js"
-import { fallDuration, similarTriangles } from "./barometer.js"
+} from "../belief-system/index.ts"
+import { Belief, beliefEqual, bringIn, kickOut } from "../belief/index.ts"
+import { Cell, patch } from "../cell/index.ts"
+import { theContradiction } from "../contradiction/index.ts"
+import { Interval, intervalAlmostEqual, isInterval } from "../interval/index.ts"
+import { isNothing } from "../nothing/index.ts"
+import { run } from "../scheduler/index.ts"
+import { fallDuration, similarTriangles } from "./barometer.ts"
 
 test("examples / barometer-belief-system", async () => {
   // If we put belief systems in our cells, we can revisit the

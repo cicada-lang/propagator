@@ -1,1 +1,1 @@
-export * from "./Reason.js"
+export * from "./Reason.ts"

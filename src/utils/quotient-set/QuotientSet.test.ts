@@ -1,6 +1,6 @@
 import assert from "node:assert"
 import test from "node:test"
-import { QuotientSet } from "./QuotientSet.js"
+import { QuotientSet } from "./QuotientSet.ts"
 
 test("QuotientSet", () => {
   const rationals = new QuotientSet<[number, number]>({

@@ -2,10 +2,10 @@ import {
   beliefMergeManyStillBelieved,
   checkConsistent,
   type Belief,
-} from "../belief/index.js"
-import type { Nothing } from "../nothing/Nothing.js"
-import type { BeliefSystem } from "./BeliefSystem.js"
-import { assimilateBelief } from "./assimilateBelief.js"
+} from "../belief/index.ts"
+import type { Nothing } from "../nothing/Nothing.ts"
+import type { BeliefSystem } from "./BeliefSystem.ts"
+import { assimilateBelief } from "./assimilateBelief.ts"
 
 export function beliefSystemQuery<A>(
   beliefSystem: BeliefSystem<A>,

@@ -1,9 +1,9 @@
-import { log } from "../utils/log.js"
+import { log } from "../utils/log.ts"
 import {
   matchPredicates,
   type GenericDefinition,
   type GenericHandler,
-} from "./GenericDefinition.js"
+} from "./GenericDefinition.ts"
 
 export function defineGeneric(
   options: {

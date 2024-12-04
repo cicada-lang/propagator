@@ -1,7 +1,7 @@
-import { isBelief } from "../belief/index.js"
-import { defineGeneric } from "../generic/defineGeneric.js"
-import { defineHandler } from "../generic/index.js"
-import { isContradiction } from "./Contradiction.js"
+import { isBelief } from "../belief/index.ts"
+import { defineGeneric } from "../generic/defineGeneric.ts"
+import { defineHandler } from "../generic/index.ts"
+import { isContradiction } from "./Contradiction.ts"
 
 export const isContradictory = defineGeneric({
   default: isContradiction,

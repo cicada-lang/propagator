@@ -1,4 +1,4 @@
-import { type Cell } from "../cell/index.js"
+import { type Cell } from "../cell/index.ts"
 
 // # 关于为什么要重载函数作用
 // 我们重载函数作用，使得可以部分恢复树状的 expression 语法。

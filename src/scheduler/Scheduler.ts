@@ -1,4 +1,4 @@
-import type { Propagator } from "../propagator/index.js"
+import type { Propagator } from "../propagator/index.ts"
 
 export type Job = {
   "@type": "Job"

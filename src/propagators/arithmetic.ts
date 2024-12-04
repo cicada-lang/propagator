@@ -1,5 +1,5 @@
-import { add, div, mul, sub } from "../generics/index.js"
-import { definePrimitive, definePropagator } from "../propagator/index.js"
+import { add, div, mul, sub } from "../generics/index.ts"
+import { definePrimitive, definePropagator } from "../propagator/index.ts"
 
 export const adder = definePrimitive(3, add)
 export const subtractor = definePrimitive(3, sub)

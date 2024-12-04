@@ -1,5 +1,5 @@
-import { sqrt, square } from "../generics/index.js"
-import { definePrimitive, definePropagator } from "../propagator/index.js"
+import { sqrt, square } from "../generics/index.ts"
+import { definePrimitive, definePropagator } from "../propagator/index.ts"
 
 export const squarer = definePrimitive(2, square)
 export const sqrter = definePrimitive(2, sqrt)
