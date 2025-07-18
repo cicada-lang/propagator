@@ -1,6 +1,6 @@
 # 4.4 Dependencies Improve Search
 
-> https://github.com/cicada-lang/propagator/issues/4
+> https://github.com/xieyuheng/propagator/issues/4
 
 `nogood/` -- global map about about nogood
 `checkConsistent` -- 恢复之前实现时忽略的 check-consistent!
