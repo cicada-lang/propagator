@@ -1,4 +1,4 @@
-# Propagator
+# propagator.js
 
 An implementation of the propagator model.
 

@@ -1,7 +1,7 @@
 {
-  "name": "@xieyuheng/propagator",
+  "NAME": "@xieyuheng/propagator.js",
   "version": "0.0.4",
-  "repository": "github:xieyuheng/propagator",
+  "repository": "github:xieyuheng/propagator.js",
   "license": "GPL-3.0-or-later",
   "type": "module",
   "main": "./lib/index.js",
